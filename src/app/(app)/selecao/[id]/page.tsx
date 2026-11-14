@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { MessageCircle, Phone } from "lucide-react";
+import { ExternalLink, MessageCircle, Phone } from "lucide-react";
 import { requireStaff } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { formatarData, formatarDataHora } from "@/lib/datas";
-import { ROTULO_SEXO, formatarResposta, type Pergunta, type Resposta } from "@/lib/inscricao";
+import { ROTULO_SEXO, formatarResposta, lerVideo, type Pergunta, type Resposta } from "@/lib/inscricao";
 import { linkLigar, linkWhatsApp, mascararTelefone } from "@/lib/telefone";
 import { CabecalhoPagina } from "@/components/cabecalho-pagina";
 import { Button } from "@/components/ui/button";
@@ -34,6 +34,26 @@ export default async function FichaPage({ params }: { params: Promise<{ id: stri
     .sort((a, b) => a.ordem - b.ordem)
     .map((p) => ({ ...p, opcoes: (p.opcoes as string[]) ?? [] }));
   const respostas = (i.respostas ?? {}) as Record<string, Resposta>;
+
+  // Selfie e vídeo: URLs temporárias (1h) do bucket privado.
+  const midias: { pergunta: Pergunta; tipo: "foto" | "video-arquivo" | "video-link"; url: string }[] = [];
+  for (const p of perguntas) {
+    const v = respostas[p.id];
+    if (p.tipo === "foto" && typeof v === "string") {
+      const { data } = await supabase.storage.from("inscricoes").createSignedUrl(v, 3600);
+      if (data) midias.push({ pergunta: p, tipo: "foto", url: data.signedUrl });
+    }
+    if (p.tipo === "video") {
+      const vid = lerVideo(v);
+      if (vid?.tipo === "arquivo") {
+        const { data } = await supabase.storage.from("inscricoes").createSignedUrl(vid.path, 3600);
+        if (data) midias.push({ pergunta: p, tipo: "video-arquivo", url: data.signedUrl });
+      } else if (vid?.tipo === "link") {
+        midias.push({ pergunta: p, tipo: "video-link", url: vid.url });
+      }
+    }
+  }
+  const perguntasTexto = perguntas.filter((p) => p.tipo !== "foto" && p.tipo !== "video");
   const membro = Array.isArray(i.membros) ? i.membros[0] : i.membros;
   const whats = linkWhatsApp(i.telefone, `Olá, ${i.nome.split(" ")[0]}! Aqui é da coordenação da Bandinha do EJC. 🎶`);
   const ligar = linkLigar(i.telefone);
@@ -56,6 +76,39 @@ export default async function FichaPage({ params }: { params: Promise<{ id: stri
 
       <div className="grid gap-4 lg:grid-cols-[1fr_22rem] [&>*]:min-w-0">
         <div className="space-y-4">
+          {midias.length > 0 && (
+            <section className="grid gap-3 sm:grid-cols-2">
+              {midias.map((m) => (
+                <figure key={m.pergunta.id} className="overflow-hidden rounded-xl border bg-card">
+                  {m.tipo === "foto" && (
+                    <a href={m.url} target="_blank" rel="noopener noreferrer" aria-label="Abrir selfie em tamanho real">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={m.url} alt={`Selfie de ${i.nome}`} className="aspect-square w-full bg-muted object-cover" />
+                    </a>
+                  )}
+                  {m.tipo === "video-arquivo" && (
+                    <video src={m.url} controls playsInline preload="metadata" className="aspect-square w-full bg-black object-contain">
+                      Seu navegador não reproduz este vídeo.{" "}
+                      <a href={m.url}>Baixar vídeo</a>
+                    </video>
+                  )}
+                  {m.tipo === "video-link" && (
+                    <div className="flex aspect-square w-full flex-col items-center justify-center gap-3 bg-muted p-4 text-center">
+                      <p className="text-sm text-muted-foreground">O vídeo foi enviado como link:</p>
+                      <Button asChild>
+                        <a href={m.url} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink /> Abrir vídeo
+                        </a>
+                      </Button>
+                      <p className="text-xs break-all text-muted-foreground">{m.url}</p>
+                    </div>
+                  )}
+                  <figcaption className="px-3 py-2 text-sm font-medium">{m.pergunta.rotulo}</figcaption>
+                </figure>
+              ))}
+            </section>
+          )}
+
           <div className="grid grid-cols-2 gap-2">
             {whats && (
               <Button asChild size="lg" className="bg-[#128c4a] text-white hover:bg-[#0f7a40]">
@@ -112,11 +165,11 @@ export default async function FichaPage({ params }: { params: Promise<{ id: stri
             </section>
           )}
 
-          {perguntas.length > 0 && (
+          {perguntasTexto.length > 0 && (
             <section className="rounded-xl border bg-card p-4">
               <h2 className="mb-3 font-semibold">Respostas</h2>
               <dl className="space-y-3">
-                {perguntas.map((p) => (
+                {perguntasTexto.map((p) => (
                   <div key={p.id}>
                     <dt className="text-sm text-muted-foreground">{p.rotulo}</dt>
                     <dd className="whitespace-pre-line">{formatarResposta(p, respostas[p.id]) || <span className="text-muted-foreground">—</span>}</dd>

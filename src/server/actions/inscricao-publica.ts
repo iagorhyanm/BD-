@@ -1,10 +1,15 @@
 "use server";
 
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { headers } from "next/headers";
 import { createPublicClient } from "@/lib/supabase/publico";
 import { createAdminClient } from "@/lib/supabase/admin";
 import {
+  MAX_FOTO_BYTES,
+  MAX_VIDEO_BYTES,
+  TIPOS_FOTO,
+  TIPOS_VIDEO,
+  arquivosDaInscricao,
   camposFixosSchema,
   mensagemErroInscricao,
   validarResposta,
@@ -20,14 +25,14 @@ export type ResultadoInscricao =
 const LIMITE = 20;
 const JANELA_SEGUNDOS = 600;
 
-async function dentroDoLimite(formularioId: string): Promise<boolean> {
+async function dentroDoLimite(formularioId: string, escopo = "envio", limite = LIMITE): Promise<boolean> {
   try {
     const h = await headers();
     const ip = h.get("x-real-ip") ?? h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "desconhecido";
-    const chave = createHash("sha256").update(`${ip}|${formularioId}`).digest("hex");
+    const chave = createHash("sha256").update(`${ip}|${formularioId}|${escopo}`).digest("hex");
     const { data, error } = await createAdminClient().rpc("consumir_rate_limit", {
       p_chave: chave,
-      p_limite: LIMITE,
+      p_limite: limite,
       p_janela_segundos: JANELA_SEGUNDOS,
     });
     if (error) throw error;
@@ -36,6 +41,76 @@ async function dentroDoLimite(formularioId: string): Promise<boolean> {
     console.error("rate limit indisponível", e);
     return true; // não bloqueia inscrições legítimas se o controle falhar
   }
+}
+
+const EXTENSAO: Record<string, string> = {
+  "image/jpeg": "jpg",
+  "image/png": "png",
+  "image/webp": "webp",
+  "video/mp4": "mp4",
+  "video/quicktime": "mov",
+  "video/webm": "webm",
+  "video/3gpp": "3gp",
+  "video/x-matroska": "mkv",
+};
+
+export type AutorizacaoUpload =
+  | { ok: true; path: string; signedUrl: string }
+  | { ok: false; erro: string };
+
+/**
+ * Autoriza o envio de UM arquivo (foto ou vídeo) para o formulário aberto.
+ * Devolve uma URL assinada de uso único; o arquivo vai direto do celular para
+ * o Storage (sem passar pelo servidor), num bucket privado.
+ */
+export async function prepararUpload(
+  slug: string,
+  tipo: "foto" | "video",
+  mime: string,
+  tamanho: number,
+): Promise<AutorizacaoUpload> {
+  const permitidos = tipo === "foto" ? TIPOS_FOTO : TIPOS_VIDEO;
+  const maximo = tipo === "foto" ? MAX_FOTO_BYTES : MAX_VIDEO_BYTES;
+  const mimeBase = (mime || "").split(";")[0].toLowerCase();
+  if (!permitidos.includes(mimeBase)) {
+    return { ok: false, erro: tipo === "foto" ? "Envie uma imagem JPG, PNG ou WEBP." : "Formato de vídeo não aceito. Use MP4 ou MOV, ou cole um link." };
+  }
+  if (!Number.isFinite(tamanho) || tamanho <= 0 || tamanho > maximo) {
+    return {
+      ok: false,
+      erro: tipo === "foto" ? "Foto muito grande." : "O vídeo passa de 50 MB. Grave mais curto (até 1 minuto) ou envie um link.",
+    };
+  }
+
+  const { data: form } = await createPublicClient().rpc("formulario_publico", { p_slug: slug });
+  const f = form as { id: string; situacao: string } | null;
+  if (!f) return { ok: false, erro: "Formulário não encontrado." };
+  if (f.situacao !== "aberto") return { ok: false, erro: mensagemErroInscricao(`FORMULARIO_${f.situacao.toUpperCase()}`) };
+  if (!(await dentroDoLimite(f.id, "upload", 15))) {
+    return { ok: false, erro: "Muitos envios seguidos. Aguarde alguns minutos." };
+  }
+
+  const path = `${f.id}/${randomUUID()}/${tipo}-${Date.now()}.${EXTENSAO[mimeBase]}`;
+  const { data, error } = await createAdminClient().storage.from("inscricoes").createSignedUploadUrl(path);
+  if (error || !data) {
+    console.error("falha ao gerar URL de upload", error);
+    return { ok: false, erro: "Não foi possível preparar o envio. Tente novamente." };
+  }
+  return { ok: true, path, signedUrl: data.signedUrl };
+}
+
+/** Confere se os arquivos citados existem e pertencem a este formulário. */
+async function arquivosValidos(formularioId: string, paths: string[]): Promise<boolean> {
+  if (!paths.length) return true;
+  const admin = createAdminClient().storage.from("inscricoes");
+  for (const path of paths) {
+    if (!path.startsWith(`${formularioId}/`)) return false;
+    const pasta = path.slice(0, path.lastIndexOf("/"));
+    const nome = path.slice(path.lastIndexOf("/") + 1);
+    const { data, error } = await admin.list(pasta, { search: nome, limit: 1 });
+    if (error || !data?.some((o) => o.name === nome)) return false;
+  }
+  return true;
 }
 
 export async function enviarInscricao(slug: string, formData: FormData): Promise<ResultadoInscricao> {
@@ -86,6 +161,10 @@ export async function enviarInscricao(slug: string, formData: FormData): Promise
 
   if (!fixos.success || Object.keys(campos).length) {
     return { ok: false, erro: "Confira os campos destacados.", campos };
+  }
+
+  if (!(await arquivosValidos(f.id, arquivosDaInscricao(f.perguntas, respostas)))) {
+    return { ok: false, erro: "Não encontramos a foto ou o vídeo enviado. Envie o arquivo de novo." };
   }
 
   const d = fixos.data;

@@ -71,6 +71,7 @@ export type InscritoLista = {
   qtdAvaliacoes: number;
   avalieiEu: boolean;
   naEquipe: boolean;
+  foto: string | null;
 };
 
 type Form = { id: string; titulo: string; perguntas: Pergunta[] };
@@ -136,7 +137,9 @@ export function ListaSelecao({
 
   const perguntas = useMemo(() => {
     const fs = filtros.formulario ? formularios.filter((f) => f.id === filtros.formulario) : formularios;
-    return fs.flatMap((f) => f.perguntas.map((p) => ({ ...p, form: f.titulo })));
+    return fs.flatMap((f) =>
+      f.perguntas.filter((p) => p.tipo !== "foto" && p.tipo !== "video").map((p) => ({ ...p, form: f.titulo })),
+    );
   }, [formularios, filtros.formulario]);
   const perguntaFiltro = perguntas.find((p) => p.id === filtros.perguntaId);
 
@@ -429,7 +432,16 @@ function ItemInscrito({ inscrito: i, marcado, aoMarcar }: { inscrito: InscritoLi
       <label className="flex w-12 shrink-0 cursor-pointer items-center justify-center rounded-l-xl hover:bg-muted">
         <input type="checkbox" className="size-5 accent-[var(--primary)]" checked={marcado} onChange={aoMarcar} aria-label={`Marcar ${i.nome}`} />
       </label>
-      <Link href={`/selecao/${i.id}`} className="min-w-0 flex-1 py-3 pr-2">
+      <Link href={`/selecao/${i.id}`} className="flex min-w-0 flex-1 items-center gap-3 py-3 pr-2">
+        <span className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-sm font-semibold text-muted-foreground">
+          {i.foto ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={i.foto} alt="" loading="lazy" className="size-full object-cover" />
+          ) : (
+            i.nome.split(" ").map((x) => x[0]).slice(0, 2).join("")
+          )}
+        </span>
+        <div className="min-w-0 flex-1">
         <p className="truncate font-semibold">{i.nome}</p>
         <p className="truncate text-sm text-muted-foreground">
           {i.idade} anos · {i.cidade}
@@ -450,6 +462,7 @@ function ItemInscrito({ inscrito: i, marcado, aoMarcar }: { inscrito: InscritoLi
             </span>
           )}
           {!i.avalieiEu && <span className="text-xs text-muted-foreground">· sem sua nota</span>}
+        </div>
         </div>
       </Link>
       <div className="flex items-center gap-1 pr-2">

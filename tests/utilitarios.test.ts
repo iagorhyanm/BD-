@@ -159,3 +159,30 @@ describe("links e textos", () => {
     expect(capitalizar("sábado, 14 de novembro")).toBe("Sábado, 14 de novembro");
   });
 });
+
+import { arquivosDaInscricao, lerVideo, respostaVideoArquivo } from "@/lib/inscricao";
+
+describe("selfie e vídeo", () => {
+  const F = "11111111-1111-1111-1111-111111111111";
+  const R = "22222222-2222-2222-2222-222222222222";
+  const foto = `${F}/${R}/foto-1700000000000.jpg`;
+  const video = `${F}/${R}/video-1700000000000.mp4`;
+  const base = { id: "p", rotulo: "X", ajuda: null, obrigatoria: true, opcoes: [] };
+  it("valida caminho da foto", () => {
+    expect(validarResposta({ ...base, tipo: "foto" }, foto)).toBeNull();
+    expect(validarResposta({ ...base, tipo: "foto" }, "../../etc/passwd")).not.toBeNull();
+    expect(validarResposta({ ...base, tipo: "foto" }, undefined)).toBe("Envie a sua selfie.");
+    expect(validarResposta({ ...base, tipo: "video" }, "")).toBe("Envie o vídeo cantando ou cole o link.");
+  });
+  it("aceita vídeo por arquivo ou por link", () => {
+    expect(validarResposta({ ...base, tipo: "video" }, respostaVideoArquivo(video))).toBeNull();
+    expect(validarResposta({ ...base, tipo: "video" }, "https://youtu.be/abc")).toBeNull();
+    expect(validarResposta({ ...base, tipo: "video" }, "não é link")).not.toBeNull();
+    expect(lerVideo(respostaVideoArquivo(video))).toEqual({ tipo: "arquivo", path: video });
+  });
+  it("lista os arquivos de uma inscrição (para apagar junto)", () => {
+    const pergs = [{ id: "a", tipo: "foto" as const }, { id: "b", tipo: "video" as const }];
+    expect(arquivosDaInscricao(pergs, { a: foto, b: respostaVideoArquivo(video) })).toEqual([foto, video]);
+    expect(arquivosDaInscricao(pergs, { a: foto, b: "https://youtu.be/x" })).toEqual([foto]);
+  });
+});

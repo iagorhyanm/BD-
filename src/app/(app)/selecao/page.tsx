@@ -48,6 +48,21 @@ export default async function SelecaoPage({ searchParams }: { searchParams: Prom
       ),
   }));
 
+  // Miniaturas das selfies (URLs temporárias do bucket privado).
+  const perguntaFoto = new Map(forms.flatMap((f) => f.perguntas.filter((p) => p.tipo === "foto").map((p) => [f.id, p.id] as const)));
+  const caminhosFoto = new Map<string, string>();
+  for (const i of inscricoes ?? []) {
+    const pid = perguntaFoto.get(i.formulario_id);
+    const v = pid ? (i.respostas as Record<string, unknown> | null)?.[pid] : null;
+    if (typeof v === "string") caminhosFoto.set(i.id, v);
+  }
+  const urlFoto = new Map<string, string>();
+  if (caminhosFoto.size) {
+    const { data } = await supabase.storage.from("inscricoes").createSignedUrls([...new Set(caminhosFoto.values())], 3600);
+    const porCaminho = new Map((data ?? []).filter((d) => d.signedUrl).map((d) => [d.path!, d.signedUrl]));
+    for (const [id, c] of caminhosFoto) if (porCaminho.get(c)) urlFoto.set(id, porCaminho.get(c)!);
+  }
+
   const lista: InscritoLista[] = (inscricoes ?? []).map((i) => {
     const notas = (i.avaliacoes ?? []).map((a) => a.nota);
     const membro = Array.isArray(i.membros) ? i.membros[0] : i.membros;
@@ -72,6 +87,7 @@ export default async function SelecaoPage({ searchParams }: { searchParams: Prom
       qtdAvaliacoes: notas.length,
       avalieiEu: (i.avaliacoes ?? []).some((a) => a.coordenador_id === eu.id),
       naEquipe: !!membro,
+      foto: urlFoto.get(i.id) ?? null,
     };
   });
 

@@ -10,6 +10,7 @@ import { AlertaErro } from "@/components/alerta-erro";
 import { calcularIdade, hojeEmBelem } from "@/lib/datas";
 import { camposFixosSchema, validarResposta, type Pergunta, type Resposta } from "@/lib/inscricao";
 import { enviarInscricao } from "@/server/actions/inscricao-publica";
+import { CampoFoto, CampoVideo } from "./campos-arquivo";
 import { cn } from "@/lib/utils";
 
 type Erros = Record<string, string>;
@@ -32,6 +33,14 @@ export function FormularioPublico({
   const [erroGeral, setErroGeral] = useState<string | null>(null);
   const [sucesso, setSucesso] = useState<string | null>(null);
   const [pendente, iniciar] = useTransition();
+  // Quantos arquivos ainda estão subindo (não deixa enviar a inscrição no meio).
+  const [enviando, setEnviando] = useState(0);
+  const mudarEnviando = (ativo: boolean) => setEnviando((n) => Math.max(0, n + (ativo ? 1 : -1)));
+
+  // Ordem do formulário: selfie primeiro, depois os dados, perguntas, e o vídeo no fim.
+  const fotos = perguntas.filter((p) => p.tipo === "foto");
+  const videos = perguntas.filter((p) => p.tipo === "video");
+  const outras = perguntas.filter((p) => p.tipo !== "foto" && p.tipo !== "video");
 
   const idade = useMemo(
     () => (/^\d{4}-\d{2}-\d{2}$/.test(nascimento) && nascimento <= hojeEmBelem() ? calcularIdade(nascimento) : null),
@@ -40,24 +49,34 @@ export function FormularioPublico({
   const menor = idade !== null && idade < 18;
 
   const definir = (id: string, v: Resposta) => {
-    setRespostas((r) => ({ ...r, [id]: v }));
+    setRespostas((r) => {
+      const n = { ...r };
+      if (v === null || v === undefined) delete n[id];
+      else n[id] = v;
+      return n;
+    });
     setErros((e) => {
       const resto = { ...e };
       delete resto[`p_${id}`];
+      if (!Object.keys(resto).length) setErroGeral(null);
       return resto;
     });
   };
 
   function focarPrimeiroErro(es: Erros) {
-    const primeiro = Object.keys(es)[0];
-    if (!primeiro) return;
-    const el = document.querySelector<HTMLElement>(`[data-campo="${primeiro}"]`);
+    // O primeiro campo com erro na ordem em que aparece na tela.
+    const el = [...document.querySelectorAll<HTMLElement>("[data-campo]")].find((x) => es[x.dataset.campo!]);
+    if (!el) return;
     el?.scrollIntoView({ behavior: "smooth", block: "center" });
     el?.querySelector<HTMLElement>("input, textarea, select, button")?.focus({ preventScroll: true });
   }
 
   function aoEnviar(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (enviando > 0) {
+      setErroGeral("Aguarde o envio da foto/vídeo terminar.");
+      return;
+    }
     const fd = new FormData(e.currentTarget);
     fd.set("respostas", JSON.stringify(respostas));
 
@@ -104,7 +123,23 @@ export function FormularioPublico({
   }
 
   return (
-    <form onSubmit={aoEnviar} noValidate className="space-y-4">
+    <form
+      onSubmit={aoEnviar}
+      noValidate
+      className="space-y-4"
+      onChange={(e) => {
+        // Some o erro do campo assim que a pessoa mexe nele.
+        const nome = (e.target as unknown as HTMLInputElement).name;
+        if (nome && erros[nome]) {
+          setErros((atual) => {
+            const n = { ...atual };
+            delete n[nome];
+            if (!Object.keys(n).length) setErroGeral(null);
+            return n;
+          });
+        }
+      }}
+    >
       {/* Anti-spam: honeypot invisível + horário de carregamento */}
       <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
         <label>
@@ -113,7 +148,23 @@ export function FormularioPublico({
       </div>
       <input type="hidden" name="t" value={carregadoEm} />
 
-      <Bloco titulo="Seus dados">
+      {fotos.length > 0 && (
+        <Bloco titulo="1. Sua selfie">
+          {fotos.map((p) => (
+            <CampoPergunta
+              key={p.id}
+              pergunta={p}
+              slug={slug}
+              valor={respostas[p.id]}
+              erro={erros[`p_${p.id}`]}
+              aoMudar={(v) => definir(p.id, v)}
+              aoMudarEnviando={mudarEnviando}
+            />
+          ))}
+        </Bloco>
+      )}
+
+      <Bloco titulo={fotos.length ? "2. Seus dados" : "Seus dados"}>
         <Campo id="nome" rotulo="Nome completo" erro={erros.nome} obrigatorio>
           <Input id="nome" name="nome" autoComplete="name" autoCapitalize="words" maxLength={120} />
         </Campo>
@@ -170,15 +221,36 @@ export function FormularioPublico({
         )}
       </Bloco>
 
-      {perguntas.length > 0 && (
+      {outras.length > 0 && (
         <Bloco titulo="Sobre você e a música">
-          {perguntas.map((p) => (
+          {outras.map((p) => (
             <CampoPergunta
               key={p.id}
               pergunta={p}
+              slug={slug}
               valor={respostas[p.id]}
               erro={erros[`p_${p.id}`]}
               aoMudar={(v) => definir(p.id, v)}
+              aoMudarEnviando={mudarEnviando}
+            />
+          ))}
+        </Bloco>
+      )}
+
+      {videos.length > 0 && (
+        <Bloco
+          titulo={fotos.length ? "3. Seu vídeo cantando" : "Seu vídeo cantando"}
+          descricao="Obrigatório: sem o vídeo não é possível finalizar a inscrição."
+        >
+          {videos.map((p) => (
+            <CampoPergunta
+              key={p.id}
+              pergunta={p}
+              slug={slug}
+              valor={respostas[p.id]}
+              erro={erros[`p_${p.id}`]}
+              aoMudar={(v) => definir(p.id, v)}
+              aoMudarEnviando={mudarEnviando}
             />
           ))}
         </Bloco>
@@ -211,8 +283,8 @@ export function FormularioPublico({
 
       <AlertaErro mensagem={erroGeral} />
 
-      <Button type="submit" size="lg" className="h-14 w-full text-base" disabled={pendente}>
-        {pendente ? "Enviando…" : "Enviar inscrição"}
+      <Button type="submit" size="lg" className="h-14 w-full text-base" disabled={pendente || enviando > 0}>
+        {enviando > 0 ? "Aguarde o envio do arquivo…" : pendente ? "Enviando…" : "Enviar inscrição"}
       </Button>
     </form>
   );
@@ -304,17 +376,21 @@ function OpcaoCartao({
 
 function CampoPergunta({
   pergunta: p,
+  slug,
   valor,
   erro,
   aoMudar,
+  aoMudarEnviando,
 }: {
   pergunta: Pergunta;
+  slug: string;
   valor: Resposta | undefined;
   erro?: string;
   aoMudar: (v: Resposta) => void;
+  aoMudarEnviando: (ativo: boolean) => void;
 }) {
   const id = `p_${p.id}`;
-  const grupo = ["multipla", "caixas", "sim_nao", "escala"].includes(p.tipo);
+  const grupo = ["multipla", "caixas", "sim_nao", "escala", "video", "foto"].includes(p.tipo);
 
   let controle: React.ReactNode;
   switch (p.tipo) {
@@ -373,6 +449,16 @@ function CampoPergunta({
           <OpcaoCartao tipo="radio" name={id} rotulo="Sim" checked={valor === "sim"} onChange={() => aoMudar("sim")} />
           <OpcaoCartao tipo="radio" name={id} rotulo="Não" checked={valor === "nao"} onChange={() => aoMudar("nao")} />
         </div>
+      );
+      break;
+    case "foto":
+      controle = (
+        <CampoFoto id={id} slug={slug} valor={valor as string | undefined} aoMudar={aoMudar} aoMudarEnviando={aoMudarEnviando} />
+      );
+      break;
+    case "video":
+      controle = (
+        <CampoVideo id={id} slug={slug} valor={valor as string | undefined} aoMudar={aoMudar} aoMudarEnviando={aoMudarEnviando} />
       );
       break;
     case "escala":

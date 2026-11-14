@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { falha, requireStaff, type Resultado } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import { arquivosDaInscricao, type Pergunta } from "@/lib/inscricao";
 
 const STATUS = ["pendente", "em_analise", "selecionado", "lista_espera", "nao_selecionado"] as const;
 const ids = z.array(z.string().uuid()).min(1, "Selecione pelo menos uma pessoa.").max(500);
@@ -81,8 +82,21 @@ export async function removerAvaliacao(inscricaoId: string): Promise<Resultado> 
 export async function excluirInscricao(id: string): Promise<Resultado> {
   await requireStaff();
   const supabase = await createClient();
+  const { data: insc } = await supabase
+    .from("inscricoes")
+    .select("respostas, formularios(perguntas(id, tipo))")
+    .eq("id", id)
+    .maybeSingle();
   const { error } = await supabase.from("inscricoes").delete().eq("id", id);
   if (error) return falha("Não foi possível excluir a inscrição.");
+  // LGPD: apaga também a foto e o vídeo enviados.
+  const arquivos = insc
+    ? arquivosDaInscricao(
+        (insc.formularios?.perguntas ?? []) as Pick<Pergunta, "id" | "tipo">[],
+        (insc.respostas ?? {}) as Record<string, unknown>,
+      )
+    : [];
+  if (arquivos.length) await supabase.storage.from("inscricoes").remove(arquivos);
   revalidar();
   return { ok: true };
 }
