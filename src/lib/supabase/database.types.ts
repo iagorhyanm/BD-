@@ -49,6 +49,90 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
+                },"aviso_envios": {
+                  Row: {
+                    "aviso_id": string,"destinatarios": number,"enviado_em": string,"enviado_por": string | null,"filtro": NonNullable<Json>,"filtro_descricao": string | null,"id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "aviso_id": string,"destinatarios"?: number,"enviado_em"?: string,"enviado_por"?: string | null,"filtro"?: NonNullable<Json>,"filtro_descricao"?: string | null,"id"?: string
+                  }
+                  Update: {
+                    "aviso_id"?: string,"destinatarios"?: number,"enviado_em"?: string,"enviado_por"?: string | null,"filtro"?: NonNullable<Json>,"filtro_descricao"?: string | null,"id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "aviso_envios_aviso_id_fkey"
+      columns: ["aviso_id"]
+isOneToOne: false
+      referencedRelation: "avisos"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "aviso_envios_enviado_por_fkey"
+      columns: ["enviado_por"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"avisos": {
+                  Row: {
+                    "atualizado_em": string,"autor_id": string | null,"criado_em": string,"edicao_id": string,"fixado": boolean,"id": string,"texto": string,"titulo": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "atualizado_em"?: string,"autor_id"?: string | null,"criado_em"?: string,"edicao_id": string,"fixado"?: boolean,"id"?: string,"texto": string,"titulo": string
+                  }
+                  Update: {
+                    "atualizado_em"?: string,"autor_id"?: string | null,"criado_em"?: string,"edicao_id"?: string,"fixado"?: boolean,"id"?: string,"texto"?: string,"titulo"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "avisos_autor_id_fkey"
+      columns: ["autor_id"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "avisos_edicao_id_fkey"
+      columns: ["edicao_id"]
+isOneToOne: false
+      referencedRelation: "edicoes"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"checklist_itens": {
+                  Row: {
+                    "conferido": boolean,"conferido_em": string | null,"conferido_por": string | null,"descricao": string,"equipamento_id": string | null,"evento_id": string,"id": string,"ordem": number,"quantidade": number
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "conferido"?: boolean,"conferido_em"?: string | null,"conferido_por"?: string | null,"descricao": string,"equipamento_id"?: string | null,"evento_id": string,"id"?: string,"ordem"?: number,"quantidade"?: number
+                  }
+                  Update: {
+                    "conferido"?: boolean,"conferido_em"?: string | null,"conferido_por"?: string | null,"descricao"?: string,"equipamento_id"?: string | null,"evento_id"?: string,"id"?: string,"ordem"?: number,"quantidade"?: number
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "checklist_itens_conferido_por_fkey"
+      columns: ["conferido_por"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "checklist_itens_equipamento_id_fkey"
+      columns: ["equipamento_id"]
+isOneToOne: false
+      referencedRelation: "equipamentos"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "checklist_itens_evento_id_fkey"
+      columns: ["evento_id"]
+isOneToOne: false
+      referencedRelation: "eventos"
+      referencedColumns: ["id"]
+    }
+                  ]
                 },"edicoes": {
                   Row: {
                     "ano": number | null,"ativa": boolean,"atualizado_em": string,"criado_em": string,"criado_por": string | null,"id": string,"limite_faltas": number,"nome": string,"texto_lgpd": string,"vagas_feminino": number,"vagas_masculino": number
@@ -66,6 +150,116 @@ isOneToOne: false
       columns: ["criado_por"]
 isOneToOne: false
       referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"emprestimos": {
+                  Row: {
+                    "devolvido_em": string | null,"equipamento_id": string,"id": string,"observacao": string | null,"quem": string,"registrado_por": string | null,"retirado_em": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "devolvido_em"?: string | null,"equipamento_id": string,"id"?: string,"observacao"?: string | null,"quem": string,"registrado_por"?: string | null,"retirado_em"?: string
+                  }
+                  Update: {
+                    "devolvido_em"?: string | null,"equipamento_id"?: string,"id"?: string,"observacao"?: string | null,"quem"?: string,"registrado_por"?: string | null,"retirado_em"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "emprestimos_equipamento_id_fkey"
+      columns: ["equipamento_id"]
+isOneToOne: false
+      referencedRelation: "equipamentos"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "emprestimos_registrado_por_fkey"
+      columns: ["registrado_por"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"equipamentos": {
+                  Row: {
+                    "atualizado_em": string,"categoria": string | null,"criado_em": string,"dono_nome": string | null,"dono_tipo": Database["public"]['Enums']["dono_equipamento"],"edicao_id": string,"estado": Database["public"]['Enums']["estado_equipamento"],"foto_path": string | null,"id": string,"item": string,"observacoes": string | null,"quantidade": number,"responsavel": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "atualizado_em"?: string,"categoria"?: string | null,"criado_em"?: string,"dono_nome"?: string | null,"dono_tipo"?: Database["public"]['Enums']["dono_equipamento"],"edicao_id": string,"estado"?: Database["public"]['Enums']["estado_equipamento"],"foto_path"?: string | null,"id"?: string,"item": string,"observacoes"?: string | null,"quantidade"?: number,"responsavel"?: string | null
+                  }
+                  Update: {
+                    "atualizado_em"?: string,"categoria"?: string | null,"criado_em"?: string,"dono_nome"?: string | null,"dono_tipo"?: Database["public"]['Enums']["dono_equipamento"],"edicao_id"?: string,"estado"?: Database["public"]['Enums']["estado_equipamento"],"foto_path"?: string | null,"id"?: string,"item"?: string,"observacoes"?: string | null,"quantidade"?: number,"responsavel"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "equipamentos_edicao_id_fkey"
+      columns: ["edicao_id"]
+isOneToOne: false
+      referencedRelation: "edicoes"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"escalas": {
+                  Row: {
+                    "criado_em": string,"evento_id": string,"funcao_id": string,"id": string,"membro_id": string,"observacao": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "criado_em"?: string,"evento_id": string,"funcao_id": string,"id"?: string,"membro_id": string,"observacao"?: string | null
+                  }
+                  Update: {
+                    "criado_em"?: string,"evento_id"?: string,"funcao_id"?: string,"id"?: string,"membro_id"?: string,"observacao"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "escalas_evento_id_fkey"
+      columns: ["evento_id"]
+isOneToOne: false
+      referencedRelation: "eventos"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "escalas_funcao_id_fkey"
+      columns: ["funcao_id"]
+isOneToOne: false
+      referencedRelation: "funcoes"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "escalas_membro_id_fkey"
+      columns: ["membro_id"]
+isOneToOne: false
+      referencedRelation: "membros"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "escalas_membro_id_fkey"
+      columns: ["membro_id"]
+isOneToOne: false
+      referencedRelation: "resumo_presenca"
+      referencedColumns: ["membro_id"]
+    }
+                  ]
+                },"eventos": {
+                  Row: {
+                    "atualizado_em": string,"criado_em": string,"criado_por": string | null,"edicao_id": string,"fim": string | null,"id": string,"inicio": string,"local": string | null,"pauta": string | null,"tipo": Database["public"]['Enums']["tipo_evento"],"titulo": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "atualizado_em"?: string,"criado_em"?: string,"criado_por"?: string | null,"edicao_id": string,"fim"?: string | null,"id"?: string,"inicio": string,"local"?: string | null,"pauta"?: string | null,"tipo": Database["public"]['Enums']["tipo_evento"],"titulo": string
+                  }
+                  Update: {
+                    "atualizado_em"?: string,"criado_em"?: string,"criado_por"?: string | null,"edicao_id"?: string,"fim"?: string | null,"id"?: string,"inicio"?: string,"local"?: string | null,"pauta"?: string | null,"tipo"?: Database["public"]['Enums']["tipo_evento"],"titulo"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "eventos_criado_por_fkey"
+      columns: ["criado_por"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "eventos_edicao_id_fkey"
+      columns: ["edicao_id"]
+isOneToOne: false
+      referencedRelation: "edicoes"
       referencedColumns: ["id"]
     }
                   ]
@@ -94,6 +288,20 @@ isOneToOne: false
       referencedRelation: "edicoes"
       referencedColumns: ["id"]
     }
+                  ]
+                },"funcoes": {
+                  Row: {
+                    "ativo": boolean,"criado_em": string,"id": string,"nome": string,"ordem": number,"tipo": Database["public"]['Enums']["tipo_funcao"]
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "ativo"?: boolean,"criado_em"?: string,"id"?: string,"nome": string,"ordem"?: number,"tipo": Database["public"]['Enums']["tipo_funcao"]
+                  }
+                  Update: {
+                    "ativo"?: boolean,"criado_em"?: string,"id"?: string,"nome"?: string,"ordem"?: number,"tipo"?: Database["public"]['Enums']["tipo_funcao"]
+                  }
+                  Relationships: [
+                    
                   ]
                 },"inscricoes": {
                   Row: {
@@ -141,6 +349,38 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
+                },"membro_funcoes": {
+                  Row: {
+                    "funcao_id": string,"membro_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "funcao_id": string,"membro_id": string
+                  }
+                  Update: {
+                    "funcao_id"?: string,"membro_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "membro_funcoes_funcao_id_fkey"
+      columns: ["funcao_id"]
+isOneToOne: false
+      referencedRelation: "funcoes"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "membro_funcoes_membro_id_fkey"
+      columns: ["membro_id"]
+isOneToOne: false
+      referencedRelation: "membros"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "membro_funcoes_membro_id_fkey"
+      columns: ["membro_id"]
+isOneToOne: false
+      referencedRelation: "resumo_presenca"
+      referencedColumns: ["membro_id"]
+    }
+                  ]
                 },"membros": {
                   Row: {
                     "ativo": boolean,"atualizado_em": string,"cidade": string | null,"criado_em": string,"edicao_id": string,"id": string,"idade": number | null,"inscricao_id": string | null,"nascimento": string | null,"nivel": Database["public"]['Enums']["nivel_membro"] | null,"nome": string,"observacoes": string | null,"sexo": Database["public"]['Enums']["sexo"],"telefone": string | null
@@ -167,6 +407,58 @@ isOneToOne: true
       referencedColumns: ["id"]
     }
                   ]
+                },"musica_interpretes": {
+                  Row: {
+                    "membro_id": string,"musica_id": string,"papel": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "membro_id": string,"musica_id": string,"papel"?: string | null
+                  }
+                  Update: {
+                    "membro_id"?: string,"musica_id"?: string,"papel"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "musica_interpretes_membro_id_fkey"
+      columns: ["membro_id"]
+isOneToOne: false
+      referencedRelation: "membros"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "musica_interpretes_membro_id_fkey"
+      columns: ["membro_id"]
+isOneToOne: false
+      referencedRelation: "resumo_presenca"
+      referencedColumns: ["membro_id"]
+    },{
+      foreignKeyName: "musica_interpretes_musica_id_fkey"
+      columns: ["musica_id"]
+isOneToOne: false
+      referencedRelation: "musicas"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"musicas": {
+                  Row: {
+                    "artista": string | null,"atualizado_em": string,"bpm": number | null,"cifra_url": string | null,"criado_em": string,"criado_por": string | null,"id": string,"media_url": string | null,"momentos": (string)[],"observacoes": string | null,"titulo": string,"tom": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "artista"?: string | null,"atualizado_em"?: string,"bpm"?: number | null,"cifra_url"?: string | null,"criado_em"?: string,"criado_por"?: string | null,"id"?: string,"media_url"?: string | null,"momentos"?: (string)[],"observacoes"?: string | null,"titulo": string,"tom"?: string | null
+                  }
+                  Update: {
+                    "artista"?: string | null,"atualizado_em"?: string,"bpm"?: number | null,"cifra_url"?: string | null,"criado_em"?: string,"criado_por"?: string | null,"id"?: string,"media_url"?: string | null,"momentos"?: (string)[],"observacoes"?: string | null,"titulo"?: string,"tom"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "musicas_criado_por_fkey"
+      columns: ["criado_por"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    }
+                  ]
                 },"perguntas": {
                   Row: {
                     "ajuda": string | null,"criado_em": string,"formulario_id": string,"id": string,"obrigatoria": boolean,"opcoes": NonNullable<Json>,"ordem": number,"rotulo": string,"tipo": Database["public"]['Enums']["tipo_pergunta"]
@@ -184,6 +476,44 @@ isOneToOne: true
       columns: ["formulario_id"]
 isOneToOne: false
       referencedRelation: "formularios"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"presencas": {
+                  Row: {
+                    "atualizado_em": string,"evento_id": string,"id": string,"membro_id": string,"motivo": string | null,"registrado_por": string | null,"status": Database["public"]['Enums']["status_presenca"]
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "atualizado_em"?: string,"evento_id": string,"id"?: string,"membro_id": string,"motivo"?: string | null,"registrado_por"?: string | null,"status": Database["public"]['Enums']["status_presenca"]
+                  }
+                  Update: {
+                    "atualizado_em"?: string,"evento_id"?: string,"id"?: string,"membro_id"?: string,"motivo"?: string | null,"registrado_por"?: string | null,"status"?: Database["public"]['Enums']["status_presenca"]
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "presencas_evento_id_fkey"
+      columns: ["evento_id"]
+isOneToOne: false
+      referencedRelation: "eventos"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "presencas_membro_id_fkey"
+      columns: ["membro_id"]
+isOneToOne: false
+      referencedRelation: "membros"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "presencas_membro_id_fkey"
+      columns: ["membro_id"]
+isOneToOne: false
+      referencedRelation: "resumo_presenca"
+      referencedColumns: ["membro_id"]
+    },{
+      foreignKeyName: "presencas_registrado_por_fkey"
+      columns: ["registrado_por"]
+isOneToOne: false
+      referencedRelation: "profiles"
       referencedColumns: ["id"]
     }
                   ]
@@ -215,10 +545,76 @@ isOneToOne: false
                   Relationships: [
                     
                   ]
+                },"setlist_itens": {
+                  Row: {
+                    "id": string,"musica_id": string,"observacao": string | null,"ordem": number,"setlist_id": string,"tom": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "id"?: string,"musica_id": string,"observacao"?: string | null,"ordem"?: number,"setlist_id": string,"tom"?: string | null
+                  }
+                  Update: {
+                    "id"?: string,"musica_id"?: string,"observacao"?: string | null,"ordem"?: number,"setlist_id"?: string,"tom"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "setlist_itens_musica_id_fkey"
+      columns: ["musica_id"]
+isOneToOne: false
+      referencedRelation: "musicas"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "setlist_itens_setlist_id_fkey"
+      columns: ["setlist_id"]
+isOneToOne: false
+      referencedRelation: "setlists"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"setlists": {
+                  Row: {
+                    "atualizado_em": string,"criado_em": string,"edicao_id": string,"evento_id": string | null,"id": string,"observacoes": string | null,"titulo": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "atualizado_em"?: string,"criado_em"?: string,"edicao_id": string,"evento_id"?: string | null,"id"?: string,"observacoes"?: string | null,"titulo": string
+                  }
+                  Update: {
+                    "atualizado_em"?: string,"criado_em"?: string,"edicao_id"?: string,"evento_id"?: string | null,"id"?: string,"observacoes"?: string | null,"titulo"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "setlists_edicao_id_fkey"
+      columns: ["edicao_id"]
+isOneToOne: false
+      referencedRelation: "edicoes"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "setlists_evento_id_fkey"
+      columns: ["evento_id"]
+isOneToOne: true
+      referencedRelation: "eventos"
+      referencedColumns: ["id"]
+    }
+                  ]
                 }
           }
           Views: {
-            [_ in never]: never
+            "resumo_presenca": {
+                  Row: {
+                    "ativo": boolean,"atrasos": number | null,"edicao_id": string,"faltas": number | null,"justificadas": number | null,"membro_id": string,"nome": string,"percentual": number | null,"presentes": number | null,"registros": number | null,"sexo": Database["public"]['Enums']["sexo"]
+                  }
+                  ComputedFields: never
+                  Relationships: [
+                    {
+      foreignKeyName: "membros_edicao_id_fkey"
+      columns: ["edicao_id"]
+isOneToOne: false
+      referencedRelation: "edicoes"
+      referencedColumns: ["id"]
+    }
+                  ]
+                }
           }
           Functions: {
             "ativar_edicao":
@@ -259,7 +655,7 @@ isOneToOne: false
                            }
           }
           Enums: {
-            "nivel_membro": "iniciante"|"intermediario"|"avancado","papel_usuario": "edg"|"coordenador"|"membro","sexo": "masculino"|"feminino","status_inscricao": "pendente"|"em_analise"|"selecionado"|"lista_espera"|"nao_selecionado","tipo_pergunta": "texto_curto"|"texto_longo"|"multipla"|"caixas"|"sim_nao"|"escala"|"lista"
+            "dono_equipamento": "equipe"|"emprestado","estado_equipamento": "bom"|"defeito"|"manutencao","nivel_membro": "iniciante"|"intermediario"|"avancado","papel_usuario": "edg"|"coordenador"|"membro","sexo": "masculino"|"feminino","status_inscricao": "pendente"|"em_analise"|"selecionado"|"lista_espera"|"nao_selecionado","status_presenca": "presente"|"falta"|"justificada"|"atraso","tipo_evento": "ensaio"|"apresentacao","tipo_funcao": "voz"|"instrumento"|"outro","tipo_pergunta": "texto_curto"|"texto_longo"|"multipla"|"caixas"|"sim_nao"|"escala"|"lista"
           }
           CompositeTypes: {
             [_ in never]: never
@@ -379,7 +775,7 @@ export const Constants = {
           }
         },"public": {
           Enums: {
-            "nivel_membro": ["iniciante", "intermediario", "avancado"],"papel_usuario": ["edg", "coordenador", "membro"],"sexo": ["masculino", "feminino"],"status_inscricao": ["pendente", "em_analise", "selecionado", "lista_espera", "nao_selecionado"],"tipo_pergunta": ["texto_curto", "texto_longo", "multipla", "caixas", "sim_nao", "escala", "lista"]
+            "dono_equipamento": ["equipe", "emprestado"],"estado_equipamento": ["bom", "defeito", "manutencao"],"nivel_membro": ["iniciante", "intermediario", "avancado"],"papel_usuario": ["edg", "coordenador", "membro"],"sexo": ["masculino", "feminino"],"status_inscricao": ["pendente", "em_analise", "selecionado", "lista_espera", "nao_selecionado"],"status_presenca": ["presente", "falta", "justificada", "atraso"],"tipo_evento": ["ensaio", "apresentacao"],"tipo_funcao": ["voz", "instrumento", "outro"],"tipo_pergunta": ["texto_curto", "texto_longo", "multipla", "caixas", "sim_nao", "escala", "lista"]
           }
         }
 } as const

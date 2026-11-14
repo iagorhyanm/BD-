@@ -54,7 +54,7 @@ export default async function FichaPage({ params }: { params: Promise<{ id: stri
         descricao={`${i.idade} anos · ${i.cidade} · ${ROTULO_SEXO[i.sexo]}`}
       />
 
-      <div className="grid gap-4 lg:grid-cols-[1fr_22rem]">
+      <div className="grid gap-4 lg:grid-cols-[1fr_22rem] [&>*]:min-w-0">
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-2">
             {whats && (

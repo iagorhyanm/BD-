@@ -13,6 +13,7 @@ import { AlertaErro } from "@/components/alerta-erro";
 import { Confirmar } from "@/components/confirmar";
 import { createClient } from "@/lib/supabase/client";
 import { semReset } from "@/lib/form";
+import { reduzirImagem } from "@/lib/imagem";
 import { FUSO } from "@/lib/datas";
 import type { Database } from "@/lib/supabase/database.types";
 import { excluirFormulario, salvarCapa, salvarConfiguracoes } from "@/server/actions/formularios";
@@ -20,19 +21,6 @@ import { excluirFormulario, salvarCapa, salvarConfiguracoes } from "@/server/act
 type Formulario = Database["public"]["Tables"]["formularios"]["Row"];
 
 const paraInputLocal = (iso: string | null) => (iso ? formatInTimeZone(new Date(iso), FUSO, "yyyy-MM-dd'T'HH:mm") : "");
-
-/** Reduz a imagem no navegador (máx. 1600px, JPEG) para carregar rápido no 4G. */
-async function reduzirImagem(arquivo: File): Promise<Blob> {
-  const bitmap = await createImageBitmap(arquivo);
-  const escala = Math.min(1, 1600 / bitmap.width);
-  const canvas = document.createElement("canvas");
-  canvas.width = Math.round(bitmap.width * escala);
-  canvas.height = Math.round(bitmap.height * escala);
-  canvas.getContext("2d")!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-  return new Promise((ok, erro) =>
-    canvas.toBlob((b) => (b ? ok(b) : erro(new Error("Falha ao processar a imagem"))), "image/jpeg", 0.82),
-  );
-}
 
 export function ConfigFormulario({
   formulario: f,

@@ -125,3 +125,37 @@ describe("csv", () => {
     expect(csv).toBe('﻿Nome;Obs\r\nAna;"disse ""oi""; tchau"\r\nBia;');
   });
 });
+
+import { normalizarUrl, rotuloMidia, seSobrepoem, situacaoFaltas } from "@/lib/dominio";
+import { capitalizar } from "@/lib/datas";
+
+describe("agenda e presença", () => {
+  it("detecta horários sobrepostos (sem término = 2h)", () => {
+    const a = { inicio: "2026-11-14T22:00:00Z", fim: "2026-11-15T00:00:00Z" };
+    expect(seSobrepoem(a, { inicio: "2026-11-14T23:00:00Z", fim: null })).toBe(true);
+    expect(seSobrepoem(a, { inicio: "2026-11-15T00:00:00Z", fim: null })).toBe(false);
+    expect(seSobrepoem({ inicio: "2026-11-14T22:00:00Z", fim: null }, { inicio: "2026-11-14T23:30:00Z", fim: null })).toBe(true);
+  });
+  it("classifica faltas em relação ao limite", () => {
+    expect(situacaoFaltas(0, 3)).toBe("ok");
+    expect(situacaoFaltas(3, 3)).toBe("no_limite");
+    expect(situacaoFaltas(4, 3)).toBe("passou");
+    expect(situacaoFaltas(0, 0)).toBe("ok");
+    expect(situacaoFaltas(1, 0)).toBe("passou");
+  });
+});
+
+describe("links e textos", () => {
+  it("completa o protocolo de links digitados", () => {
+    expect(normalizarUrl("cifraclub.com.br/x")).toBe("https://cifraclub.com.br/x");
+    expect(normalizarUrl("http://a.com")).toBe("http://a.com");
+    expect(normalizarUrl("  ")).toBeNull();
+  });
+  it("identifica YouTube e Spotify", () => {
+    expect(rotuloMidia("https://youtu.be/abc")).toBe("YouTube");
+    expect(rotuloMidia("https://open.spotify.com/track/1")).toBe("Spotify");
+  });
+  it("capitaliza só a primeira letra", () => {
+    expect(capitalizar("sábado, 14 de novembro")).toBe("Sábado, 14 de novembro");
+  });
+});

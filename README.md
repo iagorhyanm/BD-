@@ -3,11 +3,12 @@
 Sistema de gestão da **Bandinha**, a equipe de música do EJC (Encontro de Jovens com Cristo) de Marabá/PA.
 Funciona no celular (pode ser "instalado" como app) e no computador.
 
-> **Status:** Fases 1 e 2 concluídas:
-> - **Fase 1:** login, perfis, gestão de coordenadores e edições.
-> - **Fase 2:** formulários de inscrição com link público e QR code, seleção Homens/Mulheres, avaliações e "Puxar para a equipe".
->
-> Os demais módulos aparecem no menu como "Em construção" até a fase correspondente.
+> **Status:** todas as fases estão concluídas:
+> - **Fase 1:** login, perfis, coordenadores e edições.
+> - **Fase 2:** inscrições com link público e QR code, seleção Homens/Mulheres, avaliações e "Puxar para a equipe".
+> - **Fase 3:** membros, agenda (lista e calendário), escala com aviso de conflitos e presença.
+> - **Fase 4:** repertório (biblioteca + setlists), equipamentos, empréstimos e checklist por apresentação.
+> - **Fase 5:** avisos com envio pelo WhatsApp, painel inicial, log de atividades e app instalável (PWA).
 
 ---
 
@@ -153,6 +154,43 @@ Cada alteração enviada ao GitHub publica uma versão nova automaticamente.
    - Abra a ficha de cada inscrito para dar nota e comentário.
    - Use **Puxar para a equipe** para transformar o inscrito em membro.
    - Marque várias pessoas para mudar o status em lote e exporte o CSV quando precisar.
+
+**Equipe, agenda e presença**
+
+- **Membros:**
+  - Cadastre manualmente ou use "Puxar para a equipe" na Seleção.
+  - Marque as funções (voz, instrumentos). A lista de funções é editada pelo EDG em Administração → Funções e instrumentos.
+  - Use "Copiar números" para colar os contatos no WhatsApp e o CSV para planilhas.
+- **Agenda:**
+  - Crie ensaios e apresentações e abra cada evento para montar a **escala**.
+  - O sistema avisa quando a mesma pessoa está em duas funções no mesmo evento ou em eventos no mesmo horário.
+  - Dá para copiar a escala de um evento anterior.
+- **Presença:**
+  - Abra o evento e toque em "Fazer chamada". Marque Presente, Atraso, Falta justificada (com motivo) ou Falta.
+  - O relatório destaca quem atingiu ou passou do limite de faltas da edição. Só contam as faltas **não justificadas**.
+
+**Repertório e equipamentos**
+
+- **Repertório:**
+  - A biblioteca de músicas é a mesma para todas as edições. Cada música tem tom, BPM, momento do encontro, cifra, YouTube/Spotify e quem canta/toca.
+  - Na página do evento, use "Montar repertório do dia" para criar a setlist. Arraste para ordenar e ajuste o tom de cada música.
+- **Equipamentos:**
+  - Inventário com foto, estado, dono e responsável, e registro de retirada e devolução.
+  - Nas apresentações, use o **checklist** do evento para conferir o que precisa ser levado.
+- **Duplicar edição** copia vagas, configurações, equipamentos e as setlists "modelo" (sem evento).
+
+**Avisos**
+
+- Publique no mural; os avisos fixados aparecem no topo e no painel inicial.
+- Em **Enviar para membros**:
+  - Filtre por sexo, função ou escala de um evento.
+  - Copie a mensagem pronta ou toque em cada nome para abrir o WhatsApp com o texto já preenchido.
+  - Depois, registre o envio no histórico.
+
+**Instalar no celular (PWA)**
+
+- **Android (Chrome):** abra o site → menu ⋮ → **Instalar app** (ou "Adicionar à tela inicial").
+- **iPhone (Safari):** abra o site → botão Compartilhar → **Adicionar à Tela de Início**.
 
 ---
 
