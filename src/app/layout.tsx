@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { RegistrarSW } from "@/components/registrar-sw";
 import { cssVariaveisDoTema, tema } from "@/theme.config";
 import "./globals.css";
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-dvh font-sans antialiased">
         {children}
         <Toaster position="top-center" richColors closeButton />
+        <RegistrarSW />
       </body>
     </html>
   );

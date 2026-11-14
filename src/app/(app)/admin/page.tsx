@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CalendarRange, ChevronRight, History, Users } from "lucide-react";
+import { CalendarRange, ChevronRight, Guitar, History, Users } from "lucide-react";
 import { requireEdg } from "@/lib/auth";
 import { CabecalhoPagina } from "@/components/cabecalho-pagina";
 
@@ -18,6 +18,12 @@ const SECOES = [
     titulo: "Edições e configurações",
     descricao: "Edições do EJC, vagas por sexo, limite de faltas e texto LGPD.",
     icone: CalendarRange,
+  },
+  {
+    href: "/admin/funcoes",
+    titulo: "Funções e instrumentos",
+    descricao: "Vozes, instrumentos e outras funções usadas na equipe e na escala.",
+    icone: Guitar,
   },
   {
     href: "/admin/logs",

@@ -34,3 +34,8 @@ export function calcularIdade(nascimentoISO: string, referencia = hojeEmBelem())
   if (mr < mn || (mr === mn && dr < dn)) idade--;
   return idade;
 }
+
+/** Primeira letra maiúscula (ex.: "sábado, 14 de novembro" → "Sábado, 14 de novembro"). */
+export function capitalizar(texto: string): string {
+  return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
