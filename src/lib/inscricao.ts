@@ -29,7 +29,54 @@ export const TIPOS_PERGUNTA: { valor: TipoPergunta; rotulo: string; temOpcoes: b
   { valor: "lista", rotulo: "Lista suspensa", temOpcoes: true },
   { valor: "sim_nao", rotulo: "Sim / Não", temOpcoes: false },
   { valor: "escala", rotulo: "Escala de 1 a 5", temOpcoes: false },
+  { valor: "foto", rotulo: "Foto (upload)", temOpcoes: false },
+  { valor: "video", rotulo: "Vídeo (upload ou link)", temOpcoes: false },
 ];
+
+/* ------------------------------------------------------------------ */
+/* Arquivos (foto/vídeo)                                               */
+/* ------------------------------------------------------------------ */
+
+/** Limite por arquivo do plano gratuito do Supabase. */
+export const MAX_VIDEO_BYTES = 50 * 1024 * 1024;
+export const MAX_FOTO_BYTES = 5 * 1024 * 1024;
+export const TIPOS_VIDEO = ["video/mp4", "video/quicktime", "video/webm", "video/3gpp", "video/x-matroska"];
+export const TIPOS_FOTO = ["image/jpeg", "image/png", "image/webp"];
+
+/** Caminho no bucket: <formulario>/<aleatorio>/<foto|video>-<timestamp>.<ext> */
+export const REGEX_ARQUIVO = /^[0-9a-f-]{36}\/[0-9a-f-]{36}\/(foto|video)-\d+\.[a-z0-9]{2,5}$/;
+const PREFIXO_ARQUIVO = "arquivo:";
+
+/** Resposta de vídeo: "arquivo:<caminho>" (upload) ou a URL do link. */
+export function lerVideo(v: unknown): { tipo: "arquivo"; path: string } | { tipo: "link"; url: string } | null {
+  if (typeof v !== "string" || !v) return null;
+  if (v.startsWith(PREFIXO_ARQUIVO)) return { tipo: "arquivo", path: v.slice(PREFIXO_ARQUIVO.length) };
+  return { tipo: "link", url: v };
+}
+export const respostaVideoArquivo = (path: string) => `${PREFIXO_ARQUIVO}${path}`;
+
+/** Caminhos de arquivos (no bucket) citados nas respostas de uma inscrição. */
+export function arquivosDaInscricao(perguntas: Pick<Pergunta, "id" | "tipo">[], respostas: Record<string, unknown>): string[] {
+  const out: string[] = [];
+  for (const p of perguntas) {
+    const v = respostas[p.id];
+    if (p.tipo === "foto" && typeof v === "string" && REGEX_ARQUIVO.test(v)) out.push(v);
+    if (p.tipo === "video") {
+      const vid = lerVideo(v);
+      if (vid?.tipo === "arquivo" && REGEX_ARQUIVO.test(vid.path)) out.push(vid.path);
+    }
+  }
+  return out;
+}
+
+export function linkValido(url: string): boolean {
+  try {
+    const u = new URL(url);
+    return (u.protocol === "https:" || u.protocol === "http:") && u.hostname.includes(".");
+  } catch {
+    return false;
+  }
+}
 
 export const tipoTemOpcoes = (t: TipoPergunta) => TIPOS_PERGUNTA.find((x) => x.valor === t)?.temOpcoes ?? false;
 export const rotuloTipo = (t: TipoPergunta) => TIPOS_PERGUNTA.find((x) => x.valor === t)?.rotulo ?? t;
@@ -51,6 +98,11 @@ export const ROTULO_SEXO: Record<Sexo, string> = { masculino: "Masculino", femin
 export function formatarResposta(p: Pick<Pergunta, "tipo">, v: Resposta | undefined): string {
   if (v === null || v === undefined || v === "") return "";
   if (Array.isArray(v)) return v.join(", ");
+  if (p.tipo === "foto") return "Foto enviada";
+  if (p.tipo === "video") {
+    const vid = lerVideo(v);
+    return vid?.tipo === "link" ? vid.url : "Vídeo enviado (arquivo)";
+  }
   if (p.tipo === "sim_nao") return v === "sim" ? "Sim" : v === "nao" ? "Não" : String(v);
   return String(v);
 }
@@ -63,7 +115,12 @@ export function formatarResposta(p: Pick<Pergunta, "tipo">, v: Resposta | undefi
 export function validarResposta(p: Pergunta, v: Resposta | undefined): string | null {
   const vazio =
     v === undefined || v === null || (typeof v === "string" && v.trim() === "") || (Array.isArray(v) && v.length === 0);
-  if (vazio) return p.obrigatoria ? "Resposta obrigatória." : null;
+  if (vazio) {
+    if (!p.obrigatoria && p.tipo !== "foto" && p.tipo !== "video") return null;
+    if (p.tipo === "foto") return "Envie a sua selfie.";
+    if (p.tipo === "video") return "Envie o vídeo cantando ou cole o link.";
+    return "Resposta obrigatória.";
+  }
 
   switch (p.tipo) {
     case "texto_curto":
@@ -79,6 +136,14 @@ export function validarResposta(p: Pergunta, v: Resposta | undefined): string | 
       return v === "sim" || v === "nao" ? null : "Responda sim ou não.";
     case "escala":
       return typeof v === "number" && Number.isInteger(v) && v >= 1 && v <= 5 ? null : "Escolha de 1 a 5.";
+    case "foto":
+      return typeof v === "string" && REGEX_ARQUIVO.test(v) ? null : "Envie a foto.";
+    case "video": {
+      const vid = lerVideo(v);
+      if (!vid) return "Envie o vídeo ou cole o link.";
+      if (vid.tipo === "arquivo") return REGEX_ARQUIVO.test(vid.path) ? null : "Envie o vídeo novamente.";
+      return linkValido(vid.url) && vid.url.length <= 500 ? null : "Cole um link válido (começando com https://).";
+    }
   }
 }
 

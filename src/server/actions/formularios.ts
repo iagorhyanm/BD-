@@ -12,6 +12,25 @@ import { slugificar, tipoTemOpcoes, type TipoPergunta } from "@/lib/inscricao";
 
 const sufixo = () => randomBytes(3).toString("hex").slice(0, 4);
 
+/** Perguntas que todo formulário novo já traz. */
+const PERGUNTAS_PADRAO = [
+  {
+    tipo: "foto" as const,
+    rotulo: "Selfie",
+    ajuda: "Uma selfie de frente, com boa luz, em que o seu rosto apareça claramente (sem óculos escuros, boné ou filtro).",
+    obrigatoria: true,
+  },
+  {
+    tipo: "video" as const,
+    rotulo: "Vídeo cantando “Só Podia Ser Jesus”",
+    ajuda: "Grave você cantando a música “Só Podia Ser Jesus” (pode ser um trecho de até 1 minuto). Envie o arquivo (até 50 MB) ou cole o link do YouTube, Google Drive ou Instagram.",
+    obrigatoria: true,
+  },
+];
+
+/** Foto e vídeo são sempre obrigatórios. */
+const sempreObrigatoria = (tipo: string) => tipo === "foto" || tipo === "video";
+
 function revalidar(id?: string) {
   revalidatePath("/inscricoes");
   if (id) revalidatePath(`/inscricoes/${id}`);
@@ -37,6 +56,12 @@ export async function criarFormulario() {
     .select("id")
     .single();
   if (error) throw new Error("Não foi possível criar o formulário.");
+
+  // Formulário já pronto: selfie e vídeo cantando (obrigatórios).
+  await supabase.from("perguntas").insert(
+    PERGUNTAS_PADRAO.map((p, ordem) => ({ ...p, formulario_id: data.id, ordem, opcoes: [] })),
+  );
+
   revalidar();
   redirect(`/inscricoes/${data.id}`);
 }
@@ -145,7 +170,7 @@ export async function excluirFormulario(id: string): Promise<Resultado> {
 
 /* ----------------------------- Perguntas ----------------------------- */
 
-const TIPOS = ["texto_curto", "texto_longo", "multipla", "caixas", "sim_nao", "escala", "lista"] as const;
+const TIPOS = ["texto_curto", "texto_longo", "multipla", "caixas", "sim_nao", "escala", "lista", "foto", "video"] as const;
 
 const perguntaSchema = z
   .object({
@@ -183,7 +208,7 @@ export async function salvarPerguntas(formularioId: string, perguntas: unknown):
     rotulo: p.rotulo,
     ajuda: p.ajuda || null,
     opcoes: tipoTemOpcoes(p.tipo as TipoPergunta) ? p.opcoes : [],
-    obrigatoria: p.obrigatoria,
+    obrigatoria: sempreObrigatoria(p.tipo) || p.obrigatoria,
     ordem,
   }));
 

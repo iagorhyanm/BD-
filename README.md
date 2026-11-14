@@ -144,8 +144,12 @@ Cada alteração enviada ao GitHub publica uma versão nova automaticamente.
 
 **Inscrições e seleção**
 
+> **Espaço para fotos e vídeos:** o plano gratuito do Supabase tem 1 GB. Acompanhe em **Administração → Armazenamento**, onde também dá para apagar arquivos de inscrições abandonadas. Excluir uma inscrição apaga a selfie e o vídeo dela.
+
 1. Em **Inscrições → Novo formulário**:
-   - Monte as perguntas extras. Os campos fixos (nome, nascimento, telefone, sexo, EJC anterior, cidade e LGPD) já vêm prontos.
+   - O formulário já vem pronto com **Selfie** e **Vídeo cantando "Só Podia Ser Jesus"**, ambos obrigatórios.
+   - Na página pública a ordem é: selfie → dados → vídeo. O vídeo pode ser enviado como arquivo (até 50 MB) ou como link do YouTube, Google Drive ou Instagram.
+   - Os campos fixos (nome, nascimento, telefone, sexo, EJC anterior, cidade e LGPD) também já vêm prontos. Dá para acrescentar outras perguntas.
    - Arraste as perguntas para mudar a ordem e clique em **Salvar perguntas**.
 2. Em **Configurações**, defina capa, datas, limite e mensagem de confirmação. Depois ligue **Receber inscrições**.
 3. Em **Compartilhar**, copie o link, mande pelo WhatsApp ou baixe o QR code para imprimir.

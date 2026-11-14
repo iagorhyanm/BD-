@@ -32,6 +32,7 @@ import { salvarPerguntas } from "@/server/actions/formularios";
 import { cn } from "@/lib/utils";
 
 const CAMPOS_FIXOS = [
+  // Na página pública, perguntas de Foto aparecem antes destes campos e as de Vídeo, no fim.
   "Nome completo",
   "Data de nascimento (idade calculada)",
   "Telefone/WhatsApp",
@@ -90,7 +91,7 @@ export function EditorPerguntas({
       rotulo: "",
       ajuda: null,
       opcoes: tipoTemOpcoes(tipo) ? ["Opção 1", "Opção 2"] : [],
-      obrigatoria: false,
+      obrigatoria: tipo === "foto" || tipo === "video",
     };
     mudar((ps) => [...ps, nova]);
     setRecemAdicionada(nova.id);
@@ -287,6 +288,7 @@ function ItemPergunta({
                   aoMudar({
                     tipo,
                     opcoes: tipoTemOpcoes(tipo) ? (p.opcoes.length ? p.opcoes : ["Opção 1", "Opção 2"]) : [],
+                    obrigatoria: tipo === "foto" || tipo === "video" ? true : p.obrigatoria,
                   });
                 }}
               >
@@ -352,10 +354,16 @@ function ItemPergunta({
             </fieldset>
           )}
 
-          <label className="flex min-h-11 cursor-pointer items-center justify-between gap-3 border-t pt-3">
-            <span className="text-sm font-medium">Obrigatória</span>
-            <Switch checked={p.obrigatoria} onCheckedChange={(v) => aoMudar({ obrigatoria: v })} />
-          </label>
+          {p.tipo === "foto" || p.tipo === "video" ? (
+            <p className="border-t pt-3 text-sm text-muted-foreground">
+              <strong className="text-foreground">Sempre obrigatória.</strong> A inscrição só é enviada com este arquivo.
+            </p>
+          ) : (
+            <label className="flex min-h-11 cursor-pointer items-center justify-between gap-3 border-t pt-3">
+              <span className="text-sm font-medium">Obrigatória</span>
+              <Switch checked={p.obrigatoria} onCheckedChange={(v) => aoMudar({ obrigatoria: v })} />
+            </label>
+          )}
         </div>
       </div>
     </li>

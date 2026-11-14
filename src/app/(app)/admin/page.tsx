@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CalendarRange, ChevronRight, Guitar, History, Users } from "lucide-react";
+import { CalendarRange, ChevronRight, Guitar, HardDrive, History, Users } from "lucide-react";
 import { requireEdg } from "@/lib/auth";
 import { CabecalhoPagina } from "@/components/cabecalho-pagina";
 
@@ -24,6 +24,12 @@ const SECOES = [
     titulo: "Funções e instrumentos",
     descricao: "Vozes, instrumentos e outras funções usadas na equipe e na escala.",
     icone: Guitar,
+  },
+  {
+    href: "/admin/armazenamento",
+    titulo: "Armazenamento",
+    descricao: "Espaço usado por selfies e vídeos e limpeza de arquivos órfãos.",
+    icone: HardDrive,
   },
   {
     href: "/admin/logs",

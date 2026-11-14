@@ -617,7 +617,12 @@ isOneToOne: false
                 }
           }
           Functions: {
-            "ativar_edicao":
+            "arquivos_orfaos_inscricao":
+{ Args: Record<PropertyKey, never>; Returns: {
+              "bytes": number,"criado_em": string,"nome": string
+            }[]
+                           },
+"ativar_edicao":
 { Args: { "p_id": string }; Returns: undefined
                            },
 "consumir_rate_limit":
@@ -652,10 +657,15 @@ isOneToOne: false
                            },
 "situacao_formulario":
 { Args: { "p_id": string }; Returns: string
+                           },
+"uso_armazenamento":
+{ Args: Record<PropertyKey, never>; Returns: {
+              "arquivos": number,"bucket": string,"bytes": number
+            }[]
                            }
           }
           Enums: {
-            "dono_equipamento": "equipe"|"emprestado","estado_equipamento": "bom"|"defeito"|"manutencao","nivel_membro": "iniciante"|"intermediario"|"avancado","papel_usuario": "edg"|"coordenador"|"membro","sexo": "masculino"|"feminino","status_inscricao": "pendente"|"em_analise"|"selecionado"|"lista_espera"|"nao_selecionado","status_presenca": "presente"|"falta"|"justificada"|"atraso","tipo_evento": "ensaio"|"apresentacao","tipo_funcao": "voz"|"instrumento"|"outro","tipo_pergunta": "texto_curto"|"texto_longo"|"multipla"|"caixas"|"sim_nao"|"escala"|"lista"
+            "dono_equipamento": "equipe"|"emprestado","estado_equipamento": "bom"|"defeito"|"manutencao","nivel_membro": "iniciante"|"intermediario"|"avancado","papel_usuario": "edg"|"coordenador"|"membro","sexo": "masculino"|"feminino","status_inscricao": "pendente"|"em_analise"|"selecionado"|"lista_espera"|"nao_selecionado","status_presenca": "presente"|"falta"|"justificada"|"atraso","tipo_evento": "ensaio"|"apresentacao","tipo_funcao": "voz"|"instrumento"|"outro","tipo_pergunta": "texto_curto"|"texto_longo"|"multipla"|"caixas"|"sim_nao"|"escala"|"lista"|"foto"|"video"
           }
           CompositeTypes: {
             [_ in never]: never
@@ -775,7 +785,7 @@ export const Constants = {
           }
         },"public": {
           Enums: {
-            "dono_equipamento": ["equipe", "emprestado"],"estado_equipamento": ["bom", "defeito", "manutencao"],"nivel_membro": ["iniciante", "intermediario", "avancado"],"papel_usuario": ["edg", "coordenador", "membro"],"sexo": ["masculino", "feminino"],"status_inscricao": ["pendente", "em_analise", "selecionado", "lista_espera", "nao_selecionado"],"status_presenca": ["presente", "falta", "justificada", "atraso"],"tipo_evento": ["ensaio", "apresentacao"],"tipo_funcao": ["voz", "instrumento", "outro"],"tipo_pergunta": ["texto_curto", "texto_longo", "multipla", "caixas", "sim_nao", "escala", "lista"]
+            "dono_equipamento": ["equipe", "emprestado"],"estado_equipamento": ["bom", "defeito", "manutencao"],"nivel_membro": ["iniciante", "intermediario", "avancado"],"papel_usuario": ["edg", "coordenador", "membro"],"sexo": ["masculino", "feminino"],"status_inscricao": ["pendente", "em_analise", "selecionado", "lista_espera", "nao_selecionado"],"status_presenca": ["presente", "falta", "justificada", "atraso"],"tipo_evento": ["ensaio", "apresentacao"],"tipo_funcao": ["voz", "instrumento", "outro"],"tipo_pergunta": ["texto_curto", "texto_longo", "multipla", "caixas", "sim_nao", "escala", "lista", "foto", "video"]
           }
         }
 } as const
