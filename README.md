@@ -3,7 +3,10 @@
 Sistema de gestão da **Bandinha**, a equipe de música do EJC (Encontro de Jovens com Cristo) de Marabá/PA.
 Funciona no celular (pode ser "instalado" como app) e no computador.
 
-> **Status:** Fase 1 concluída: login, perfis, gestão de coordenadores e edições.
+> **Status:** Fases 1 e 2 concluídas:
+> - **Fase 1:** login, perfis, gestão de coordenadores e edições.
+> - **Fase 2:** formulários de inscrição com link público e QR code, seleção Homens/Mulheres, avaliações e "Puxar para a equipe".
+>
 > Os demais módulos aparecem no menu como "Em construção" até a fase correspondente.
 
 ---
@@ -134,9 +137,22 @@ Cada alteração enviada ao GitHub publica uma versão nova automaticamente.
 | **EDG** | Tudo, inclusive a Administração. |
 | **Coordenador** | Todos os módulos da equipe, menos a Administração. |
 | **Membro** | Ainda sem acesso (previsto para o futuro). |
-| **Público** | Só o link de inscrição (Fase 2). |
+| **Público** | Só o link de inscrição. |
 
 **Seletor de edição:** no topo da tela. Ele mostra os dados da edição escolhida. Isso é uma preferência de cada pessoa e não muda a edição *ativa*, que só o EDG define.
+
+**Inscrições e seleção**
+
+1. Em **Inscrições → Novo formulário**:
+   - Monte as perguntas extras. Os campos fixos (nome, nascimento, telefone, sexo, EJC anterior, cidade e LGPD) já vêm prontos.
+   - Arraste as perguntas para mudar a ordem e clique em **Salvar perguntas**.
+2. Em **Configurações**, defina capa, datas, limite e mensagem de confirmação. Depois ligue **Receber inscrições**.
+3. Em **Compartilhar**, copie o link, mande pelo WhatsApp ou baixe o QR code para imprimir.
+4. Em **Seleção**:
+   - Use as abas Homens/Mulheres, que mostram selecionados × vagas.
+   - Abra a ficha de cada inscrito para dar nota e comentário.
+   - Use **Puxar para a equipe** para transformar o inscrito em membro.
+   - Marque várias pessoas para mudar o status em lote e exporte o CSV quando precisar.
 
 ---
 
