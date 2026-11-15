@@ -17,18 +17,19 @@ export default async function FichaPage({ params }: { params: Promise<{ id: stri
   const { id } = await params;
   const supabase = await createClient();
 
-  const { data: i } = await supabase
-    .from("inscricoes")
-    .select("*, formularios(titulo, perguntas(id, tipo, rotulo, ajuda, opcoes, obrigatoria, ordem)), membros(id)")
-    .eq("id", id)
-    .maybeSingle();
+  const [{ data: i }, { data: avaliacoes }] = await Promise.all([
+    supabase
+      .from("inscricoes")
+      .select("*, formularios(titulo, perguntas(id, tipo, rotulo, ajuda, opcoes, obrigatoria, ordem)), membros(id)")
+      .eq("id", id)
+      .maybeSingle(),
+    supabase
+      .from("avaliacoes")
+      .select("nota, comentario, atualizado_em, coordenador_id, profiles(nome)")
+      .eq("inscricao_id", id)
+      .order("atualizado_em", { ascending: false }),
+  ]);
   if (!i) notFound();
-
-  const { data: avaliacoes } = await supabase
-    .from("avaliacoes")
-    .select("nota, comentario, atualizado_em, coordenador_id, profiles(nome)")
-    .eq("inscricao_id", id)
-    .order("atualizado_em", { ascending: false });
 
   const perguntas: Pergunta[] = [...(i.formularios?.perguntas ?? [])]
     .sort((a, b) => a.ordem - b.ordem)
@@ -37,22 +38,26 @@ export default async function FichaPage({ params }: { params: Promise<{ id: stri
 
   // Selfie e vídeo: URLs temporárias (1h) do bucket privado.
   const midias: { pergunta: Pergunta; tipo: "foto" | "video-arquivo" | "video-link"; url: string }[] = [];
+  const arquivos: { pergunta: Pergunta; tipo: "foto" | "video-arquivo"; path: string }[] = [];
   for (const p of perguntas) {
     const v = respostas[p.id];
-    if (p.tipo === "foto" && typeof v === "string") {
-      const { data } = await supabase.storage.from("inscricoes").createSignedUrl(v, 3600);
-      if (data) midias.push({ pergunta: p, tipo: "foto", url: data.signedUrl });
-    }
+    if (p.tipo === "foto" && typeof v === "string") arquivos.push({ pergunta: p, tipo: "foto", path: v });
     if (p.tipo === "video") {
       const vid = lerVideo(v);
-      if (vid?.tipo === "arquivo") {
-        const { data } = await supabase.storage.from("inscricoes").createSignedUrl(vid.path, 3600);
-        if (data) midias.push({ pergunta: p, tipo: "video-arquivo", url: data.signedUrl });
-      } else if (vid?.tipo === "link") {
-        midias.push({ pergunta: p, tipo: "video-link", url: vid.url });
-      }
+      if (vid?.tipo === "arquivo") arquivos.push({ pergunta: p, tipo: "video-arquivo", path: vid.path });
+      else if (vid?.tipo === "link") midias.push({ pergunta: p, tipo: "video-link", url: vid.url });
     }
   }
+  if (arquivos.length) {
+    // Uma única chamada para todas as URLs temporárias.
+    const { data } = await supabase.storage.from("inscricoes").createSignedUrls(arquivos.map((a) => a.path), 3600);
+    const porCaminho = new Map((data ?? []).filter((d) => d.signedUrl).map((d) => [d.path, d.signedUrl]));
+    for (const a of arquivos) {
+      const url = porCaminho.get(a.path);
+      if (url) midias.unshift({ pergunta: a.pergunta, tipo: a.tipo, url });
+    }
+  }
+  midias.sort((a, b) => perguntas.indexOf(a.pergunta) - perguntas.indexOf(b.pergunta));
   const perguntasTexto = perguntas.filter((p) => p.tipo !== "foto" && p.tipo !== "video");
   const membro = Array.isArray(i.membros) ? i.membros[0] : i.membros;
   const whats = linkWhatsApp(i.telefone, `Olá, ${i.nome.split(" ")[0]}! Aqui é da coordenação da Bandinha do EJC. 🎶`);

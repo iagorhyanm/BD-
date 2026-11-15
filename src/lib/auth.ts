@@ -19,12 +19,13 @@ export const ROTULO_PAPEL: Record<Papel, string> = {
 /** Usuário + perfil da requisição atual (memorizado durante a renderização). */
 export const obterSessao = cache(async () => {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return null;
-  const { data: perfil } = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
-  return { user, perfil };
+  // getClaims verifica a assinatura do JWT localmente (rápido); o perfil
+  // (ativo/papel) vem do banco, então desativações valem na hora.
+  const { data } = await supabase.auth.getClaims();
+  const id = data?.claims?.sub;
+  if (!id) return null;
+  const { data: perfil } = await supabase.from("profiles").select("*").eq("id", id).maybeSingle();
+  return { user: { id }, perfil };
 });
 
 /**

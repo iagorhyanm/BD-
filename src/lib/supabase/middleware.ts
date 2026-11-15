@@ -35,9 +35,10 @@ export async function atualizarSessao(request: NextRequest) {
   // Páginas públicas de inscrição não precisam consultar a sessão (mais rápido no 4G).
   if (pathname.startsWith("/inscricao")) return response;
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // Valida o JWT localmente (chaves assimétricas do Supabase), sem ida ao
+  // servidor de autenticação a cada página. Renova a sessão quando expira.
+  const { data } = await supabase.auth.getClaims();
+  const user = data?.claims?.sub ? data.claims : null;
 
   if (!user && !ehPublica(pathname)) {
     const url = request.nextUrl.clone();
