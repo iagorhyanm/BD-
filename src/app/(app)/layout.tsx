@@ -9,8 +9,8 @@ import { MenuUsuario } from "@/components/layout/menu-usuario";
 import { tema } from "@/theme.config";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
-  const perfil = await requireStaff();
-  const [edicoes, atual] = await Promise.all([listarEdicoes(), obterEdicaoAtual()]);
+  // Tudo em paralelo: perfil, lista de edições e edição atual.
+  const [perfil, edicoes, atual] = await Promise.all([requireStaff(), listarEdicoes(), obterEdicaoAtual()]);
   const ehEdg = perfil.papel === "edg";
 
   return (
