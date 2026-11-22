@@ -5,6 +5,7 @@ export type ItemFeed = {
   id: string;
   userId: string;
   nome: string;
+  fotoPerfil: string | null;
   data: string;
   leitura: string;
   tituloDia: string | null;
@@ -19,7 +20,7 @@ export type ItemFeed = {
 };
 
 const CAMPOS =
-  "id, user_id, data, no_prazo, minutos, versiculo, anotacao, foto_path, criado_em, profiles!checkins_user_id_fkey(nome), plano_dias(leitura, titulo), reacoes(emoji, user_id), comentarios(count)";
+  "id, user_id, data, no_prazo, minutos, versiculo, anotacao, foto_path, criado_em, profiles!checkins_user_id_fkey(nome, foto_path), plano_dias(leitura, titulo), reacoes(emoji, user_id), comentarios(count)";
 
 /**
  * Check-ins visíveis para o usuário (os próprios e os dos colegas de grupo — o RLS garante).
@@ -64,6 +65,7 @@ export async function carregarFeed(
       id: l.id,
       userId: l.user_id,
       nome: (l.profiles as { nome: string } | null)?.nome ?? "Alguém",
+      fotoPerfil: (l.profiles as { foto_path: string | null } | null)?.foto_path ?? null,
       data: l.data,
       leitura: (l.plano_dias as { leitura: string } | null)?.leitura ?? "",
       tituloDia: (l.plano_dias as { titulo: string | null } | null)?.titulo ?? null,

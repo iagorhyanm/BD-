@@ -3,7 +3,7 @@ import { AvatarNome } from "@/components/avatar-nome";
 import { rotuloDia } from "@/lib/datas";
 import { cn } from "@/lib/utils";
 
-type Linha = { user_id: string; nome: string; pontos: number; sequencia: number; ultimo: string | null };
+type Linha = { user_id: string; nome: string; foto_path: string | null; pontos: number; sequencia: number; ultimo: string | null };
 const MEDALHAS = ["🥇", "🥈", "🥉"];
 
 export function Placar({ linhas, euId }: { linhas: Linha[]; euId: string }) {
@@ -26,7 +26,7 @@ export function Placar({ linhas, euId }: { linhas: Linha[]; euId: string }) {
           <span className="w-8 text-center text-xl font-extrabold tabular-nums" aria-label={`${l.pos}º lugar`}>
             {l.pontos > 0 && l.pos <= 3 ? MEDALHAS[l.pos - 1] : `${l.pos}º`}
           </span>
-          <AvatarNome nome={l.nome} id={l.user_id} tamanho="sm" />
+          <AvatarNome nome={l.nome} id={l.user_id} foto={l.foto_path} tamanho="sm" />
           <div className="min-w-0 flex-1">
             <p className="truncate font-semibold">{l.user_id === euId ? `${l.nome} (você)` : l.nome}</p>
             <p className="text-xs text-muted-foreground">{l.ultimo ? `Última leitura: ${rotuloDia(l.ultimo)}` : "Ainda não leu no desafio"}</p>

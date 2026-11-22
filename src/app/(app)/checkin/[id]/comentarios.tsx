@@ -9,7 +9,7 @@ import { AvatarNome } from "@/components/avatar-nome";
 import { formatarDataHora } from "@/lib/datas";
 import { comentar, excluirComentario } from "@/server/actions/checkins";
 
-type C = { id: string; texto: string; criadoEm: string; userId: string; nome: string };
+type C = { id: string; texto: string; criadoEm: string; userId: string; nome: string; foto: string | null };
 
 export function Comentarios({ checkinId, euId, donoCheckin, lista }: { checkinId: string; euId: string; donoCheckin: boolean; lista: C[] }) {
   const [pendente, iniciar] = useTransition();
@@ -23,7 +23,7 @@ export function Comentarios({ checkinId, euId, donoCheckin, lista }: { checkinId
       <ul className="space-y-3">
         {lista.map((c) => (
           <li key={c.id} className="flex gap-3">
-            <AvatarNome nome={c.nome} id={c.userId} tamanho="sm" />
+            <AvatarNome nome={c.nome} id={c.userId} foto={c.foto} tamanho="sm" />
             <div className="min-w-0 flex-1 rounded-xl bg-muted px-3 py-2">
               <p className="text-sm font-semibold">{c.userId === euId ? "Você" : c.nome}</p>
               <p className="text-[15px] whitespace-pre-line">{c.texto}</p>

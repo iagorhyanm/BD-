@@ -10,7 +10,7 @@ import { AvatarNome } from "@/components/avatar-nome";
 import { Confirmar } from "@/components/confirmar";
 import { definirPapelNoGrupo, removerMembro, sairDoGrupo } from "@/server/actions/grupos";
 
-type Linha = { user_id: string; nome: string; papel: "dono" | "admin" | "membro" };
+type Linha = { user_id: string; nome: string; foto_path: string | null; papel: "dono" | "admin" | "membro" };
 const ROTULO = { dono: "Criador(a)", admin: "Admin", membro: "" };
 
 export function Membros({ grupoId, euId, meuPapel, linhas }: { grupoId: string; euId: string; meuPapel: string; linhas: Linha[] }) {
@@ -33,7 +33,7 @@ export function Membros({ grupoId, euId, meuPapel, linhas }: { grupoId: string; 
           const podeGerir = m.user_id !== euId && m.papel !== "dono" && (meuPapel === "dono" || (meuPapel === "admin" && m.papel === "membro"));
           return (
             <li key={m.user_id} className="flex items-center gap-3 p-3">
-              <AvatarNome nome={m.nome} id={m.user_id} tamanho="sm" />
+              <AvatarNome nome={m.nome} id={m.user_id} foto={m.foto_path} tamanho="sm" />
               <p className="min-w-0 flex-1 truncate font-medium">
                 {m.nome}
                 {m.user_id === euId && <span className="text-muted-foreground"> (você)</span>}

@@ -1,7 +1,7 @@
 -- Testes de segurança e regras do BibleRats. Rodar com: npx supabase test db
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(41);
+select plan(43);
 
 -- Cadastro: o perfil nasce como "usuario", mesmo que alguém tente mandar papel=admin.
 insert into auth.users (id, email, raw_user_meta_data) values
@@ -45,6 +45,10 @@ select throws_ok($$ update public.profiles set papel = 'admin' where id = '00000
   '42501', null, 'usuário não se promove a admin');
 select lives_ok($$ update public.profiles set nome = 'Ana Clara' where id = '00000000-0000-0000-0000-0000000000a1' $$,
   'usuário muda o próprio nome');
+select lives_ok($$ update public.profiles set foto_path = '00000000-0000-0000-0000-0000000000a1/x.jpg' where id = auth.uid() $$,
+  'usuário põe foto de perfil');
+select throws_ok($$ update public.profiles set foto_path = '00000000-0000-0000-0000-0000000000b1/x.jpg' where id = auth.uid() $$,
+  'P0001', 'FOTO_INVALIDA', 'foto de perfil só da própria pasta');
 select throws_ok($$ insert into public.plano_dias (data, leitura) values ('2099-01-02', 'x') $$,
   '42501', null, 'usuário comum não mexe no plano');
 update public.app_config set nome = 'Hackeado';

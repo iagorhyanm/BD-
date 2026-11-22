@@ -191,14 +191,14 @@ isOneToOne: false
                   ]
                 },"profiles": {
                   Row: {
-                    "ativo": boolean,"atualizado_em": string,"criado_em": string,"email": string | null,"id": string,"nome": string,"papel": Database["public"]['Enums']["papel_app"],"precisa_trocar_senha": boolean,"telefone": string | null,"usuario": string | null
+                    "ativo": boolean,"atualizado_em": string,"criado_em": string,"email": string | null,"foto_path": string | null,"id": string,"nome": string,"papel": Database["public"]['Enums']["papel_app"],"precisa_trocar_senha": boolean,"telefone": string | null,"usuario": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"id": string,"nome": string,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
+                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id": string,"nome": string,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
                   }
                   Update: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"id"?: string,"nome"?: string,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
+                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id"?: string,"nome"?: string,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
                   }
                   Relationships: [
                     
@@ -267,7 +267,7 @@ isOneToOne: false
                            },
 "placar_grupo":
 { Args: { "p_grupo": string }; Returns: {
-              "nome": string,"papel": Database["public"]['Enums']["papel_grupo"],"pontos": number,"sequencia": number,"ultimo": string,"user_id": string
+              "foto_path": string,"nome": string,"papel": Database["public"]['Enums']["papel_grupo"],"pontos": number,"sequencia": number,"ultimo": string,"user_id": string
             }[]
                            },
 "registrar_log":

@@ -6,10 +6,10 @@ import { createClient } from "@/lib/supabase/server";
 import { LIVROS, totalCapitulos } from "@/lib/biblia";
 import { rotuloDia } from "@/lib/datas";
 import { sair } from "@/server/actions/auth";
-import { AvatarNome } from "@/components/avatar-nome";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { EditarNome } from "./editar-nome";
+import { FotoPerfil } from "./foto-perfil";
 
 export const metadata: Metadata = { title: "Perfil" };
 
@@ -46,9 +46,9 @@ export default async function PerfilPage() {
 
   return (
     <div className="space-y-5">
-      <section className="flex items-center gap-4">
-        <AvatarNome nome={eu.nome} id={eu.id} tamanho="lg" />
-        <div className="min-w-0">
+      <section className="flex flex-col items-center gap-3 text-center">
+        <FotoPerfil userId={eu.id} nome={eu.nome} foto={eu.foto_path} />
+        <div className="min-w-0 max-w-full">
           <h1 className="truncate text-2xl font-bold">{eu.nome}</h1>
           <p className="text-muted-foreground">
             {e.dias} {e.dias === 1 ? "dia com leitura" : "dias com leitura"}

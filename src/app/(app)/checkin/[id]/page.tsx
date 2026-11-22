@@ -18,7 +18,7 @@ export default async function CheckinPage({ params }: { params: Promise<{ id: st
   const supabase = await createClient();
   const [[item], { data: comentarios }] = await Promise.all([
     carregarFeed(eu.id, { ids: [id], limite: 1 }),
-    supabase.from("comentarios").select("id, texto, criado_em, user_id, profiles(nome)").eq("checkin_id", id).order("criado_em"),
+    supabase.from("comentarios").select("id, texto, criado_em, user_id, profiles(nome, foto_path)").eq("checkin_id", id).order("criado_em"),
   ]);
   if (!item) notFound();
 
@@ -49,6 +49,7 @@ export default async function CheckinPage({ params }: { params: Promise<{ id: st
             criadoEm: c.criado_em,
             userId: c.user_id,
             nome: (c.profiles as { nome: string } | null)?.nome ?? "Alguém",
+            foto: (c.profiles as { foto_path: string | null } | null)?.foto_path ?? null,
           }))}
         />
       </div>

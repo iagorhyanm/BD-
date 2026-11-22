@@ -29,11 +29,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
               <span className="text-lg font-bold tracking-tight">{config.nome}</span>
             </Link>
             <div className="flex-1" />
-            <MenuUsuario nome={perfil.nome} papel={ROTULO_PAPEL[perfil.papel]} />
+            <MenuUsuario nome={perfil.nome} papel={ROTULO_PAPEL[perfil.papel]} foto={perfil.foto_path} />
           </div>
         </header>
         <div className="hidden justify-end px-8 pt-4 lg:flex">
-          <MenuUsuario nome={perfil.nome} papel={ROTULO_PAPEL[perfil.papel]} />
+          <MenuUsuario nome={perfil.nome} papel={ROTULO_PAPEL[perfil.papel]} foto={perfil.foto_path} />
         </div>
         <main id="conteudo" className="mx-auto w-full max-w-3xl flex-1 px-4 pt-5 pb-28 lg:px-8 lg:pb-10">
           {children}
