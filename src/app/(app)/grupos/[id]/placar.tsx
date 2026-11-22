@@ -1,5 +1,6 @@
 import { Flame } from "lucide-react";
 import { AvatarNome } from "@/components/avatar-nome";
+import { formatarPontos, rotuloPontos } from "@/lib/pontos";
 import { rotuloDia } from "@/lib/datas";
 import { cn } from "@/lib/utils";
 
@@ -37,8 +38,8 @@ export function Placar({ linhas, euId }: { linhas: Linha[]; euId: string }) {
             </span>
           )}
           <span className="w-14 text-right">
-            <span className="block text-xl leading-none font-extrabold tabular-nums">{l.pontos}</span>
-            <span className="text-[11px] text-muted-foreground">{l.pontos === 1 ? "ponto" : "pontos"}</span>
+            <span className="block text-xl leading-none font-extrabold tabular-nums">{formatarPontos(l.pontos)}</span>
+            <span className="text-[11px] text-muted-foreground">{rotuloPontos(l.pontos)}</span>
           </span>
         </li>
       ))}

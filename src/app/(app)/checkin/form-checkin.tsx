@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AlertaErro } from "@/components/alerta-erro";
 import { Confirmar } from "@/components/confirmar";
-import { hojeEmBelem, rotuloDia } from "@/lib/datas";
+import { capitalizar, hojeEmBelem, rotuloDia } from "@/lib/datas";
 import { reduzirImagem } from "@/lib/imagem";
 import { semReset } from "@/lib/form";
 import { createClient } from "@/lib/supabase/client";
@@ -70,7 +70,7 @@ export function FormCheckin({ userId, checkin, dias = [], diaInicial }: { userId
     iniciar(async () => {
       const r = await salvarCheckin(checkin?.id ?? null, fd);
       if (!r.ok) return setErro(r.erro);
-      toast.success(checkin ? "Leitura atualizada!" : data === hoje ? "Leitura marcada! 🔥" : "Leitura marcada! Ponto garantido 📖");
+      toast.success(checkin ? "Leitura atualizada!" : data === hoje ? "Leitura marcada! 🔥" : "Leitura marcada! Meio ponto garantido 📖");
       router.push(checkin ? `/checkin/${r.dados.id}` : "/");
     });
   }
@@ -106,9 +106,9 @@ export function FormCheckin({ userId, checkin, dias = [], diaInicial }: { userId
                   )}
                 >
                   <span className="min-w-0 flex-1">
-                    <span className={cn("block text-xs capitalize", ativo ? "opacity-90" : "text-muted-foreground")}>
-                      {rotuloDia(d.data, hoje)}
-                      {d.data !== hoje && !feito && " · vale ponto, não conta na 🔥"}
+                    <span className={cn("block text-xs", ativo ? "opacity-90" : "text-muted-foreground")}>
+                      {capitalizar(rotuloDia(d.data, hoje))}
+                      {d.data !== hoje && !feito && " · vale ½ ponto, não conta na 🔥"}
                     </span>
                     <span className="block font-semibold">{d.leitura}</span>
                   </span>
@@ -126,8 +126,8 @@ export function FormCheckin({ userId, checkin, dias = [], diaInicial }: { userId
 
       <section className="space-y-4 rounded-2xl border bg-card p-4">
         <div className="space-y-2">
-          <Label htmlFor="ck-min">Tempo de leitura (minutos, opcional)</Label>
-          <Input id="ck-min" name="minutos" type="number" inputMode="numeric" min={1} max={600} defaultValue={checkin?.minutos ?? ""} className="w-32" />
+          <Label htmlFor="ck-min">Quanto tempo você leu? (minutos)</Label>
+          <Input id="ck-min" name="minutos" type="number" inputMode="numeric" required min={1} max={600} defaultValue={checkin?.minutos ?? ""} className="w-32" placeholder="Ex.: 15" />
         </div>
       </section>
 
@@ -137,11 +137,12 @@ export function FormCheckin({ userId, checkin, dias = [], diaInicial }: { userId
           <Textarea id="ck-vers" name="versiculo" rows={2} maxLength={500} defaultValue={checkin?.versiculo ?? ""} placeholder="Ex.: “Lâmpada para os meus pés é a tua palavra…” (Sl 119:105)" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="ck-anot">O que você aprendeu? (opcional)</Label>
-          <Textarea id="ck-anot" name="anotacao" rows={4} maxLength={3000} defaultValue={checkin?.anotacao ?? ""} placeholder="Uma reflexão curta para compartilhar com o grupo." />
+          <Label htmlFor="ck-anot">O que você aprendeu?</Label>
+          <Textarea id="ck-anot" name="anotacao" rows={4} required minLength={3} maxLength={3000} defaultValue={checkin?.anotacao ?? ""} placeholder="Uma reflexão curta sobre a leitura, para compartilhar com o grupo." />
         </div>
         <div className="space-y-2">
-          <p className="text-sm font-medium">Foto (opcional)</p>
+          <p className="text-sm font-medium">Foto da sua leitura</p>
+          {!fotoPrevia && <p className="text-xs text-muted-foreground">Ex.: a Bíblia aberta no texto de hoje.</p>}
           <input ref={inputFoto} type="file" accept="image/*" className="sr-only" tabIndex={-1} aria-hidden onChange={(e) => escolherFoto(e.target.files?.[0])} />
           {fotoPrevia ? (
             <div className="relative">
@@ -170,7 +171,8 @@ export function FormCheckin({ userId, checkin, dias = [], diaInicial }: { userId
       </section>
 
       <AlertaErro mensagem={erro} />
-      <Button type="submit" size="lg" className="h-14 w-full text-base" disabled={pendente || enviandoFoto || !data}>
+      {!fotoPath && !enviandoFoto && <p className="text-center text-sm text-muted-foreground">Adicione a foto para concluir 📸</p>}
+      <Button type="submit" size="lg" className="h-14 w-full text-base" disabled={pendente || enviandoFoto || !data || !fotoPath}>
         {pendente ? "Salvando…" : checkin ? "Salvar alterações" : "Marcar como lida 🔥"}
       </Button>
 

@@ -1,3 +1,4 @@
+import { formatarPontos, rotuloPontos } from "@/lib/pontos";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight, Plus, Trophy, Users } from "lucide-react";
@@ -70,7 +71,7 @@ export default async function GruposPage() {
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-semibold">{g.nome}</p>
                   <p className="text-sm text-muted-foreground">
-                    {g.pontos} {g.pontos === 1 ? "ponto" : "pontos"} · <Users className="inline size-3.5" aria-hidden /> {g.membros}
+                    {formatarPontos(g.pontos)} {rotuloPontos(g.pontos)} · <Users className="inline size-3.5" aria-hidden /> {g.membros}
                   </p>
                   <p className="text-xs text-muted-foreground">
                     {g.encerrado ? "Encerrado" : g.fim ? `Até ${formatarData(`${g.fim}T12:00:00Z`)}` : "Sem data para acabar"}

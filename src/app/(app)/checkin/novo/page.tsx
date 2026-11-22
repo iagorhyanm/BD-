@@ -16,7 +16,7 @@ export default async function NovoCheckinPage({ searchParams }: { searchParams: 
 
   return (
     <>
-      <CabecalhoPagina titulo="Marcar leitura" descricao="Leia o texto do plano e marque aqui. Cada dia lido vale 1 ponto." />
+      <CabecalhoPagina titulo="Marcar leitura" descricao="Leia o texto do plano e marque aqui. No dia vale 1 ponto; com atraso (até 3 dias), meio ponto." />
       {dias.length === 0 ? (
         <div className="space-y-3 rounded-2xl border bg-card p-6 text-center">
           <p className="text-lg font-semibold">Ainda não há leitura no plano para hoje.</p>

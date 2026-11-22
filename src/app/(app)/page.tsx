@@ -97,7 +97,7 @@ export default async function InicioPage() {
           <h2 id="t-atraso" className="flex items-center gap-2 font-semibold">
             <CalendarClock className="size-5 text-amber-600" aria-hidden /> Dá tempo de recuperar
           </h2>
-          <p className="text-sm text-muted-foreground">Leituras atrasadas ainda valem ponto (até 3 dias), mas não contam na sequência.</p>
+          <p className="text-sm text-muted-foreground">Leituras atrasadas ainda valem meio ponto (até 3 dias), mas não contam na sequência.</p>
           <ul className="divide-y">
             {atrasados.map((d) => (
               <li key={d.data}>

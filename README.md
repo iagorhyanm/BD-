@@ -3,10 +3,10 @@
 App para **ler a Bíblia todo dia com os amigos**. Funciona assim:
 
 - **Plano de leitura único:** todo mundo lê o mesmo texto em cada data (o padrão é a Bíblia em ordem cronológica, 364 dias). O administrador publica e edita o plano.
-- **Check-in:** você marca a leitura do dia como lida. Tempo, versículo que marcou, reflexão e foto são opcionais. Leitura atrasada vale ponto até 3 dias depois, mas só conta na sequência 🔥 quem lê no próprio dia.
+- **Check-in:** você marca a leitura do dia como lida. Tempo, versículo que marcou, reflexão e foto são opcionais. Leitura atrasada vale meio ponto até 3 dias depois, mas só conta na sequência 🔥 quem lê no próprio dia.
 - **Desafios em grupo:** você convida a galera por link ou por código e compara o placar.
 - **Feed do grupo:** mostra as leituras de todos, com reações (🙏 🔥 ❤️ 📖 🙌) e comentários.
-- **Placar:** cada **dia com leitura vale 1 ponto**. Há também a **sequência** de dias seguidos 🔥.
+- **Placar:** cada **leitura no dia vale 1 ponto**, e com atraso, **meio ponto**. Há também a **sequência** de dias seguidos 🔥.
 - **Perfil:** dias lidos, capítulos, recorde de sequência e um mapa de quanto da Bíblia você já leu.
 
 Funciona no celular e no computador e pode ser **instalado na tela inicial**:
@@ -119,12 +119,12 @@ O arquivo `vercel.json` já coloca o servidor em São Paulo (`gru1`), perto do b
    - Toque em **Convidar** para mandar o link pelo WhatsApp, ou passe o **código**.
 3. Todo dia, leia o texto que aparece em **Leitura de hoje** e toque em **Marcar como lida**:
    - Se quiser, acrescente o versículo que marcou, uma reflexão e uma foto.
-   - Dá para marcar leituras de até **3 dias atrás** (valem ponto, mas não contam na sequência).
+   - Dá para marcar leituras de até **3 dias atrás** (valem meio ponto e não contam na sequência).
    - O plano completo fica em **Plano**.
 4. Acompanhe o **placar** e as leituras dos amigos na página do desafio, e reaja e comente.
 
 **Regras do placar:**
-- Cada dia do plano lido, dentro do período do desafio, vale **1 ponto** (no dia ou até 3 dias depois).
+- Cada dia do plano lido, dentro do período do desafio, vale **1 ponto** se marcado no próprio dia e **meio ponto** se marcado com até 3 dias de atraso (duas atrasadas = 1 ponto).
 - A **sequência 🔥** conta os dias seguidos do plano lidos **no próprio dia**. Ela não zera se você ainda não leu hoje, mas leu ontem.
 
 **Área do administrador** (Perfil → Área do administrador):
