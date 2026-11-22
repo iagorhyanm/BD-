@@ -2,8 +2,9 @@
 
 App para **ler a Bíblia todo dia com os amigos**. Funciona assim:
 
-- **Desafios em grupo:** por exemplo, "Novo Testamento em 90 dias". Você convida a galera por link ou por código.
-- **Check-in de leitura:** você registra o livro e os capítulos lidos. Tempo, versículo que marcou, reflexão e foto são opcionais.
+- **Plano de leitura único:** todo mundo lê o mesmo texto em cada data (o padrão é a Bíblia em ordem cronológica, 364 dias). O administrador publica e edita o plano.
+- **Check-in:** você marca a leitura do dia como lida. Tempo, versículo que marcou, reflexão e foto são opcionais. Leitura atrasada vale ponto até 3 dias depois, mas só conta na sequência 🔥 quem lê no próprio dia.
+- **Desafios em grupo:** você convida a galera por link ou por código e compara o placar.
 - **Feed do grupo:** mostra as leituras de todos, com reações (🙏 🔥 ❤️ 📖 🙌) e comentários.
 - **Placar:** cada **dia com leitura vale 1 ponto**. Há também a **sequência** de dias seguidos 🔥.
 - **Perfil:** dias lidos, capítulos, recorde de sequência e um mapa de quanto da Bíblia você já leu.
@@ -116,15 +117,20 @@ O arquivo `vercel.json` já coloca o servidor em São Paulo (`gru1`), perto do b
 2. Em **Desafios** → **Novo desafio**:
    - Dê um nome e escolha a duração (30, 60 ou 90 dias, ou sem fim).
    - Toque em **Convidar** para mandar o link pelo WhatsApp, ou passe o **código**.
-3. Todo dia, toque no botão **Leitura** (no centro da barra de baixo):
-   - Escolha o livro e os capítulos.
+3. Todo dia, leia o texto que aparece em **Leitura de hoje** e toque em **Marcar como lida**:
    - Se quiser, acrescente o versículo que marcou, uma reflexão e uma foto.
-   - Dá para registrar leituras de até **3 dias atrás**.
+   - Dá para marcar leituras de até **3 dias atrás** (valem ponto, mas não contam na sequência).
+   - O plano completo fica em **Plano**.
 4. Acompanhe o **placar** e as leituras dos amigos na página do desafio, e reaja e comente.
 
 **Regras do placar:**
-- Cada dia com pelo menos uma leitura, dentro do período do desafio, vale **1 ponto**.
-- A **sequência 🔥** conta os dias seguidos com leitura. Ela não zera se você ainda não leu hoje, mas leu ontem.
+- Cada dia do plano lido, dentro do período do desafio, vale **1 ponto** (no dia ou até 3 dias depois).
+- A **sequência 🔥** conta os dias seguidos do plano lidos **no próprio dia**. Ela não zera se você ainda não leu hoje, mas leu ontem.
+
+**Área do administrador** (Perfil → Área do administrador):
+- **Plano de leitura:** publicar o plano cronológico escolhendo a data do Dia 1, importar uma planilha (.xlsx/.csv com colunas Data e Leitura) ou texto colado, e editar, adicionar ou excluir dias.
+- **Textos e aviso:** nome do app, frase, boas-vindas e um aviso que aparece no Início de todo mundo.
+- **Usuários:** editar nome e e-mail, redefinir senha, desativar contas e escolher administradores.
 
 **Privacidade:**
 - Você só vê as leituras e o perfil de quem está em algum desafio com você.
@@ -171,7 +177,9 @@ npm run dev                   # http://localhost:3000
 |---|---|
 | `livros_biblia` | 66 livros, 1189 capítulos |
 | `grupos`, `grupo_membros` | Desafios e participantes (dono/admin/membro), com entrada por `entrar_no_grupo(codigo)` |
-| `checkins` | Leituras (livro, capítulos, data, minutos, versículo, reflexão, foto). Um gatilho valida capítulos, impede datas futuras e limita a até 3 dias atrás |
+| `plano_dias` | Plano único: uma leitura por data, com referências validadas (`20261123000001_plano_e_config.sql`) |
+| `app_config` | Nome, frase, boas-vindas e aviso (linha única, só admin altera) |
+| `checkins` | Uma leitura do plano por pessoa por dia (`no_prazo` indica se foi marcada no próprio dia), com minutos, versículo, reflexão e foto. Um gatilho impede datas futuras e mais de 3 dias de atraso |
 | `reacoes`, `comentarios` | Interações nas leituras |
 | `placar_grupo()`, `sequencia_atual()`, `estatisticas_usuario()` | Placar e estatísticas |
 | Bucket privado `checkins` | Fotos, em pastas com o id de cada usuário |

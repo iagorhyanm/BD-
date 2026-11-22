@@ -4,35 +4,27 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { falha, requireUsuario, type Resultado } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-import { livro } from "@/lib/biblia";
 import { EMOJIS_REACAO } from "@/lib/biblia";
 
-const checkinSchema = z
-  .object({
-    data: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Escolha a data."),
-    livro: z.string().refine((v) => !!livro(v), "Escolha o livro."),
-    capitulo_inicio: z.coerce.number().int().min(1, "Capítulo inválido."),
-    capitulo_fim: z.coerce.number().int().min(1, "Capítulo inválido."),
-    minutos: z
-      .string()
-      .optional()
-      .transform((v) => (v ? Number(v) : null))
-      .refine((v) => v === null || (Number.isInteger(v) && v >= 1 && v <= 600), "Minutos entre 1 e 600."),
-    versiculo: z.string().trim().max(500, "Versículo muito longo.").optional(),
-    anotacao: z.string().trim().max(3000, "Reflexão muito longa.").optional(),
-    foto_path: z.string().optional(),
-  })
-  .superRefine((d, ctx) => {
-    const l = livro(d.livro);
-    if (d.capitulo_fim < d.capitulo_inicio) ctx.addIssue({ code: "custom", message: "O capítulo final precisa ser depois do inicial." });
-    if (l && d.capitulo_fim > l.capitulos) ctx.addIssue({ code: "custom", message: `${l.nome} tem ${l.capitulos} capítulos.` });
-  });
+const checkinSchema = z.object({
+  data: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Escolha o dia da leitura."),
+  minutos: z
+    .string()
+    .optional()
+    .transform((v) => (v ? Number(v) : null))
+    .refine((v) => v === null || (Number.isInteger(v) && v >= 1 && v <= 600), "Minutos entre 1 e 600."),
+  versiculo: z.string().trim().max(500, "Versículo muito longo.").optional(),
+  anotacao: z.string().trim().max(3000, "Reflexão muito longa.").optional(),
+  foto_path: z.string().optional(),
+});
 
 function mensagemBanco(msg?: string) {
   if (!msg) return "Não foi possível salvar.";
-  if (msg.includes("DATA_ANTIGA")) return "Dá para registrar leituras de até 3 dias atrás.";
+  if (msg.includes("DATA_ANTIGA")) return "Dá para marcar leituras de até 3 dias atrás.";
   if (msg.includes("DATA_FUTURA")) return "A data não pode ser no futuro.";
-  if (msg.includes("CAPITULO_INVALIDO")) return "Esse livro não tem esse capítulo.";
+  if (msg.includes("checkins_um_por_dia") || msg.includes("duplicate key")) return "Você já marcou a leitura desse dia.";
+  if (msg.includes("checkins_data_plano_fkey") || msg.includes("foreign key")) return "Esse dia não tem leitura no plano.";
+  if (msg.includes("DATA_FIXA")) return "Não dá para mudar o dia de uma leitura já marcada.";
   if (msg.includes("FOTO_INVALIDA")) return "Envie a foto de novo.";
   return "Não foi possível salvar.";
 }
@@ -51,10 +43,6 @@ export async function salvarCheckin(id: string | null, formData: FormData): Prom
   const d = p.data;
   const foto = d.foto_path && d.foto_path.startsWith(`${eu.id}/`) ? d.foto_path : null;
   const linha = {
-    data: d.data,
-    livro: d.livro,
-    capitulo_inicio: d.capitulo_inicio,
-    capitulo_fim: d.capitulo_fim,
     minutos: d.minutos,
     versiculo: d.versiculo || null,
     anotacao: d.anotacao || null,
@@ -70,7 +58,7 @@ export async function salvarCheckin(id: string | null, formData: FormData): Prom
     revalidar(id);
     return { ok: true, dados: { id } };
   }
-  const { data, error } = await supabase.from("checkins").insert({ ...linha, user_id: eu.id }).select("id").single();
+  const { data, error } = await supabase.from("checkins").insert({ ...linha, data: d.data, user_id: eu.id }).select("id").single();
   if (error) return falha(mensagemBanco(error.message));
   revalidar(data.id);
   return { ok: true, dados: { id: data.id } };

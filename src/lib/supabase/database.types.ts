@@ -23,24 +23,44 @@ export type Database = {
           }
         },"public": {
           Tables: {
-            "checkins": {
+            "app_config": {
                   Row: {
-                    "anotacao": string | null,"atualizado_em": string,"capitulo_fim": number,"capitulo_inicio": number,"criado_em": string,"data": string,"foto_path": string | null,"id": string,"livro": string,"minutos": number | null,"user_id": string,"versiculo": string | null
+                    "atualizado_em": string,"atualizado_por": string | null,"aviso_ativo": boolean,"aviso_texto": string | null,"boas_vindas": string,"id": number,"nome": string,"slogan": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "anotacao"?: string | null,"atualizado_em"?: string,"capitulo_fim": number,"capitulo_inicio": number,"criado_em"?: string,"data"?: string,"foto_path"?: string | null,"id"?: string,"livro": string,"minutos"?: number | null,"user_id"?: string,"versiculo"?: string | null
+                    "atualizado_em"?: string,"atualizado_por"?: string | null,"aviso_ativo"?: boolean,"aviso_texto"?: string | null,"boas_vindas"?: string,"id"?: number,"nome"?: string,"slogan"?: string
                   }
                   Update: {
-                    "anotacao"?: string | null,"atualizado_em"?: string,"capitulo_fim"?: number,"capitulo_inicio"?: number,"criado_em"?: string,"data"?: string,"foto_path"?: string | null,"id"?: string,"livro"?: string,"minutos"?: number | null,"user_id"?: string,"versiculo"?: string | null
+                    "atualizado_em"?: string,"atualizado_por"?: string | null,"aviso_ativo"?: boolean,"aviso_texto"?: string | null,"boas_vindas"?: string,"id"?: number,"nome"?: string,"slogan"?: string
                   }
                   Relationships: [
                     {
-      foreignKeyName: "checkins_livro_fkey"
-      columns: ["livro"]
+      foreignKeyName: "app_config_atualizado_por_fkey"
+      columns: ["atualizado_por"]
 isOneToOne: false
-      referencedRelation: "livros_biblia"
+      referencedRelation: "profiles"
       referencedColumns: ["id"]
+    }
+                  ]
+                },"checkins": {
+                  Row: {
+                    "anotacao": string | null,"atualizado_em": string,"criado_em": string,"data": string,"foto_path": string | null,"id": string,"minutos": number | null,"no_prazo": boolean,"user_id": string,"versiculo": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "anotacao"?: string | null,"atualizado_em"?: string,"criado_em"?: string,"data"?: string,"foto_path"?: string | null,"id"?: string,"minutos"?: number | null,"no_prazo"?: boolean,"user_id"?: string,"versiculo"?: string | null
+                  }
+                  Update: {
+                    "anotacao"?: string | null,"atualizado_em"?: string,"criado_em"?: string,"data"?: string,"foto_path"?: string | null,"id"?: string,"minutos"?: number | null,"no_prazo"?: boolean,"user_id"?: string,"versiculo"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "checkins_data_plano_fkey"
+      columns: ["data"]
+isOneToOne: false
+      referencedRelation: "plano_dias"
+      referencedColumns: ["data"]
     },{
       foreignKeyName: "checkins_user_id_fkey"
       columns: ["user_id"]
@@ -155,6 +175,20 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
+                },"plano_dias": {
+                  Row: {
+                    "atualizado_em": string,"data": string,"leitura": string,"referencias": NonNullable<Json>,"texto": string | null,"titulo": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "atualizado_em"?: string,"data": string,"leitura": string,"referencias"?: NonNullable<Json>,"texto"?: string | null,"titulo"?: string | null
+                  }
+                  Update: {
+                    "atualizado_em"?: string,"data"?: string,"leitura"?: string,"referencias"?: NonNullable<Json>,"texto"?: string | null,"titulo"?: string | null
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"profiles": {
                   Row: {
                     "ativo": boolean,"atualizado_em": string,"criado_em": string,"email": string | null,"id": string,"nome": string,"papel": Database["public"]['Enums']["papel_app"],"precisa_trocar_senha": boolean,"telefone": string | null,"usuario": string | null
@@ -224,6 +258,9 @@ isOneToOne: false
                            },
 "is_admin":
 { Args: Record<PropertyKey, never>; Returns: boolean
+                           },
+"limites_plano":
+{ Args: Record<PropertyKey, never>; Returns: Json
                            },
 "papel_no_grupo":
 { Args: { "p_grupo": string }; Returns: Database["public"]['Enums']["papel_grupo"]

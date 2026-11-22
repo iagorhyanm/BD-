@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function BarraInferior({ ehAdmin }: { ehAdmin: boolean }) {
   const pathname = usePathname();
-  const itens = NAVEGACAO.filter((i) => !i.somenteAdmin || ehAdmin);
+  const itens = NAVEGACAO.filter((i) => !i.soMenuLateral && (!i.somenteAdmin || ehAdmin));
 
   return (
     <nav

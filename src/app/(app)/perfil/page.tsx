@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BookOpen, Flame, KeyRound, Medal, Timer } from "lucide-react";
+import { BookOpen, Flame, KeyRound, Medal, Settings, Timer } from "lucide-react";
 import { requireUsuario } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-import { LIVROS, formatarLeitura, totalCapitulos } from "@/lib/biblia";
+import { LIVROS, totalCapitulos } from "@/lib/biblia";
 import { rotuloDia } from "@/lib/datas";
 import { sair } from "@/server/actions/auth";
 import { AvatarNome } from "@/components/avatar-nome";
@@ -25,7 +25,7 @@ export default async function PerfilPage() {
     supabase.rpc("estatisticas_usuario", { p_user: eu.id }),
     supabase
       .from("checkins")
-      .select("id, data, livro, capitulo_inicio, capitulo_fim")
+      .select("id, data, no_prazo, plano_dias(leitura)")
       .eq("user_id", eu.id)
       .order("data", { ascending: false })
       .order("criado_em", { ascending: false })
@@ -108,20 +108,36 @@ export default async function PerfilPage() {
       <section className="space-y-2 rounded-2xl border bg-card p-4">
         <h2 className="font-semibold">Suas últimas leituras</h2>
         {(historico ?? []).length === 0 ? (
-          <p className="text-sm text-muted-foreground">Nenhuma ainda. Registre a primeira! 📖</p>
+          <p className="text-sm text-muted-foreground">Nenhuma ainda. Marque a leitura de hoje! 📖</p>
         ) : (
           <ul className="divide-y">
             {historico!.map((c) => (
               <li key={c.id}>
                 <Link href={`/checkin/${c.id}`} className="flex min-h-11 items-center justify-between gap-2 py-2 hover:text-primary">
-                  <span className="font-medium">{formatarLeitura(c.livro, c.capitulo_inicio, c.capitulo_fim)}</span>
-                  <span className="text-sm text-muted-foreground">{rotuloDia(c.data)}</span>
+                  <span className="font-medium">{c.plano_dias?.leitura}</span>
+                  <span className="shrink-0 text-right text-sm text-muted-foreground">
+                    {rotuloDia(c.data)}
+                    {!c.no_prazo && <span className="block text-xs">marcada depois</span>}
+                  </span>
                 </Link>
               </li>
             ))}
           </ul>
         )}
       </section>
+
+      {eu.papel === "admin" && (
+        <Link
+          href="/admin"
+          className="flex min-h-14 items-center gap-3 rounded-2xl border border-primary/30 bg-primary/5 p-4 font-semibold text-primary"
+        >
+          <Settings className="size-5" aria-hidden />
+          <span className="flex-1">
+            Área do administrador
+            <span className="block text-sm font-normal text-muted-foreground">Plano de leitura, textos do app, aviso e usuários</span>
+          </span>
+        </Link>
+      )}
 
       <section className="space-y-3 rounded-2xl border bg-card p-4">
         <h2 className="font-semibold">Conta</h2>

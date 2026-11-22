@@ -1,0 +1,5513 @@
+{
+ "nome": "Leitura bíblica em ordem cronológica (52 semanas)",
+ "fonte": "Ordem de leitura do Planner 2022 de Rodrigo Silva, com 3 correções de digitação (Lv 24–27 na semana 8 e 2 Rs 22–23 na semana 31).",
+ "dias": [
+  {
+   "dia": 1,
+   "semana": 1,
+   "diaSemana": 1,
+   "leitura": "Gênesis 1 a 3",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 2,
+   "semana": 1,
+   "diaSemana": 2,
+   "leitura": "Gênesis 4 a 7",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 4,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 3,
+   "semana": 1,
+   "diaSemana": 3,
+   "leitura": "Gênesis 8 a 11",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 8,
+     "fim": 11
+    }
+   ]
+  },
+  {
+   "dia": 4,
+   "semana": 1,
+   "diaSemana": 4,
+   "leitura": "Jó 1 a 5",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 1,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 5,
+   "semana": 1,
+   "diaSemana": 5,
+   "leitura": "Jó 6 a 9",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 6,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 6,
+   "semana": 1,
+   "diaSemana": 6,
+   "leitura": "Jó 10 a 13",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 10,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 7,
+   "semana": 1,
+   "diaSemana": 7,
+   "leitura": "Jó 14 a 16",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 14,
+     "fim": 16
+    }
+   ]
+  },
+  {
+   "dia": 8,
+   "semana": 2,
+   "diaSemana": 1,
+   "leitura": "Jó 17 a 20",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 17,
+     "fim": 20
+    }
+   ]
+  },
+  {
+   "dia": 9,
+   "semana": 2,
+   "diaSemana": 2,
+   "leitura": "Jó 21 a 23",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 21,
+     "fim": 23
+    }
+   ]
+  },
+  {
+   "dia": 10,
+   "semana": 2,
+   "diaSemana": 3,
+   "leitura": "Jó 24 a 28",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 24,
+     "fim": 28
+    }
+   ]
+  },
+  {
+   "dia": 11,
+   "semana": 2,
+   "diaSemana": 4,
+   "leitura": "Jó 29 a 31",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 29,
+     "fim": 31
+    }
+   ]
+  },
+  {
+   "dia": 12,
+   "semana": 2,
+   "diaSemana": 5,
+   "leitura": "Jó 32 a 34",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 32,
+     "fim": 34
+    }
+   ]
+  },
+  {
+   "dia": 13,
+   "semana": 2,
+   "diaSemana": 6,
+   "leitura": "Jó 35 a 37",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 35,
+     "fim": 37
+    }
+   ]
+  },
+  {
+   "dia": 14,
+   "semana": 2,
+   "diaSemana": 7,
+   "leitura": "Jó 38 a 39",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 38,
+     "fim": 39
+    }
+   ]
+  },
+  {
+   "dia": 15,
+   "semana": 3,
+   "diaSemana": 1,
+   "leitura": "Jó 40 a 42",
+   "referencias": [
+    {
+     "livro": "job",
+     "inicio": 40,
+     "fim": 42
+    }
+   ]
+  },
+  {
+   "dia": 16,
+   "semana": 3,
+   "diaSemana": 2,
+   "leitura": "Gênesis 12 a 15",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 12,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 17,
+   "semana": 3,
+   "diaSemana": 3,
+   "leitura": "Gênesis 16 a 18",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 16,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 18,
+   "semana": 3,
+   "diaSemana": 4,
+   "leitura": "Gênesis 19 a 21",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 19,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 19,
+   "semana": 3,
+   "diaSemana": 5,
+   "leitura": "Gênesis 22 a 24",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 22,
+     "fim": 24
+    }
+   ]
+  },
+  {
+   "dia": 20,
+   "semana": 3,
+   "diaSemana": 6,
+   "leitura": "Gênesis 25 a 26",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 25,
+     "fim": 26
+    }
+   ]
+  },
+  {
+   "dia": 21,
+   "semana": 3,
+   "diaSemana": 7,
+   "leitura": "Gênesis 27 a 29",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 27,
+     "fim": 29
+    }
+   ]
+  },
+  {
+   "dia": 22,
+   "semana": 4,
+   "diaSemana": 1,
+   "leitura": "Gênesis 30 a 31",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 30,
+     "fim": 31
+    }
+   ]
+  },
+  {
+   "dia": 23,
+   "semana": 4,
+   "diaSemana": 2,
+   "leitura": "Gênesis 32 a 34",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 32,
+     "fim": 34
+    }
+   ]
+  },
+  {
+   "dia": 24,
+   "semana": 4,
+   "diaSemana": 3,
+   "leitura": "Gênesis 35 a 37",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 35,
+     "fim": 37
+    }
+   ]
+  },
+  {
+   "dia": 25,
+   "semana": 4,
+   "diaSemana": 4,
+   "leitura": "Gênesis 38 a 40",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 38,
+     "fim": 40
+    }
+   ]
+  },
+  {
+   "dia": 26,
+   "semana": 4,
+   "diaSemana": 5,
+   "leitura": "Gênesis 41 a 42",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 41,
+     "fim": 42
+    }
+   ]
+  },
+  {
+   "dia": 27,
+   "semana": 4,
+   "diaSemana": 6,
+   "leitura": "Gênesis 43 a 45",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 43,
+     "fim": 45
+    }
+   ]
+  },
+  {
+   "dia": 28,
+   "semana": 4,
+   "diaSemana": 7,
+   "leitura": "Gênesis 46 a 47",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 46,
+     "fim": 47
+    }
+   ]
+  },
+  {
+   "dia": 29,
+   "semana": 5,
+   "diaSemana": 1,
+   "leitura": "Gênesis 48 a 50",
+   "referencias": [
+    {
+     "livro": "gn",
+     "inicio": 48,
+     "fim": 50
+    }
+   ]
+  },
+  {
+   "dia": 30,
+   "semana": 5,
+   "diaSemana": 2,
+   "leitura": "Êxodo 1 a 3",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 31,
+   "semana": 5,
+   "diaSemana": 3,
+   "leitura": "Êxodo 4 a 6",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 4,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 32,
+   "semana": 5,
+   "diaSemana": 4,
+   "leitura": "Êxodo 7 a 9",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 7,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 33,
+   "semana": 5,
+   "diaSemana": 5,
+   "leitura": "Êxodo 10 a 12",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 10,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 34,
+   "semana": 5,
+   "diaSemana": 6,
+   "leitura": "Êxodo 13 a 15",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 13,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 35,
+   "semana": 5,
+   "diaSemana": 7,
+   "leitura": "Êxodo 16 a 18",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 16,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 36,
+   "semana": 6,
+   "diaSemana": 1,
+   "leitura": "Êxodo 19 a 21",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 19,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 37,
+   "semana": 6,
+   "diaSemana": 2,
+   "leitura": "Êxodo 22 a 24",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 22,
+     "fim": 24
+    }
+   ]
+  },
+  {
+   "dia": 38,
+   "semana": 6,
+   "diaSemana": 3,
+   "leitura": "Êxodo 25 a 27",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 25,
+     "fim": 27
+    }
+   ]
+  },
+  {
+   "dia": 39,
+   "semana": 6,
+   "diaSemana": 4,
+   "leitura": "Êxodo 28 a 29",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 28,
+     "fim": 29
+    }
+   ]
+  },
+  {
+   "dia": 40,
+   "semana": 6,
+   "diaSemana": 5,
+   "leitura": "Êxodo 30 a 32",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 30,
+     "fim": 32
+    }
+   ]
+  },
+  {
+   "dia": 41,
+   "semana": 6,
+   "diaSemana": 6,
+   "leitura": "Êxodo 33 a 35",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 33,
+     "fim": 35
+    }
+   ]
+  },
+  {
+   "dia": 42,
+   "semana": 6,
+   "diaSemana": 7,
+   "leitura": "Êxodo 36 a 38",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 36,
+     "fim": 38
+    }
+   ]
+  },
+  {
+   "dia": 43,
+   "semana": 7,
+   "diaSemana": 1,
+   "leitura": "Êxodo 39 a 40",
+   "referencias": [
+    {
+     "livro": "ex",
+     "inicio": 39,
+     "fim": 40
+    }
+   ]
+  },
+  {
+   "dia": 44,
+   "semana": 7,
+   "diaSemana": 2,
+   "leitura": "Levítico 1 a 4",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 45,
+   "semana": 7,
+   "diaSemana": 3,
+   "leitura": "Levítico 5 a 7",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 5,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 46,
+   "semana": 7,
+   "diaSemana": 4,
+   "leitura": "Levítico 8 a 10",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 8,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 47,
+   "semana": 7,
+   "diaSemana": 5,
+   "leitura": "Levítico 11 a 13",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 11,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 48,
+   "semana": 7,
+   "diaSemana": 6,
+   "leitura": "Levítico 14 a 15",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 14,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 49,
+   "semana": 7,
+   "diaSemana": 7,
+   "leitura": "Levítico 16 a 18",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 16,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 50,
+   "semana": 8,
+   "diaSemana": 1,
+   "leitura": "Levítico 19 a 21",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 19,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 51,
+   "semana": 8,
+   "diaSemana": 2,
+   "leitura": "Levítico 22 a 23",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 22,
+     "fim": 23
+    }
+   ]
+  },
+  {
+   "dia": 52,
+   "semana": 8,
+   "diaSemana": 3,
+   "leitura": "Levítico 24 a 26",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 24,
+     "fim": 26
+    }
+   ]
+  },
+  {
+   "dia": 53,
+   "semana": 8,
+   "diaSemana": 4,
+   "leitura": "Levítico 27",
+   "referencias": [
+    {
+     "livro": "lv",
+     "inicio": 27,
+     "fim": 27
+    }
+   ]
+  },
+  {
+   "dia": 54,
+   "semana": 8,
+   "diaSemana": 5,
+   "leitura": "Números 1 a 2",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 1,
+     "fim": 2
+    }
+   ]
+  },
+  {
+   "dia": 55,
+   "semana": 8,
+   "diaSemana": 6,
+   "leitura": "Números 3 a 4",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 3,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 56,
+   "semana": 8,
+   "diaSemana": 7,
+   "leitura": "Números 5 a 6",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 5,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 57,
+   "semana": 9,
+   "diaSemana": 1,
+   "leitura": "Números 7",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 7,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 58,
+   "semana": 9,
+   "diaSemana": 2,
+   "leitura": "Números 8 a 10",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 8,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 59,
+   "semana": 9,
+   "diaSemana": 3,
+   "leitura": "Números 11 a 13",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 11,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 60,
+   "semana": 9,
+   "diaSemana": 4,
+   "leitura": "Números 14 a 15; Salmo 90",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 14,
+     "fim": 15
+    },
+    {
+     "livro": "sl",
+     "inicio": 90,
+     "fim": 90
+    }
+   ]
+  },
+  {
+   "dia": 61,
+   "semana": 9,
+   "diaSemana": 5,
+   "leitura": "Números 16 a 17",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 16,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 62,
+   "semana": 9,
+   "diaSemana": 6,
+   "leitura": "Números 18 a 20",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 18,
+     "fim": 20
+    }
+   ]
+  },
+  {
+   "dia": 63,
+   "semana": 9,
+   "diaSemana": 7,
+   "leitura": "Números 21 a 22",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 21,
+     "fim": 22
+    }
+   ]
+  },
+  {
+   "dia": 64,
+   "semana": 10,
+   "diaSemana": 1,
+   "leitura": "Números 23 a 25",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 23,
+     "fim": 25
+    }
+   ]
+  },
+  {
+   "dia": 65,
+   "semana": 10,
+   "diaSemana": 2,
+   "leitura": "Números 26 a 27",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 26,
+     "fim": 27
+    }
+   ]
+  },
+  {
+   "dia": 66,
+   "semana": 10,
+   "diaSemana": 3,
+   "leitura": "Números 28 a 30",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 28,
+     "fim": 30
+    }
+   ]
+  },
+  {
+   "dia": 67,
+   "semana": 10,
+   "diaSemana": 4,
+   "leitura": "Números 31 a 32",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 31,
+     "fim": 32
+    }
+   ]
+  },
+  {
+   "dia": 68,
+   "semana": 10,
+   "diaSemana": 5,
+   "leitura": "Números 33 a 34",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 33,
+     "fim": 34
+    }
+   ]
+  },
+  {
+   "dia": 69,
+   "semana": 10,
+   "diaSemana": 6,
+   "leitura": "Números 35 a 36",
+   "referencias": [
+    {
+     "livro": "nm",
+     "inicio": 35,
+     "fim": 36
+    }
+   ]
+  },
+  {
+   "dia": 70,
+   "semana": 10,
+   "diaSemana": 7,
+   "leitura": "Deuteronômio 1 a 2",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 1,
+     "fim": 2
+    }
+   ]
+  },
+  {
+   "dia": 71,
+   "semana": 11,
+   "diaSemana": 1,
+   "leitura": "Deuteronômio 3 a 4",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 3,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 72,
+   "semana": 11,
+   "diaSemana": 2,
+   "leitura": "Deuteronômio 5 a 7",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 5,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 73,
+   "semana": 11,
+   "diaSemana": 3,
+   "leitura": "Deuteronômio 8 a 10",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 8,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 74,
+   "semana": 11,
+   "diaSemana": 4,
+   "leitura": "Deuteronômio 11 a 13",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 11,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 75,
+   "semana": 11,
+   "diaSemana": 5,
+   "leitura": "Deuteronômio 14 a 16",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 14,
+     "fim": 16
+    }
+   ]
+  },
+  {
+   "dia": 76,
+   "semana": 11,
+   "diaSemana": 6,
+   "leitura": "Deuteronômio 17 a 20",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 17,
+     "fim": 20
+    }
+   ]
+  },
+  {
+   "dia": 77,
+   "semana": 11,
+   "diaSemana": 7,
+   "leitura": "Deuteronômio 21 a 23",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 21,
+     "fim": 23
+    }
+   ]
+  },
+  {
+   "dia": 78,
+   "semana": 12,
+   "diaSemana": 1,
+   "leitura": "Deuteronômio 24 a 27",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 24,
+     "fim": 27
+    }
+   ]
+  },
+  {
+   "dia": 79,
+   "semana": 12,
+   "diaSemana": 2,
+   "leitura": "Deuteronômio 28 a 29",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 28,
+     "fim": 29
+    }
+   ]
+  },
+  {
+   "dia": 80,
+   "semana": 12,
+   "diaSemana": 3,
+   "leitura": "Deuteronômio 30 a 31",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 30,
+     "fim": 31
+    }
+   ]
+  },
+  {
+   "dia": 81,
+   "semana": 12,
+   "diaSemana": 4,
+   "leitura": "Deuteronômio 32 a 34; Salmo 91",
+   "referencias": [
+    {
+     "livro": "dt",
+     "inicio": 32,
+     "fim": 34
+    },
+    {
+     "livro": "sl",
+     "inicio": 91,
+     "fim": 91
+    }
+   ]
+  },
+  {
+   "dia": 82,
+   "semana": 12,
+   "diaSemana": 5,
+   "leitura": "Josué 1 a 4",
+   "referencias": [
+    {
+     "livro": "js",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 83,
+   "semana": 12,
+   "diaSemana": 6,
+   "leitura": "Josué 5 a 8",
+   "referencias": [
+    {
+     "livro": "js",
+     "inicio": 5,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 84,
+   "semana": 12,
+   "diaSemana": 7,
+   "leitura": "Josué 9 a 11",
+   "referencias": [
+    {
+     "livro": "js",
+     "inicio": 9,
+     "fim": 11
+    }
+   ]
+  },
+  {
+   "dia": 85,
+   "semana": 13,
+   "diaSemana": 1,
+   "leitura": "Josué 12 a 15",
+   "referencias": [
+    {
+     "livro": "js",
+     "inicio": 12,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 86,
+   "semana": 13,
+   "diaSemana": 2,
+   "leitura": "Josué 16 a 18",
+   "referencias": [
+    {
+     "livro": "js",
+     "inicio": 16,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 87,
+   "semana": 13,
+   "diaSemana": 3,
+   "leitura": "Josué 19 a 21",
+   "referencias": [
+    {
+     "livro": "js",
+     "inicio": 19,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 88,
+   "semana": 13,
+   "diaSemana": 4,
+   "leitura": "Josué 22 a 24",
+   "referencias": [
+    {
+     "livro": "js",
+     "inicio": 22,
+     "fim": 24
+    }
+   ]
+  },
+  {
+   "dia": 89,
+   "semana": 13,
+   "diaSemana": 5,
+   "leitura": "Juízes 1 a 2",
+   "referencias": [
+    {
+     "livro": "jz",
+     "inicio": 1,
+     "fim": 2
+    }
+   ]
+  },
+  {
+   "dia": 90,
+   "semana": 13,
+   "diaSemana": 6,
+   "leitura": "Juízes 3 a 5",
+   "referencias": [
+    {
+     "livro": "jz",
+     "inicio": 3,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 91,
+   "semana": 13,
+   "diaSemana": 7,
+   "leitura": "Juízes 6 a 7",
+   "referencias": [
+    {
+     "livro": "jz",
+     "inicio": 6,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 92,
+   "semana": 14,
+   "diaSemana": 1,
+   "leitura": "Juízes 8 a 9",
+   "referencias": [
+    {
+     "livro": "jz",
+     "inicio": 8,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 93,
+   "semana": 14,
+   "diaSemana": 2,
+   "leitura": "Juízes 10 a 12",
+   "referencias": [
+    {
+     "livro": "jz",
+     "inicio": 10,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 94,
+   "semana": 14,
+   "diaSemana": 3,
+   "leitura": "Juízes 13 a 15",
+   "referencias": [
+    {
+     "livro": "jz",
+     "inicio": 13,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 95,
+   "semana": 14,
+   "diaSemana": 4,
+   "leitura": "Juízes 16 a 18",
+   "referencias": [
+    {
+     "livro": "jz",
+     "inicio": 16,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 96,
+   "semana": 14,
+   "diaSemana": 5,
+   "leitura": "Juízes 19 a 21",
+   "referencias": [
+    {
+     "livro": "jz",
+     "inicio": 19,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 97,
+   "semana": 14,
+   "diaSemana": 6,
+   "leitura": "Rute 1 a 4",
+   "referencias": [
+    {
+     "livro": "rt",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 98,
+   "semana": 14,
+   "diaSemana": 7,
+   "leitura": "1 Samuel 1 a 3",
+   "referencias": [
+    {
+     "livro": "1sm",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 99,
+   "semana": 15,
+   "diaSemana": 1,
+   "leitura": "1 Samuel 4 a 8",
+   "referencias": [
+    {
+     "livro": "1sm",
+     "inicio": 4,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 100,
+   "semana": 15,
+   "diaSemana": 2,
+   "leitura": "1 Samuel 9 a 12",
+   "referencias": [
+    {
+     "livro": "1sm",
+     "inicio": 9,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 101,
+   "semana": 15,
+   "diaSemana": 3,
+   "leitura": "1 Samuel 13 a 14",
+   "referencias": [
+    {
+     "livro": "1sm",
+     "inicio": 13,
+     "fim": 14
+    }
+   ]
+  },
+  {
+   "dia": 102,
+   "semana": 15,
+   "diaSemana": 4,
+   "leitura": "1 Samuel 15 a 17",
+   "referencias": [
+    {
+     "livro": "1sm",
+     "inicio": 15,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 103,
+   "semana": 15,
+   "diaSemana": 5,
+   "leitura": "1 Samuel 18 a 20; Salmo 11,59",
+   "referencias": [
+    {
+     "livro": "1sm",
+     "inicio": 18,
+     "fim": 20
+    },
+    {
+     "livro": "sl",
+     "inicio": 11,
+     "fim": 11
+    },
+    {
+     "livro": "sl",
+     "inicio": 59,
+     "fim": 59
+    }
+   ]
+  },
+  {
+   "dia": 104,
+   "semana": 15,
+   "diaSemana": 6,
+   "leitura": "1 Samuel 21 a 24",
+   "referencias": [
+    {
+     "livro": "1sm",
+     "inicio": 21,
+     "fim": 24
+    }
+   ]
+  },
+  {
+   "dia": 105,
+   "semana": 15,
+   "diaSemana": 7,
+   "leitura": "Salmos 7,27,31,34,52",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 7,
+     "fim": 7
+    },
+    {
+     "livro": "sl",
+     "inicio": 27,
+     "fim": 27
+    },
+    {
+     "livro": "sl",
+     "inicio": 31,
+     "fim": 31
+    },
+    {
+     "livro": "sl",
+     "inicio": 34,
+     "fim": 34
+    },
+    {
+     "livro": "sl",
+     "inicio": 52,
+     "fim": 52
+    }
+   ]
+  },
+  {
+   "dia": 106,
+   "semana": 16,
+   "diaSemana": 1,
+   "leitura": "Salmos 56,120,140 a 142",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 56,
+     "fim": 56
+    },
+    {
+     "livro": "sl",
+     "inicio": 120,
+     "fim": 120
+    },
+    {
+     "livro": "sl",
+     "inicio": 140,
+     "fim": 142
+    }
+   ]
+  },
+  {
+   "dia": 107,
+   "semana": 16,
+   "diaSemana": 2,
+   "leitura": "1 Samuel 25 a 27",
+   "referencias": [
+    {
+     "livro": "1sm",
+     "inicio": 25,
+     "fim": 27
+    }
+   ]
+  },
+  {
+   "dia": 108,
+   "semana": 16,
+   "diaSemana": 3,
+   "leitura": "Salmos 17,35,54,63",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 17,
+     "fim": 17
+    },
+    {
+     "livro": "sl",
+     "inicio": 35,
+     "fim": 35
+    },
+    {
+     "livro": "sl",
+     "inicio": 54,
+     "fim": 54
+    },
+    {
+     "livro": "sl",
+     "inicio": 63,
+     "fim": 63
+    }
+   ]
+  },
+  {
+   "dia": 109,
+   "semana": 16,
+   "diaSemana": 4,
+   "leitura": "1 Samuel 28 a 31; Salmo 18",
+   "referencias": [
+    {
+     "livro": "1sm",
+     "inicio": 28,
+     "fim": 31
+    },
+    {
+     "livro": "sl",
+     "inicio": 18,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 110,
+   "semana": 16,
+   "diaSemana": 5,
+   "leitura": "Salmos 121, 123 a 125, 128 a 130",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 121,
+     "fim": 121
+    },
+    {
+     "livro": "sl",
+     "inicio": 123,
+     "fim": 125
+    },
+    {
+     "livro": "sl",
+     "inicio": 128,
+     "fim": 130
+    }
+   ]
+  },
+  {
+   "dia": 111,
+   "semana": 16,
+   "diaSemana": 6,
+   "leitura": "2 Samuel 1 a 4",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 112,
+   "semana": 16,
+   "diaSemana": 7,
+   "leitura": "Salmos 6, 8 a 10, 14,16, 19,21",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 6,
+     "fim": 6
+    },
+    {
+     "livro": "sl",
+     "inicio": 8,
+     "fim": 10
+    },
+    {
+     "livro": "sl",
+     "inicio": 14,
+     "fim": 14
+    },
+    {
+     "livro": "sl",
+     "inicio": 16,
+     "fim": 16
+    },
+    {
+     "livro": "sl",
+     "inicio": 19,
+     "fim": 19
+    },
+    {
+     "livro": "sl",
+     "inicio": 21,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 113,
+   "semana": 17,
+   "diaSemana": 1,
+   "leitura": "1 Crônicas 1 a 2",
+   "referencias": [
+    {
+     "livro": "1cr",
+     "inicio": 1,
+     "fim": 2
+    }
+   ]
+  },
+  {
+   "dia": 114,
+   "semana": 17,
+   "diaSemana": 2,
+   "leitura": "Salmos 43 a 45,49, 84,85,87",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 43,
+     "fim": 45
+    },
+    {
+     "livro": "sl",
+     "inicio": 49,
+     "fim": 49
+    },
+    {
+     "livro": "sl",
+     "inicio": 84,
+     "fim": 84
+    },
+    {
+     "livro": "sl",
+     "inicio": 85,
+     "fim": 85
+    },
+    {
+     "livro": "sl",
+     "inicio": 87,
+     "fim": 87
+    }
+   ]
+  },
+  {
+   "dia": 115,
+   "semana": 17,
+   "diaSemana": 3,
+   "leitura": "1 Crônicas 3 a 5",
+   "referencias": [
+    {
+     "livro": "1cr",
+     "inicio": 3,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 116,
+   "semana": 17,
+   "diaSemana": 4,
+   "leitura": "Salmos 73,77,78",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 73,
+     "fim": 73
+    },
+    {
+     "livro": "sl",
+     "inicio": 77,
+     "fim": 77
+    },
+    {
+     "livro": "sl",
+     "inicio": 78,
+     "fim": 78
+    }
+   ]
+  },
+  {
+   "dia": 117,
+   "semana": 17,
+   "diaSemana": 5,
+   "leitura": "1 Crônicas 6",
+   "referencias": [
+    {
+     "livro": "1cr",
+     "inicio": 6,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 118,
+   "semana": 17,
+   "diaSemana": 6,
+   "leitura": "Salmos 81, 88, 92,93",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 81,
+     "fim": 81
+    },
+    {
+     "livro": "sl",
+     "inicio": 88,
+     "fim": 88
+    },
+    {
+     "livro": "sl",
+     "inicio": 92,
+     "fim": 92
+    },
+    {
+     "livro": "sl",
+     "inicio": 93,
+     "fim": 93
+    }
+   ]
+  },
+  {
+   "dia": 119,
+   "semana": 17,
+   "diaSemana": 7,
+   "leitura": "1 Crônicas 7 a 10",
+   "referencias": [
+    {
+     "livro": "1cr",
+     "inicio": 7,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 120,
+   "semana": 18,
+   "diaSemana": 1,
+   "leitura": "Salmos 102 a 104",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 102,
+     "fim": 104
+    }
+   ]
+  },
+  {
+   "dia": 121,
+   "semana": 18,
+   "diaSemana": 2,
+   "leitura": "2 Samuel 5:1-10 e 1 Crônicas 11-12",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 5,
+     "fim": 5
+    },
+    {
+     "livro": "1cr",
+     "inicio": 11,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 122,
+   "semana": 18,
+   "diaSemana": 3,
+   "leitura": "Salmos 133",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 133,
+     "fim": 133
+    }
+   ]
+  },
+  {
+   "dia": 123,
+   "semana": 18,
+   "diaSemana": 4,
+   "leitura": "Salmos 106 a 107",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 106,
+     "fim": 107
+    }
+   ]
+  },
+  {
+   "dia": 124,
+   "semana": 18,
+   "diaSemana": 5,
+   "leitura": "2 Samuel 5:11-25; 2 Samuel 6:1-23; 1 Crônicas 13-16",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 5,
+     "fim": 5
+    },
+    {
+     "livro": "2sm",
+     "inicio": 6,
+     "fim": 6
+    },
+    {
+     "livro": "1cr",
+     "inicio": 13,
+     "fim": 16
+    }
+   ]
+  },
+  {
+   "dia": 125,
+   "semana": 18,
+   "diaSemana": 6,
+   "leitura": "Salmos 1-2,15, 22-24,47,68",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 1,
+     "fim": 2
+    },
+    {
+     "livro": "sl",
+     "inicio": 15,
+     "fim": 15
+    },
+    {
+     "livro": "sl",
+     "inicio": 22,
+     "fim": 24
+    },
+    {
+     "livro": "sl",
+     "inicio": 47,
+     "fim": 47
+    },
+    {
+     "livro": "sl",
+     "inicio": 68,
+     "fim": 68
+    }
+   ]
+  },
+  {
+   "dia": 126,
+   "semana": 18,
+   "diaSemana": 7,
+   "leitura": "Salmos 89,96,100,101,105,132",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 89,
+     "fim": 89
+    },
+    {
+     "livro": "sl",
+     "inicio": 96,
+     "fim": 96
+    },
+    {
+     "livro": "sl",
+     "inicio": 100,
+     "fim": 100
+    },
+    {
+     "livro": "sl",
+     "inicio": 101,
+     "fim": 101
+    },
+    {
+     "livro": "sl",
+     "inicio": 105,
+     "fim": 105
+    },
+    {
+     "livro": "sl",
+     "inicio": 132,
+     "fim": 132
+    }
+   ]
+  },
+  {
+   "dia": 127,
+   "semana": 19,
+   "diaSemana": 1,
+   "leitura": "2 Samuel 7; 1 Crônicas 17",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 7,
+     "fim": 7
+    },
+    {
+     "livro": "1cr",
+     "inicio": 17,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 128,
+   "semana": 19,
+   "diaSemana": 2,
+   "leitura": "Salmos 25,29,33,36,39",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 25,
+     "fim": 25
+    },
+    {
+     "livro": "sl",
+     "inicio": 29,
+     "fim": 29
+    },
+    {
+     "livro": "sl",
+     "inicio": 33,
+     "fim": 33
+    },
+    {
+     "livro": "sl",
+     "inicio": 36,
+     "fim": 36
+    },
+    {
+     "livro": "sl",
+     "inicio": 39,
+     "fim": 39
+    }
+   ]
+  },
+  {
+   "dia": 129,
+   "semana": 19,
+   "diaSemana": 3,
+   "leitura": "2 Samuel 8-9; 1 Crônicas 18",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 8,
+     "fim": 9
+    },
+    {
+     "livro": "1cr",
+     "inicio": 18,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 130,
+   "semana": 19,
+   "diaSemana": 4,
+   "leitura": "Salmos 50,53,60,75",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 50,
+     "fim": 50
+    },
+    {
+     "livro": "sl",
+     "inicio": 53,
+     "fim": 53
+    },
+    {
+     "livro": "sl",
+     "inicio": 60,
+     "fim": 60
+    },
+    {
+     "livro": "sl",
+     "inicio": 75,
+     "fim": 75
+    }
+   ]
+  },
+  {
+   "dia": 131,
+   "semana": 19,
+   "diaSemana": 5,
+   "leitura": "2 Samuel 10; 1 Crônicas 19; Salmo 20",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 10,
+     "fim": 10
+    },
+    {
+     "livro": "1cr",
+     "inicio": 19,
+     "fim": 19
+    },
+    {
+     "livro": "sl",
+     "inicio": 20,
+     "fim": 20
+    }
+   ]
+  },
+  {
+   "dia": 132,
+   "semana": 19,
+   "diaSemana": 6,
+   "leitura": "Salmos 65 a 67, 69 a 70",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 65,
+     "fim": 67
+    },
+    {
+     "livro": "sl",
+     "inicio": 69,
+     "fim": 70
+    }
+   ]
+  },
+  {
+   "dia": 133,
+   "semana": 19,
+   "diaSemana": 7,
+   "leitura": "2 Samuel 11 a 12; 1 Crônicas 20",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 11,
+     "fim": 12
+    },
+    {
+     "livro": "1cr",
+     "inicio": 20,
+     "fim": 20
+    }
+   ]
+  },
+  {
+   "dia": 134,
+   "semana": 20,
+   "diaSemana": 1,
+   "leitura": "Salmos 32,51,86,122",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 32,
+     "fim": 32
+    },
+    {
+     "livro": "sl",
+     "inicio": 51,
+     "fim": 51
+    },
+    {
+     "livro": "sl",
+     "inicio": 86,
+     "fim": 86
+    },
+    {
+     "livro": "sl",
+     "inicio": 122,
+     "fim": 122
+    }
+   ]
+  },
+  {
+   "dia": 135,
+   "semana": 20,
+   "diaSemana": 2,
+   "leitura": "2 Samuel 13 a 15",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 13,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 136,
+   "semana": 20,
+   "diaSemana": 3,
+   "leitura": "Salmos 3-4, 12-13, 28,55",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 3,
+     "fim": 4
+    },
+    {
+     "livro": "sl",
+     "inicio": 12,
+     "fim": 13
+    },
+    {
+     "livro": "sl",
+     "inicio": 28,
+     "fim": 28
+    },
+    {
+     "livro": "sl",
+     "inicio": 55,
+     "fim": 55
+    }
+   ]
+  },
+  {
+   "dia": 137,
+   "semana": 20,
+   "diaSemana": 4,
+   "leitura": "2 Samuel 16 a 18",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 16,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 138,
+   "semana": 20,
+   "diaSemana": 5,
+   "leitura": "Salmos 26,40, 58,61-62,64",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 26,
+     "fim": 26
+    },
+    {
+     "livro": "sl",
+     "inicio": 40,
+     "fim": 40
+    },
+    {
+     "livro": "sl",
+     "inicio": 58,
+     "fim": 58
+    },
+    {
+     "livro": "sl",
+     "inicio": 61,
+     "fim": 62
+    },
+    {
+     "livro": "sl",
+     "inicio": 64,
+     "fim": 64
+    }
+   ]
+  },
+  {
+   "dia": 139,
+   "semana": 20,
+   "diaSemana": 6,
+   "leitura": "2 Samuel 19 a 21",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 19,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 140,
+   "semana": 20,
+   "diaSemana": 7,
+   "leitura": "Salmos 5,38,41-42",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 5,
+     "fim": 5
+    },
+    {
+     "livro": "sl",
+     "inicio": 38,
+     "fim": 38
+    },
+    {
+     "livro": "sl",
+     "inicio": 41,
+     "fim": 42
+    }
+   ]
+  },
+  {
+   "dia": 141,
+   "semana": 21,
+   "diaSemana": 1,
+   "leitura": "2 Samuel 22-23, Salmos 57",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 22,
+     "fim": 23
+    },
+    {
+     "livro": "sl",
+     "inicio": 57,
+     "fim": 57
+    }
+   ]
+  },
+  {
+   "dia": 142,
+   "semana": 21,
+   "diaSemana": 2,
+   "leitura": "Salmos 95, 97 a 99",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 95,
+     "fim": 95
+    },
+    {
+     "livro": "sl",
+     "inicio": 97,
+     "fim": 99
+    }
+   ]
+  },
+  {
+   "dia": 143,
+   "semana": 21,
+   "diaSemana": 3,
+   "leitura": "2 Samuel 24; 1 Crônicas 21-22; Salmos 30",
+   "referencias": [
+    {
+     "livro": "2sm",
+     "inicio": 24,
+     "fim": 24
+    },
+    {
+     "livro": "1cr",
+     "inicio": 21,
+     "fim": 22
+    },
+    {
+     "livro": "sl",
+     "inicio": 30,
+     "fim": 30
+    }
+   ]
+  },
+  {
+   "dia": 144,
+   "semana": 21,
+   "diaSemana": 4,
+   "leitura": "Salmos 108 a 110",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 108,
+     "fim": 110
+    }
+   ]
+  },
+  {
+   "dia": 145,
+   "semana": 21,
+   "diaSemana": 5,
+   "leitura": "1 Crônicas 23 a 25",
+   "referencias": [
+    {
+     "livro": "1cr",
+     "inicio": 23,
+     "fim": 25
+    }
+   ]
+  },
+  {
+   "dia": 146,
+   "semana": 21,
+   "diaSemana": 6,
+   "leitura": "Salmos 131, 138-139, 143-145",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 131,
+     "fim": 131
+    },
+    {
+     "livro": "sl",
+     "inicio": 138,
+     "fim": 139
+    },
+    {
+     "livro": "sl",
+     "inicio": 143,
+     "fim": 145
+    }
+   ]
+  },
+  {
+   "dia": 147,
+   "semana": 21,
+   "diaSemana": 7,
+   "leitura": "1 Crônicas 26 a 29; Salmos 27",
+   "referencias": [
+    {
+     "livro": "1cr",
+     "inicio": 26,
+     "fim": 29
+    },
+    {
+     "livro": "sl",
+     "inicio": 27,
+     "fim": 27
+    }
+   ]
+  },
+  {
+   "dia": 148,
+   "semana": 22,
+   "diaSemana": 1,
+   "leitura": "Salmos 111 a 118",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 111,
+     "fim": 118
+    }
+   ]
+  },
+  {
+   "dia": 149,
+   "semana": 22,
+   "diaSemana": 2,
+   "leitura": "1 Reis 1-2; Salmos 37,71,94",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 1,
+     "fim": 2
+    },
+    {
+     "livro": "sl",
+     "inicio": 37,
+     "fim": 37
+    },
+    {
+     "livro": "sl",
+     "inicio": 71,
+     "fim": 71
+    },
+    {
+     "livro": "sl",
+     "inicio": 94,
+     "fim": 94
+    }
+   ]
+  },
+  {
+   "dia": 150,
+   "semana": 22,
+   "diaSemana": 3,
+   "leitura": "Salmos 119:1-88",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 119,
+     "fim": 119
+    }
+   ]
+  },
+  {
+   "dia": 151,
+   "semana": 22,
+   "diaSemana": 4,
+   "leitura": "1 Reis 3-4; 2 Crônicas 1; Salmos 72",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 3,
+     "fim": 4
+    },
+    {
+     "livro": "2cr",
+     "inicio": 1,
+     "fim": 1
+    },
+    {
+     "livro": "sl",
+     "inicio": 72,
+     "fim": 72
+    }
+   ]
+  },
+  {
+   "dia": 152,
+   "semana": 22,
+   "diaSemana": 5,
+   "leitura": "Salmos 119:89-176",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 119,
+     "fim": 119
+    }
+   ]
+  },
+  {
+   "dia": 153,
+   "semana": 22,
+   "diaSemana": 6,
+   "leitura": "Cantares de Salomão 1 a 8",
+   "referencias": [
+    {
+     "livro": "ct",
+     "inicio": 1,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 154,
+   "semana": 22,
+   "diaSemana": 7,
+   "leitura": "Provérbios 1 a 3",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 155,
+   "semana": 23,
+   "diaSemana": 1,
+   "leitura": "Provérbios 4 a 6",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 4,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 156,
+   "semana": 23,
+   "diaSemana": 2,
+   "leitura": "Provérbios 7 a 9",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 7,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 157,
+   "semana": 23,
+   "diaSemana": 3,
+   "leitura": "Provérbios 10 a 12",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 10,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 158,
+   "semana": 23,
+   "diaSemana": 4,
+   "leitura": "Provérbios 13 a 15",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 13,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 159,
+   "semana": 23,
+   "diaSemana": 5,
+   "leitura": "Provérbios 16 a 18",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 16,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 160,
+   "semana": 23,
+   "diaSemana": 6,
+   "leitura": "Provérbios 19 a 21",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 19,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 161,
+   "semana": 23,
+   "diaSemana": 7,
+   "leitura": "Provérbios 22 a 24",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 22,
+     "fim": 24
+    }
+   ]
+  },
+  {
+   "dia": 162,
+   "semana": 24,
+   "diaSemana": 1,
+   "leitura": "1 Reis 5-6, 2 Crônicas 2-3",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 5,
+     "fim": 6
+    },
+    {
+     "livro": "2cr",
+     "inicio": 2,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 163,
+   "semana": 24,
+   "diaSemana": 2,
+   "leitura": "1 Reis 7, 2 Crônicas 4",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 7,
+     "fim": 7
+    },
+    {
+     "livro": "2cr",
+     "inicio": 4,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 164,
+   "semana": 24,
+   "diaSemana": 3,
+   "leitura": "1 Reis 8, 2 Crônicas 5",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 8,
+     "fim": 8
+    },
+    {
+     "livro": "2cr",
+     "inicio": 5,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 165,
+   "semana": 24,
+   "diaSemana": 4,
+   "leitura": "2 Crônicas 6-7; Salmos 136",
+   "referencias": [
+    {
+     "livro": "2cr",
+     "inicio": 6,
+     "fim": 7
+    },
+    {
+     "livro": "sl",
+     "inicio": 136,
+     "fim": 136
+    }
+   ]
+  },
+  {
+   "dia": 166,
+   "semana": 24,
+   "diaSemana": 5,
+   "leitura": "Salmos 134, 146-150",
+   "referencias": [
+    {
+     "livro": "sl",
+     "inicio": 134,
+     "fim": 134
+    },
+    {
+     "livro": "sl",
+     "inicio": 146,
+     "fim": 150
+    }
+   ]
+  },
+  {
+   "dia": 167,
+   "semana": 24,
+   "diaSemana": 6,
+   "leitura": "1 Reis 9; 2 Crônicas 8",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 9,
+     "fim": 9
+    },
+    {
+     "livro": "2cr",
+     "inicio": 8,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 168,
+   "semana": 24,
+   "diaSemana": 7,
+   "leitura": "Provérbios 25 a 26",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 25,
+     "fim": 26
+    }
+   ]
+  },
+  {
+   "dia": 169,
+   "semana": 25,
+   "diaSemana": 1,
+   "leitura": "Provérbios 27 a 29",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 27,
+     "fim": 29
+    }
+   ]
+  },
+  {
+   "dia": 170,
+   "semana": 25,
+   "diaSemana": 2,
+   "leitura": "Eclesiastes 1 a 6",
+   "referencias": [
+    {
+     "livro": "ec",
+     "inicio": 1,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 171,
+   "semana": 25,
+   "diaSemana": 3,
+   "leitura": "Eclesiastes 7 a 12",
+   "referencias": [
+    {
+     "livro": "ec",
+     "inicio": 7,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 172,
+   "semana": 25,
+   "diaSemana": 4,
+   "leitura": "1 Reis 10-11; 2 Crônicas 9",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 10,
+     "fim": 11
+    },
+    {
+     "livro": "2cr",
+     "inicio": 9,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 173,
+   "semana": 25,
+   "diaSemana": 5,
+   "leitura": "Provérbios 30 a 31",
+   "referencias": [
+    {
+     "livro": "pv",
+     "inicio": 30,
+     "fim": 31
+    }
+   ]
+  },
+  {
+   "dia": 174,
+   "semana": 25,
+   "diaSemana": 6,
+   "leitura": "1 Reis 12 a 14",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 12,
+     "fim": 14
+    }
+   ]
+  },
+  {
+   "dia": 175,
+   "semana": 25,
+   "diaSemana": 7,
+   "leitura": "2 Crônicas 10 a 12",
+   "referencias": [
+    {
+     "livro": "2cr",
+     "inicio": 10,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 176,
+   "semana": 26,
+   "diaSemana": 1,
+   "leitura": "1 Reis 15:1-24; 2 Crônicas 13-16",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 15,
+     "fim": 15
+    },
+    {
+     "livro": "2cr",
+     "inicio": 13,
+     "fim": 16
+    }
+   ]
+  },
+  {
+   "dia": 177,
+   "semana": 26,
+   "diaSemana": 2,
+   "leitura": "1 Reis 15:25-34; 1 Reis 16:1-34; 2 Crônicas 17",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 15,
+     "fim": 15
+    },
+    {
+     "livro": "1rs",
+     "inicio": 16,
+     "fim": 16
+    },
+    {
+     "livro": "2cr",
+     "inicio": 17,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 178,
+   "semana": 26,
+   "diaSemana": 3,
+   "leitura": "1 Reis 17-19",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 17,
+     "fim": 19
+    }
+   ]
+  },
+  {
+   "dia": 179,
+   "semana": 26,
+   "diaSemana": 4,
+   "leitura": "1 Reis 20-21",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 20,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 180,
+   "semana": 26,
+   "diaSemana": 5,
+   "leitura": "1 Reis 22; 2 Crônicas 18",
+   "referencias": [
+    {
+     "livro": "1rs",
+     "inicio": 22,
+     "fim": 22
+    },
+    {
+     "livro": "2cr",
+     "inicio": 18,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 181,
+   "semana": 26,
+   "diaSemana": 6,
+   "leitura": "2 Crônicas 19 a 23",
+   "referencias": [
+    {
+     "livro": "2cr",
+     "inicio": 19,
+     "fim": 23
+    }
+   ]
+  },
+  {
+   "dia": 182,
+   "semana": 26,
+   "diaSemana": 7,
+   "leitura": "Obadias; Salmos 82-83",
+   "referencias": [
+    {
+     "livro": "ob",
+     "inicio": 1,
+     "fim": 1
+    },
+    {
+     "livro": "sl",
+     "inicio": 82,
+     "fim": 83
+    }
+   ]
+  },
+  {
+   "dia": 183,
+   "semana": 27,
+   "diaSemana": 1,
+   "leitura": "2 Reis 1 a 4",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 184,
+   "semana": 27,
+   "diaSemana": 2,
+   "leitura": "2 Reis 5 a 8",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 5,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 185,
+   "semana": 27,
+   "diaSemana": 3,
+   "leitura": "2 Reis 9 a 11",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 9,
+     "fim": 11
+    }
+   ]
+  },
+  {
+   "dia": 186,
+   "semana": 27,
+   "diaSemana": 4,
+   "leitura": "2 Reis 12-13; 2 Crônicas 24",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 12,
+     "fim": 13
+    },
+    {
+     "livro": "2cr",
+     "inicio": 24,
+     "fim": 24
+    }
+   ]
+  },
+  {
+   "dia": 187,
+   "semana": 27,
+   "diaSemana": 5,
+   "leitura": "2 Reis 14; 2 Crônicas 25",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 14,
+     "fim": 14
+    },
+    {
+     "livro": "2cr",
+     "inicio": 25,
+     "fim": 25
+    }
+   ]
+  },
+  {
+   "dia": 188,
+   "semana": 27,
+   "diaSemana": 6,
+   "leitura": "Jonas 1 a 4",
+   "referencias": [
+    {
+     "livro": "jn",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 189,
+   "semana": 27,
+   "diaSemana": 7,
+   "leitura": "2 Reis 15; 2 Crônicas 26",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 15,
+     "fim": 15
+    },
+    {
+     "livro": "2cr",
+     "inicio": 26,
+     "fim": 26
+    }
+   ]
+  },
+  {
+   "dia": 190,
+   "semana": 28,
+   "diaSemana": 1,
+   "leitura": "Isaías 1 a 4",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 191,
+   "semana": 28,
+   "diaSemana": 2,
+   "leitura": "Isaías 5 a 8",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 5,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 192,
+   "semana": 28,
+   "diaSemana": 3,
+   "leitura": "Amós 1 a 5",
+   "referencias": [
+    {
+     "livro": "am",
+     "inicio": 1,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 193,
+   "semana": 28,
+   "diaSemana": 4,
+   "leitura": "Amós 6 a 9",
+   "referencias": [
+    {
+     "livro": "am",
+     "inicio": 6,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 194,
+   "semana": 28,
+   "diaSemana": 5,
+   "leitura": "2 Crônicas 27; Isaías 9-12",
+   "referencias": [
+    {
+     "livro": "2cr",
+     "inicio": 27,
+     "fim": 27
+    },
+    {
+     "livro": "is",
+     "inicio": 9,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 195,
+   "semana": 28,
+   "diaSemana": 6,
+   "leitura": "Miquéias 1 a 7",
+   "referencias": [
+    {
+     "livro": "mq",
+     "inicio": 1,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 196,
+   "semana": 28,
+   "diaSemana": 7,
+   "leitura": "2 Crônicas 28; 2 Reis 16-17",
+   "referencias": [
+    {
+     "livro": "2cr",
+     "inicio": 28,
+     "fim": 28
+    },
+    {
+     "livro": "2rs",
+     "inicio": 16,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 197,
+   "semana": 29,
+   "diaSemana": 1,
+   "leitura": "Isaías 13 a 17",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 13,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 198,
+   "semana": 29,
+   "diaSemana": 2,
+   "leitura": "Isaías 18 a 22",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 18,
+     "fim": 22
+    }
+   ]
+  },
+  {
+   "dia": 199,
+   "semana": 29,
+   "diaSemana": 3,
+   "leitura": "Isaías 23 a 27",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 23,
+     "fim": 27
+    }
+   ]
+  },
+  {
+   "dia": 200,
+   "semana": 29,
+   "diaSemana": 4,
+   "leitura": "2 Reis 18:1-2; 2 Crônicas 29-31; Salmos 48",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 18,
+     "fim": 18
+    },
+    {
+     "livro": "2cr",
+     "inicio": 29,
+     "fim": 31
+    },
+    {
+     "livro": "sl",
+     "inicio": 48,
+     "fim": 48
+    }
+   ]
+  },
+  {
+   "dia": 201,
+   "semana": 29,
+   "diaSemana": 5,
+   "leitura": "Oseias 1 a 7",
+   "referencias": [
+    {
+     "livro": "os",
+     "inicio": 1,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 202,
+   "semana": 29,
+   "diaSemana": 6,
+   "leitura": "Oseias 8 a 14",
+   "referencias": [
+    {
+     "livro": "os",
+     "inicio": 8,
+     "fim": 14
+    }
+   ]
+  },
+  {
+   "dia": 203,
+   "semana": 29,
+   "diaSemana": 7,
+   "leitura": "Isaías 28 a 30",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 28,
+     "fim": 30
+    }
+   ]
+  },
+  {
+   "dia": 204,
+   "semana": 30,
+   "diaSemana": 1,
+   "leitura": "Isaías 31 a 34",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 31,
+     "fim": 34
+    }
+   ]
+  },
+  {
+   "dia": 205,
+   "semana": 30,
+   "diaSemana": 2,
+   "leitura": "Isaías 35 a 36",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 35,
+     "fim": 36
+    }
+   ]
+  },
+  {
+   "dia": 206,
+   "semana": 30,
+   "diaSemana": 3,
+   "leitura": "Isaías 37 a 39; Salmos 76",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 37,
+     "fim": 39
+    },
+    {
+     "livro": "sl",
+     "inicio": 76,
+     "fim": 76
+    }
+   ]
+  },
+  {
+   "dia": 207,
+   "semana": 30,
+   "diaSemana": 4,
+   "leitura": "Isaías 40 a 43",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 40,
+     "fim": 43
+    }
+   ]
+  },
+  {
+   "dia": 208,
+   "semana": 30,
+   "diaSemana": 5,
+   "leitura": "Isaías 44 a 48",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 44,
+     "fim": 48
+    }
+   ]
+  },
+  {
+   "dia": 209,
+   "semana": 30,
+   "diaSemana": 6,
+   "leitura": "2 Reis 18:9-37; 2 Reis 19:1-37; Salmos",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 18,
+     "fim": 18
+    },
+    {
+     "livro": "2rs",
+     "inicio": 19,
+     "fim": 19
+    },
+    {
+     "livro": "sl",
+     "inicio": 1,
+     "fim": 150
+    }
+   ]
+  },
+  {
+   "dia": 210,
+   "semana": 30,
+   "diaSemana": 7,
+   "leitura": "Isaías 49 a 53",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 49,
+     "fim": 53
+    }
+   ]
+  },
+  {
+   "dia": 211,
+   "semana": 31,
+   "diaSemana": 1,
+   "leitura": "Isaías 54 a 58",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 54,
+     "fim": 58
+    }
+   ]
+  },
+  {
+   "dia": 212,
+   "semana": 31,
+   "diaSemana": 2,
+   "leitura": "Isaías 59 a 63",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 59,
+     "fim": 63
+    }
+   ]
+  },
+  {
+   "dia": 213,
+   "semana": 31,
+   "diaSemana": 3,
+   "leitura": "Isaías 64 a 66",
+   "referencias": [
+    {
+     "livro": "is",
+     "inicio": 64,
+     "fim": 66
+    }
+   ]
+  },
+  {
+   "dia": 214,
+   "semana": 31,
+   "diaSemana": 4,
+   "leitura": "2 Reis 20 a 21",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 20,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 215,
+   "semana": 31,
+   "diaSemana": 5,
+   "leitura": "2 Crônicas 32 a 33",
+   "referencias": [
+    {
+     "livro": "2cr",
+     "inicio": 32,
+     "fim": 33
+    }
+   ]
+  },
+  {
+   "dia": 216,
+   "semana": 31,
+   "diaSemana": 6,
+   "leitura": "Naum 1 a 3",
+   "referencias": [
+    {
+     "livro": "na",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 217,
+   "semana": 31,
+   "diaSemana": 7,
+   "leitura": "2 Reis 22-23; 2 Crônicas 34-35",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 22,
+     "fim": 23
+    },
+    {
+     "livro": "2cr",
+     "inicio": 34,
+     "fim": 35
+    }
+   ]
+  },
+  {
+   "dia": 218,
+   "semana": 32,
+   "diaSemana": 1,
+   "leitura": "Sofonias 1 a 3",
+   "referencias": [
+    {
+     "livro": "sf",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 219,
+   "semana": 32,
+   "diaSemana": 2,
+   "leitura": "Jeremias 1 a 3",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 220,
+   "semana": 32,
+   "diaSemana": 3,
+   "leitura": "Jeremias 4 a 6",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 4,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 221,
+   "semana": 32,
+   "diaSemana": 4,
+   "leitura": "Jeremias 7 a 9",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 7,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 222,
+   "semana": 32,
+   "diaSemana": 5,
+   "leitura": "Jeremias 10 a 13",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 10,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 223,
+   "semana": 32,
+   "diaSemana": 6,
+   "leitura": "Jeremias 14 a 17",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 14,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 224,
+   "semana": 32,
+   "diaSemana": 7,
+   "leitura": "Jeremias 18 a 22",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 18,
+     "fim": 22
+    }
+   ]
+  },
+  {
+   "dia": 225,
+   "semana": 33,
+   "diaSemana": 1,
+   "leitura": "Jeremias 23 a 25",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 23,
+     "fim": 25
+    }
+   ]
+  },
+  {
+   "dia": 226,
+   "semana": 33,
+   "diaSemana": 2,
+   "leitura": "Jeremias 26 a 29",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 26,
+     "fim": 29
+    }
+   ]
+  },
+  {
+   "dia": 227,
+   "semana": 33,
+   "diaSemana": 3,
+   "leitura": "Jeremias 30 a 31",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 30,
+     "fim": 31
+    }
+   ]
+  },
+  {
+   "dia": 228,
+   "semana": 33,
+   "diaSemana": 4,
+   "leitura": "Jeremias 32 a 34",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 32,
+     "fim": 34
+    }
+   ]
+  },
+  {
+   "dia": 229,
+   "semana": 33,
+   "diaSemana": 5,
+   "leitura": "Jeremias 35 a 37",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 35,
+     "fim": 37
+    }
+   ]
+  },
+  {
+   "dia": 230,
+   "semana": 33,
+   "diaSemana": 6,
+   "leitura": "Jeremias 38 a 40; Salmo 71, 79",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 38,
+     "fim": 40
+    },
+    {
+     "livro": "sl",
+     "inicio": 71,
+     "fim": 71
+    },
+    {
+     "livro": "sl",
+     "inicio": 79,
+     "fim": 79
+    }
+   ]
+  },
+  {
+   "dia": 231,
+   "semana": 33,
+   "diaSemana": 7,
+   "leitura": "2 Reis 24-25; 2 Crônicas 36",
+   "referencias": [
+    {
+     "livro": "2rs",
+     "inicio": 24,
+     "fim": 25
+    },
+    {
+     "livro": "2cr",
+     "inicio": 36,
+     "fim": 36
+    }
+   ]
+  },
+  {
+   "dia": 232,
+   "semana": 34,
+   "diaSemana": 1,
+   "leitura": "Habacuque 1 a 3",
+   "referencias": [
+    {
+     "livro": "hc",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 233,
+   "semana": 34,
+   "diaSemana": 2,
+   "leitura": "Jeremias 41 a 45",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 41,
+     "fim": 45
+    }
+   ]
+  },
+  {
+   "dia": 234,
+   "semana": 34,
+   "diaSemana": 3,
+   "leitura": "Jeremias 46 a 48",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 46,
+     "fim": 48
+    }
+   ]
+  },
+  {
+   "dia": 235,
+   "semana": 34,
+   "diaSemana": 4,
+   "leitura": "Jeremias 49 a 50",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 49,
+     "fim": 50
+    }
+   ]
+  },
+  {
+   "dia": 236,
+   "semana": 34,
+   "diaSemana": 5,
+   "leitura": "Jeremias 51 a 52",
+   "referencias": [
+    {
+     "livro": "jr",
+     "inicio": 51,
+     "fim": 52
+    }
+   ]
+  },
+  {
+   "dia": 237,
+   "semana": 34,
+   "diaSemana": 6,
+   "leitura": "Lamentações 1; Lamentações 2; Lamentações 3:1-36",
+   "referencias": [
+    {
+     "livro": "lm",
+     "inicio": 1,
+     "fim": 1
+    },
+    {
+     "livro": "lm",
+     "inicio": 2,
+     "fim": 2
+    },
+    {
+     "livro": "lm",
+     "inicio": 3,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 238,
+   "semana": 34,
+   "diaSemana": 7,
+   "leitura": "Lamentações 3:37-66; Lamentações 4; Lamentações 5:1-22",
+   "referencias": [
+    {
+     "livro": "lm",
+     "inicio": 3,
+     "fim": 3
+    },
+    {
+     "livro": "lm",
+     "inicio": 4,
+     "fim": 4
+    },
+    {
+     "livro": "lm",
+     "inicio": 5,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 239,
+   "semana": 35,
+   "diaSemana": 1,
+   "leitura": "Ezequiel 1 a 4",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 240,
+   "semana": 35,
+   "diaSemana": 2,
+   "leitura": "Ezequiel 5 a 8",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 5,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 241,
+   "semana": 35,
+   "diaSemana": 3,
+   "leitura": "Ezequiel 9 a 12",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 9,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 242,
+   "semana": 35,
+   "diaSemana": 4,
+   "leitura": "Ezequiel 13 a 15",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 13,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 243,
+   "semana": 35,
+   "diaSemana": 5,
+   "leitura": "Ezequiel 16 a 17",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 16,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 244,
+   "semana": 35,
+   "diaSemana": 6,
+   "leitura": "Ezequiel 18 a 19",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 18,
+     "fim": 19
+    }
+   ]
+  },
+  {
+   "dia": 245,
+   "semana": 35,
+   "diaSemana": 7,
+   "leitura": "Ezequiel 20 a 21",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 20,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 246,
+   "semana": 36,
+   "diaSemana": 1,
+   "leitura": "Ezequiel 22 a 23",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 22,
+     "fim": 23
+    }
+   ]
+  },
+  {
+   "dia": 247,
+   "semana": 36,
+   "diaSemana": 2,
+   "leitura": "Ezequiel 24 a 27",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 24,
+     "fim": 27
+    }
+   ]
+  },
+  {
+   "dia": 248,
+   "semana": 36,
+   "diaSemana": 3,
+   "leitura": "Ezequiel 28 a 31",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 28,
+     "fim": 31
+    }
+   ]
+  },
+  {
+   "dia": 249,
+   "semana": 36,
+   "diaSemana": 4,
+   "leitura": "Ezequiel 32 a 34",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 32,
+     "fim": 34
+    }
+   ]
+  },
+  {
+   "dia": 250,
+   "semana": 36,
+   "diaSemana": 5,
+   "leitura": "Ezequiel 35 a 37",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 35,
+     "fim": 37
+    }
+   ]
+  },
+  {
+   "dia": 251,
+   "semana": 36,
+   "diaSemana": 6,
+   "leitura": "Ezequiel 38 a 39",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 38,
+     "fim": 39
+    }
+   ]
+  },
+  {
+   "dia": 252,
+   "semana": 36,
+   "diaSemana": 7,
+   "leitura": "Ezequiel 40 a 41",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 40,
+     "fim": 41
+    }
+   ]
+  },
+  {
+   "dia": 253,
+   "semana": 37,
+   "diaSemana": 1,
+   "leitura": "Ezequiel 42 a 43",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 42,
+     "fim": 43
+    }
+   ]
+  },
+  {
+   "dia": 254,
+   "semana": 37,
+   "diaSemana": 2,
+   "leitura": "Ezequiel 44 a 45",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 44,
+     "fim": 45
+    }
+   ]
+  },
+  {
+   "dia": 255,
+   "semana": 37,
+   "diaSemana": 3,
+   "leitura": "Ezequiel 46 a 48",
+   "referencias": [
+    {
+     "livro": "ez",
+     "inicio": 46,
+     "fim": 48
+    }
+   ]
+  },
+  {
+   "dia": 256,
+   "semana": 37,
+   "diaSemana": 4,
+   "leitura": "Joel 1 a 3",
+   "referencias": [
+    {
+     "livro": "jl",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 257,
+   "semana": 37,
+   "diaSemana": 5,
+   "leitura": "Daniel 1 a 3",
+   "referencias": [
+    {
+     "livro": "dn",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 258,
+   "semana": 37,
+   "diaSemana": 6,
+   "leitura": "Daniel 4 a 6",
+   "referencias": [
+    {
+     "livro": "dn",
+     "inicio": 4,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 259,
+   "semana": 37,
+   "diaSemana": 7,
+   "leitura": "Daniel 7 a 9",
+   "referencias": [
+    {
+     "livro": "dn",
+     "inicio": 7,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 260,
+   "semana": 38,
+   "diaSemana": 1,
+   "leitura": "Daniel 10 a 12",
+   "referencias": [
+    {
+     "livro": "dn",
+     "inicio": 10,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 261,
+   "semana": 38,
+   "diaSemana": 2,
+   "leitura": "Esdras 1 a 3",
+   "referencias": [
+    {
+     "livro": "ed",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 262,
+   "semana": 38,
+   "diaSemana": 3,
+   "leitura": "Esdras 4-6; Salmos 137",
+   "referencias": [
+    {
+     "livro": "ed",
+     "inicio": 4,
+     "fim": 6
+    },
+    {
+     "livro": "sl",
+     "inicio": 137,
+     "fim": 137
+    }
+   ]
+  },
+  {
+   "dia": 263,
+   "semana": 38,
+   "diaSemana": 4,
+   "leitura": "Ageu 1 a 2",
+   "referencias": [
+    {
+     "livro": "ag",
+     "inicio": 1,
+     "fim": 2
+    }
+   ]
+  },
+  {
+   "dia": 264,
+   "semana": 38,
+   "diaSemana": 5,
+   "leitura": "Zacarias 1 a 7",
+   "referencias": [
+    {
+     "livro": "zc",
+     "inicio": 1,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 265,
+   "semana": 38,
+   "diaSemana": 6,
+   "leitura": "Zacarias 8 a 14",
+   "referencias": [
+    {
+     "livro": "zc",
+     "inicio": 8,
+     "fim": 14
+    }
+   ]
+  },
+  {
+   "dia": 266,
+   "semana": 38,
+   "diaSemana": 7,
+   "leitura": "Ester 1 a 5",
+   "referencias": [
+    {
+     "livro": "et",
+     "inicio": 1,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 267,
+   "semana": 39,
+   "diaSemana": 1,
+   "leitura": "Ester 6 a 10",
+   "referencias": [
+    {
+     "livro": "et",
+     "inicio": 6,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 268,
+   "semana": 39,
+   "diaSemana": 2,
+   "leitura": "Esdras 7 a 10",
+   "referencias": [
+    {
+     "livro": "ed",
+     "inicio": 7,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 269,
+   "semana": 39,
+   "diaSemana": 3,
+   "leitura": "Neemias 1 a 5",
+   "referencias": [
+    {
+     "livro": "ne",
+     "inicio": 1,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 270,
+   "semana": 39,
+   "diaSemana": 4,
+   "leitura": "Neemias 6 a 7",
+   "referencias": [
+    {
+     "livro": "ne",
+     "inicio": 6,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 271,
+   "semana": 39,
+   "diaSemana": 5,
+   "leitura": "Neemias 8 a 10",
+   "referencias": [
+    {
+     "livro": "ne",
+     "inicio": 8,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 272,
+   "semana": 39,
+   "diaSemana": 6,
+   "leitura": "Neemias 11-13; Salmo 126",
+   "referencias": [
+    {
+     "livro": "ne",
+     "inicio": 11,
+     "fim": 13
+    },
+    {
+     "livro": "sl",
+     "inicio": 126,
+     "fim": 126
+    }
+   ]
+  },
+  {
+   "dia": 273,
+   "semana": 39,
+   "diaSemana": 7,
+   "leitura": "Malaquias 1a 4",
+   "referencias": [
+    {
+     "livro": "ml",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 274,
+   "semana": 40,
+   "diaSemana": 1,
+   "leitura": "Lucas 1; João 1:1-14",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 1,
+     "fim": 1
+    },
+    {
+     "livro": "jo",
+     "inicio": 1,
+     "fim": 1
+    }
+   ]
+  },
+  {
+   "dia": 275,
+   "semana": 40,
+   "diaSemana": 2,
+   "leitura": "Mateus 1; Lucas 2:1-38",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 1,
+     "fim": 1
+    },
+    {
+     "livro": "lc",
+     "inicio": 2,
+     "fim": 2
+    }
+   ]
+  },
+  {
+   "dia": 276,
+   "semana": 40,
+   "diaSemana": 3,
+   "leitura": "Mateus 2; Lucas 2:39-52",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 2,
+     "fim": 2
+    },
+    {
+     "livro": "lc",
+     "inicio": 2,
+     "fim": 2
+    }
+   ]
+  },
+  {
+   "dia": 277,
+   "semana": 40,
+   "diaSemana": 4,
+   "leitura": "Mateus 3; Marcos 1; Lucas 3",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 3,
+     "fim": 3
+    },
+    {
+     "livro": "mc",
+     "inicio": 1,
+     "fim": 1
+    },
+    {
+     "livro": "lc",
+     "inicio": 3,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 278,
+   "semana": 40,
+   "diaSemana": 5,
+   "leitura": "Mateus 4; Lucas4-5; João 1:15-51",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 4,
+     "fim": 4
+    },
+    {
+     "livro": "lc",
+     "inicio": 4,
+     "fim": 5
+    },
+    {
+     "livro": "jo",
+     "inicio": 1,
+     "fim": 1
+    }
+   ]
+  },
+  {
+   "dia": 279,
+   "semana": 40,
+   "diaSemana": 6,
+   "leitura": "João 2 a 4",
+   "referencias": [
+    {
+     "livro": "jo",
+     "inicio": 2,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 280,
+   "semana": 40,
+   "diaSemana": 7,
+   "leitura": "Marcos 2",
+   "referencias": [
+    {
+     "livro": "mc",
+     "inicio": 2,
+     "fim": 2
+    }
+   ]
+  },
+  {
+   "dia": 281,
+   "semana": 41,
+   "diaSemana": 1,
+   "leitura": "João 5",
+   "referencias": [
+    {
+     "livro": "jo",
+     "inicio": 5,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 282,
+   "semana": 41,
+   "diaSemana": 2,
+   "leitura": "Mateus 12:1-21; Marcos 3; Lucas 6",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 12,
+     "fim": 12
+    },
+    {
+     "livro": "mc",
+     "inicio": 3,
+     "fim": 3
+    },
+    {
+     "livro": "lc",
+     "inicio": 6,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 283,
+   "semana": 41,
+   "diaSemana": 3,
+   "leitura": "Mateus 5 a 7",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 5,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 284,
+   "semana": 41,
+   "diaSemana": 4,
+   "leitura": "Mateus 8:1-13; Lucas 7",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 8,
+     "fim": 8
+    },
+    {
+     "livro": "lc",
+     "inicio": 7,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 285,
+   "semana": 41,
+   "diaSemana": 5,
+   "leitura": "Mateus 11",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 11,
+     "fim": 11
+    }
+   ]
+  },
+  {
+   "dia": 286,
+   "semana": 41,
+   "diaSemana": 6,
+   "leitura": "Mateus 12:22-50",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 12,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 287,
+   "semana": 41,
+   "diaSemana": 7,
+   "leitura": "Mateus 13; Lucas 8",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 13,
+     "fim": 13
+    },
+    {
+     "livro": "lc",
+     "inicio": 8,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 288,
+   "semana": 42,
+   "diaSemana": 1,
+   "leitura": "Mateus 8:14-34; Marcos4-5",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 8,
+     "fim": 8
+    },
+    {
+     "livro": "mc",
+     "inicio": 4,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 289,
+   "semana": 42,
+   "diaSemana": 2,
+   "leitura": "Mateus 9 a 10",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 9,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 290,
+   "semana": 42,
+   "diaSemana": 3,
+   "leitura": "Mateus 14; Marcos 6; Lucas 9:18-17",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 14,
+     "fim": 14
+    },
+    {
+     "livro": "mc",
+     "inicio": 6,
+     "fim": 6
+    },
+    {
+     "livro": "lc",
+     "inicio": 9,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 291,
+   "semana": 42,
+   "diaSemana": 4,
+   "leitura": "João 6",
+   "referencias": [
+    {
+     "livro": "jo",
+     "inicio": 6,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 292,
+   "semana": 42,
+   "diaSemana": 5,
+   "leitura": "Mateus 15; Marcos 7",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 15,
+     "fim": 15
+    },
+    {
+     "livro": "mc",
+     "inicio": 7,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 293,
+   "semana": 42,
+   "diaSemana": 6,
+   "leitura": "Mateus 16; Marcos 8; Lucas 9:18-27",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 16,
+     "fim": 16
+    },
+    {
+     "livro": "mc",
+     "inicio": 8,
+     "fim": 8
+    },
+    {
+     "livro": "lc",
+     "inicio": 9,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 294,
+   "semana": 42,
+   "diaSemana": 7,
+   "leitura": "Mateus 17; Marcos 9; Lucas 9:28-62",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 17,
+     "fim": 17
+    },
+    {
+     "livro": "mc",
+     "inicio": 9,
+     "fim": 9
+    },
+    {
+     "livro": "lc",
+     "inicio": 9,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 295,
+   "semana": 43,
+   "diaSemana": 1,
+   "leitura": "Mateus 18",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 18,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 296,
+   "semana": 43,
+   "diaSemana": 2,
+   "leitura": "João 7 a 8",
+   "referencias": [
+    {
+     "livro": "jo",
+     "inicio": 7,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 297,
+   "semana": 43,
+   "diaSemana": 3,
+   "leitura": "João 9:1-41; João 10:1-21",
+   "referencias": [
+    {
+     "livro": "jo",
+     "inicio": 9,
+     "fim": 9
+    },
+    {
+     "livro": "jo",
+     "inicio": 10,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 298,
+   "semana": 43,
+   "diaSemana": 4,
+   "leitura": "Lucas 10-11; João 10:22-42",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 10,
+     "fim": 11
+    },
+    {
+     "livro": "jo",
+     "inicio": 10,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 299,
+   "semana": 43,
+   "diaSemana": 5,
+   "leitura": "Lucas 12 a 13",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 12,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 300,
+   "semana": 43,
+   "diaSemana": 6,
+   "leitura": "Lucas 14 a 15",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 14,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 301,
+   "semana": 43,
+   "diaSemana": 7,
+   "leitura": "Lucas 16; Lucas 17:1-10",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 16,
+     "fim": 16
+    },
+    {
+     "livro": "lc",
+     "inicio": 17,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 302,
+   "semana": 44,
+   "diaSemana": 1,
+   "leitura": "João 11",
+   "referencias": [
+    {
+     "livro": "jo",
+     "inicio": 11,
+     "fim": 11
+    }
+   ]
+  },
+  {
+   "dia": 303,
+   "semana": 44,
+   "diaSemana": 2,
+   "leitura": "Lucas 17:11-37; Lucas 18:1-14",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 17,
+     "fim": 17
+    },
+    {
+     "livro": "lc",
+     "inicio": 18,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 304,
+   "semana": 44,
+   "diaSemana": 3,
+   "leitura": "Mateus 19; Marcos10",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 19,
+     "fim": 19
+    },
+    {
+     "livro": "mc",
+     "inicio": 10,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 305,
+   "semana": 44,
+   "diaSemana": 4,
+   "leitura": "Mateus 20 a 21",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 20,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 306,
+   "semana": 44,
+   "diaSemana": 5,
+   "leitura": "Lucas 17:11-37; Lucas 19:1-48",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 17,
+     "fim": 17
+    },
+    {
+     "livro": "lc",
+     "inicio": 19,
+     "fim": 19
+    }
+   ]
+  },
+  {
+   "dia": 307,
+   "semana": 44,
+   "diaSemana": 6,
+   "leitura": "Marcos 11; João 12",
+   "referencias": [
+    {
+     "livro": "mc",
+     "inicio": 11,
+     "fim": 11
+    },
+    {
+     "livro": "jo",
+     "inicio": 12,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 308,
+   "semana": 44,
+   "diaSemana": 7,
+   "leitura": "Mateus 22; Marcos 12",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 22,
+     "fim": 22
+    },
+    {
+     "livro": "mc",
+     "inicio": 12,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 309,
+   "semana": 45,
+   "diaSemana": 1,
+   "leitura": "Mateus 23; Lucas 20-21",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 23,
+     "fim": 23
+    },
+    {
+     "livro": "lc",
+     "inicio": 20,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 310,
+   "semana": 45,
+   "diaSemana": 2,
+   "leitura": "Marcos 13",
+   "referencias": [
+    {
+     "livro": "mc",
+     "inicio": 13,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 311,
+   "semana": 45,
+   "diaSemana": 3,
+   "leitura": "Mateus 24",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 24,
+     "fim": 24
+    }
+   ]
+  },
+  {
+   "dia": 312,
+   "semana": 45,
+   "diaSemana": 4,
+   "leitura": "Mateus 25",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 25,
+     "fim": 25
+    }
+   ]
+  },
+  {
+   "dia": 313,
+   "semana": 45,
+   "diaSemana": 5,
+   "leitura": "Mateus 26; Marcos 14",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 26,
+     "fim": 26
+    },
+    {
+     "livro": "mc",
+     "inicio": 14,
+     "fim": 14
+    }
+   ]
+  },
+  {
+   "dia": 314,
+   "semana": 45,
+   "diaSemana": 6,
+   "leitura": "Lucas 22; João 13",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 22,
+     "fim": 22
+    },
+    {
+     "livro": "jo",
+     "inicio": 13,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 315,
+   "semana": 45,
+   "diaSemana": 7,
+   "leitura": "João 14 a 17",
+   "referencias": [
+    {
+     "livro": "jo",
+     "inicio": 14,
+     "fim": 17
+    }
+   ]
+  },
+  {
+   "dia": 316,
+   "semana": 46,
+   "diaSemana": 1,
+   "leitura": "Mateus 27; Marcos 15",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 27,
+     "fim": 27
+    },
+    {
+     "livro": "mc",
+     "inicio": 15,
+     "fim": 15
+    }
+   ]
+  },
+  {
+   "dia": 317,
+   "semana": 46,
+   "diaSemana": 2,
+   "leitura": "Lucas 23; João 18-19",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 23,
+     "fim": 23
+    },
+    {
+     "livro": "jo",
+     "inicio": 18,
+     "fim": 19
+    }
+   ]
+  },
+  {
+   "dia": 318,
+   "semana": 46,
+   "diaSemana": 3,
+   "leitura": "Mateus 28; Marcos 16",
+   "referencias": [
+    {
+     "livro": "mt",
+     "inicio": 28,
+     "fim": 28
+    },
+    {
+     "livro": "mc",
+     "inicio": 16,
+     "fim": 16
+    }
+   ]
+  },
+  {
+   "dia": 319,
+   "semana": 46,
+   "diaSemana": 4,
+   "leitura": "Lucas 24; João 20-21",
+   "referencias": [
+    {
+     "livro": "lc",
+     "inicio": 24,
+     "fim": 24
+    },
+    {
+     "livro": "jo",
+     "inicio": 20,
+     "fim": 21
+    }
+   ]
+  },
+  {
+   "dia": 320,
+   "semana": 46,
+   "diaSemana": 5,
+   "leitura": "Atos 1 a 3",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 321,
+   "semana": 46,
+   "diaSemana": 6,
+   "leitura": "Atos 4 a 6",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 4,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 322,
+   "semana": 46,
+   "diaSemana": 7,
+   "leitura": "Atos 7 a 8",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 7,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 323,
+   "semana": 47,
+   "diaSemana": 1,
+   "leitura": "Atos 9 a 10",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 9,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 324,
+   "semana": 47,
+   "diaSemana": 2,
+   "leitura": "Atos 11 a 12",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 11,
+     "fim": 12
+    }
+   ]
+  },
+  {
+   "dia": 325,
+   "semana": 47,
+   "diaSemana": 3,
+   "leitura": "Atos 13 a 14",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 13,
+     "fim": 14
+    }
+   ]
+  },
+  {
+   "dia": 326,
+   "semana": 47,
+   "diaSemana": 4,
+   "leitura": "Tiago 1 a 5",
+   "referencias": [
+    {
+     "livro": "tg",
+     "inicio": 1,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 327,
+   "semana": 47,
+   "diaSemana": 5,
+   "leitura": "Atos 15 a 16",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 15,
+     "fim": 16
+    }
+   ]
+  },
+  {
+   "dia": 328,
+   "semana": 47,
+   "diaSemana": 6,
+   "leitura": "Gálatas 1 a 3",
+   "referencias": [
+    {
+     "livro": "gl",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 329,
+   "semana": 47,
+   "diaSemana": 7,
+   "leitura": "Gálatas 4 a 6",
+   "referencias": [
+    {
+     "livro": "gl",
+     "inicio": 4,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 330,
+   "semana": 48,
+   "diaSemana": 1,
+   "leitura": "Atos 17; Atos 18:1-18",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 17,
+     "fim": 17
+    },
+    {
+     "livro": "at",
+     "inicio": 18,
+     "fim": 18
+    }
+   ]
+  },
+  {
+   "dia": 331,
+   "semana": 48,
+   "diaSemana": 2,
+   "leitura": "1 Tessalonicenses 1-5; 2 Tessalonicenses 1-3",
+   "referencias": [
+    {
+     "livro": "1ts",
+     "inicio": 1,
+     "fim": 5
+    },
+    {
+     "livro": "2ts",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 332,
+   "semana": 48,
+   "diaSemana": 3,
+   "leitura": "Atos 18:19-28; Atos 19:1-41",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 18,
+     "fim": 18
+    },
+    {
+     "livro": "at",
+     "inicio": 19,
+     "fim": 19
+    }
+   ]
+  },
+  {
+   "dia": 333,
+   "semana": 48,
+   "diaSemana": 4,
+   "leitura": "1 Coríntios 1 a 4",
+   "referencias": [
+    {
+     "livro": "1co",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 334,
+   "semana": 48,
+   "diaSemana": 5,
+   "leitura": "1 Coríntios 5 a 8",
+   "referencias": [
+    {
+     "livro": "1co",
+     "inicio": 5,
+     "fim": 8
+    }
+   ]
+  },
+  {
+   "dia": 335,
+   "semana": 48,
+   "diaSemana": 6,
+   "leitura": "1 Coríntios 9 a 11",
+   "referencias": [
+    {
+     "livro": "1co",
+     "inicio": 9,
+     "fim": 11
+    }
+   ]
+  },
+  {
+   "dia": 336,
+   "semana": 48,
+   "diaSemana": 7,
+   "leitura": "1 Coríntios 12 a 14",
+   "referencias": [
+    {
+     "livro": "1co",
+     "inicio": 12,
+     "fim": 14
+    }
+   ]
+  },
+  {
+   "dia": 337,
+   "semana": 49,
+   "diaSemana": 1,
+   "leitura": "1 Coríntios 15 a 16",
+   "referencias": [
+    {
+     "livro": "1co",
+     "inicio": 15,
+     "fim": 16
+    }
+   ]
+  },
+  {
+   "dia": 338,
+   "semana": 49,
+   "diaSemana": 2,
+   "leitura": "2 Coríntios 1 a 4",
+   "referencias": [
+    {
+     "livro": "2co",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 339,
+   "semana": 49,
+   "diaSemana": 3,
+   "leitura": "2 Coríntios 5 a 9",
+   "referencias": [
+    {
+     "livro": "2co",
+     "inicio": 5,
+     "fim": 9
+    }
+   ]
+  },
+  {
+   "dia": 340,
+   "semana": 49,
+   "diaSemana": 4,
+   "leitura": "2 Coríntios 10 a 13",
+   "referencias": [
+    {
+     "livro": "2co",
+     "inicio": 10,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 341,
+   "semana": 49,
+   "diaSemana": 5,
+   "leitura": "Atos 20:1-3; Romanos 1-3",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 20,
+     "fim": 20
+    },
+    {
+     "livro": "rm",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 342,
+   "semana": 49,
+   "diaSemana": 6,
+   "leitura": "Romanos 4 a 7",
+   "referencias": [
+    {
+     "livro": "rm",
+     "inicio": 4,
+     "fim": 7
+    }
+   ]
+  },
+  {
+   "dia": 343,
+   "semana": 49,
+   "diaSemana": 7,
+   "leitura": "Romanos 8 a 10",
+   "referencias": [
+    {
+     "livro": "rm",
+     "inicio": 8,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 344,
+   "semana": 50,
+   "diaSemana": 1,
+   "leitura": "Romanos 11 a 13",
+   "referencias": [
+    {
+     "livro": "rm",
+     "inicio": 11,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 345,
+   "semana": 50,
+   "diaSemana": 2,
+   "leitura": "Romanos 14 a 16",
+   "referencias": [
+    {
+     "livro": "rm",
+     "inicio": 14,
+     "fim": 16
+    }
+   ]
+  },
+  {
+   "dia": 346,
+   "semana": 50,
+   "diaSemana": 3,
+   "leitura": "Atos 20:4-38; Atos 21; Atos 22; Atos 23:1-35",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 20,
+     "fim": 20
+    },
+    {
+     "livro": "at",
+     "inicio": 21,
+     "fim": 21
+    },
+    {
+     "livro": "at",
+     "inicio": 22,
+     "fim": 22
+    },
+    {
+     "livro": "at",
+     "inicio": 23,
+     "fim": 23
+    }
+   ]
+  },
+  {
+   "dia": 347,
+   "semana": 50,
+   "diaSemana": 4,
+   "leitura": "Atos 24 a 26",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 24,
+     "fim": 26
+    }
+   ]
+  },
+  {
+   "dia": 348,
+   "semana": 50,
+   "diaSemana": 5,
+   "leitura": "Atos 27 a 28",
+   "referencias": [
+    {
+     "livro": "at",
+     "inicio": 27,
+     "fim": 28
+    }
+   ]
+  },
+  {
+   "dia": 349,
+   "semana": 50,
+   "diaSemana": 6,
+   "leitura": "Colossenses 1-4; Filémon",
+   "referencias": [
+    {
+     "livro": "cl",
+     "inicio": 1,
+     "fim": 4
+    },
+    {
+     "livro": "fm",
+     "inicio": 1,
+     "fim": 1
+    }
+   ]
+  },
+  {
+   "dia": 350,
+   "semana": 50,
+   "diaSemana": 7,
+   "leitura": "Efésios 1 a 6",
+   "referencias": [
+    {
+     "livro": "ef",
+     "inicio": 1,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 351,
+   "semana": 51,
+   "diaSemana": 1,
+   "leitura": "Filipenses 1 a 4",
+   "referencias": [
+    {
+     "livro": "fp",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 352,
+   "semana": 51,
+   "diaSemana": 2,
+   "leitura": "1 Timóteo 1 a 6",
+   "referencias": [
+    {
+     "livro": "1tm",
+     "inicio": 1,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 353,
+   "semana": 51,
+   "diaSemana": 3,
+   "leitura": "Tito 1 a 3",
+   "referencias": [
+    {
+     "livro": "tt",
+     "inicio": 1,
+     "fim": 3
+    }
+   ]
+  },
+  {
+   "dia": 354,
+   "semana": 51,
+   "diaSemana": 4,
+   "leitura": "1 Pedro 1 a 5",
+   "referencias": [
+    {
+     "livro": "1pe",
+     "inicio": 1,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 355,
+   "semana": 51,
+   "diaSemana": 5,
+   "leitura": "Hebreus 1 a 6",
+   "referencias": [
+    {
+     "livro": "hb",
+     "inicio": 1,
+     "fim": 6
+    }
+   ]
+  },
+  {
+   "dia": 356,
+   "semana": 51,
+   "diaSemana": 6,
+   "leitura": "Hebreus 7 a 10",
+   "referencias": [
+    {
+     "livro": "hb",
+     "inicio": 7,
+     "fim": 10
+    }
+   ]
+  },
+  {
+   "dia": 357,
+   "semana": 51,
+   "diaSemana": 7,
+   "leitura": "Hebreus 11 a 13",
+   "referencias": [
+    {
+     "livro": "hb",
+     "inicio": 11,
+     "fim": 13
+    }
+   ]
+  },
+  {
+   "dia": 358,
+   "semana": 52,
+   "diaSemana": 1,
+   "leitura": "2 Timóteo 1 a 4",
+   "referencias": [
+    {
+     "livro": "2tm",
+     "inicio": 1,
+     "fim": 4
+    }
+   ]
+  },
+  {
+   "dia": 359,
+   "semana": 52,
+   "diaSemana": 2,
+   "leitura": "2 Pedro 1-3; Judas",
+   "referencias": [
+    {
+     "livro": "2pe",
+     "inicio": 1,
+     "fim": 3
+    },
+    {
+     "livro": "jd",
+     "inicio": 1,
+     "fim": 1
+    }
+   ]
+  },
+  {
+   "dia": 360,
+   "semana": 52,
+   "diaSemana": 3,
+   "leitura": "1 João 1-5",
+   "referencias": [
+    {
+     "livro": "1jo",
+     "inicio": 1,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 361,
+   "semana": 52,
+   "diaSemana": 4,
+   "leitura": "2 João; 3 João",
+   "referencias": [
+    {
+     "livro": "2jo",
+     "inicio": 1,
+     "fim": 1
+    },
+    {
+     "livro": "3jo",
+     "inicio": 1,
+     "fim": 1
+    }
+   ]
+  },
+  {
+   "dia": 362,
+   "semana": 52,
+   "diaSemana": 5,
+   "leitura": "Apocalipse 1 a 5",
+   "referencias": [
+    {
+     "livro": "ap",
+     "inicio": 1,
+     "fim": 5
+    }
+   ]
+  },
+  {
+   "dia": 363,
+   "semana": 52,
+   "diaSemana": 6,
+   "leitura": "Apocalipse 6 a 11",
+   "referencias": [
+    {
+     "livro": "ap",
+     "inicio": 6,
+     "fim": 11
+    }
+   ]
+  },
+  {
+   "dia": 364,
+   "semana": 52,
+   "diaSemana": 7,
+   "leitura": "Apocalipse 12 a 22",
+   "referencias": [
+    {
+     "livro": "ap",
+     "inicio": 12,
+     "fim": 22
+    }
+   ]
+  }
+ ]
+}

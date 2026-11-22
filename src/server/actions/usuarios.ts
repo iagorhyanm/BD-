@@ -56,3 +56,23 @@ export async function alterarPapel(id: string, papel: Papel): Promise<Resultado>
   revalidatePath(ROTA);
   return { ok: true };
 }
+
+export async function editarUsuario(id: string, nome: string, email: string): Promise<Resultado> {
+  const ator = await requireAdmin();
+  const n = nome.trim();
+  const e = email.trim().toLowerCase();
+  if (n.length < 2 || n.length > 80) return falha("Nome entre 2 e 80 caracteres.");
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) return falha("E-mail inválido.");
+  const admin = createAdminClient();
+  const { data: perfil } = await admin.from("profiles").select("nome, email").eq("id", id).maybeSingle();
+  if (!perfil) return falha("Usuário não encontrado.");
+  if (e !== (perfil.email ?? "").toLowerCase()) {
+    const { error } = await admin.auth.admin.updateUserById(id, { email: e, email_confirm: true });
+    if (error) return falha(/already|registered|exists/i.test(error.message) ? "Já existe uma conta com esse e-mail." : "Não foi possível trocar o e-mail.");
+  }
+  const { error } = await admin.from("profiles").update({ nome: n, email: e }).eq("id", id);
+  if (error) return falha("Não foi possível salvar.");
+  await registrarLogAdmin({ ator, acao: "editou a conta de", entidade: "profiles", entidadeId: id, descricao: `${perfil.nome} → ${n} <${e}>` });
+  revalidatePath(ROTA);
+  return { ok: true };
+}
