@@ -7,6 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: tema.nomeCurto,
     description: tema.descricao,
     lang: "pt-BR",
+    id: "/",
     start_url: "/",
     scope: "/",
     display: "standalone",
@@ -20,7 +21,8 @@ export default function manifest(): MetadataRoute.Manifest {
       { src: "/icons/maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
     shortcuts: [
-      { name: "Registrar leitura", url: "/checkin/novo", icons: [{ src: "/icons/icon-192.png", sizes: "192x192" }] },
+      { name: "Marcar leitura", url: "/checkin/novo", icons: [{ src: "/icons/icon-192.png", sizes: "192x192" }] },
+      { name: "Plano de leitura", url: "/plano", icons: [{ src: "/icons/icon-192.png", sizes: "192x192" }] },
       { name: "Desafios", url: "/grupos", icons: [{ src: "/icons/icon-192.png", sizes: "192x192" }] },
     ],
   };

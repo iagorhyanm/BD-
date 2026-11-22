@@ -6,6 +6,7 @@ import { BarraInferior } from "@/components/layout/barra-inferior";
 import { MenuUsuario } from "@/components/layout/menu-usuario";
 import { tema } from "@/theme.config";
 import { obterConfig } from "@/lib/config";
+import { InstalarApp } from "@/components/instalar-app";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const perfil = await requireUsuario();
@@ -40,6 +41,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         </main>
       </div>
       <BarraInferior ehAdmin={ehAdmin} />
+      <InstalarApp nomeApp={config.nome} />
     </div>
   );
 }

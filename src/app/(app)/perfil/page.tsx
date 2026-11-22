@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { EditarNome } from "./editar-nome";
 import { FotoPerfil } from "./foto-perfil";
+import { BotaoInstalar } from "@/components/botao-instalar";
 
 export const metadata: Metadata = { title: "Perfil" };
 
@@ -125,6 +126,8 @@ export default async function PerfilPage() {
           </ul>
         )}
       </section>
+
+      <BotaoInstalar />
 
       {eu.papel === "admin" && (
         <Link
