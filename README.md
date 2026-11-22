@@ -132,6 +132,12 @@ O arquivo `vercel.json` já coloca o servidor em São Paulo (`gru1`), perto do b
 - **Textos e aviso:** nome do app, frase, boas-vindas e um aviso que aparece no Início de todo mundo.
 - **Usuários:** editar nome e e-mail, redefinir senha, desativar contas e escolher administradores.
 
+**Notificações** (Perfil → Notificações, ou o convite que aparece no Início):
+- **Lembrete da leitura:** por volta das 18h (Belém), para quem ainda não marcou a leitura do dia.
+- **Leituras dos amigos:** quando alguém dos seus desafios marca a leitura.
+- **Comentários:** quando alguém comenta na sua leitura.
+- Cada tipo pode ser ligado ou desligado. No iPhone, só funciona com o app instalado na tela de início (iOS 16.4 ou mais novo).
+
 **Privacidade:**
 - Você só vê as leituras e o perfil de quem está em algum desafio com você.
 - As fotos ficam privadas e só os colegas de desafio veem.
@@ -170,6 +176,8 @@ npm run dev                   # http://localhost:3000
 | `npm run test:db` | Testes de RLS e regras (pgTAP) no Supabase local |
 | `npm run db:types` | Regenera `src/lib/supabase/database.types.ts` |
 | `npm run seed:admin` | Cria ou atualiza o primeiro administrador |
+
+**Notificações push:** gere as chaves com `npx web-push generate-vapid-keys` e cadastre na Vercel as variáveis `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` e `CRON_SECRET` (veja `.env.example`). O lembrete diário roda pelo Vercel Cron (`vercel.json`, 21h UTC = 18h em Belém) chamando `/api/cron/lembrete`; os avisos de check-in e comentário saem logo depois da ação (`src/lib/push.ts`).
 
 **Modelo de dados** (`supabase/migrations/20261122000001_biblerats.sql`):
 

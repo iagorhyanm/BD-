@@ -8,6 +8,6 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     // Tudo, exceto arquivos estáticos, imagens, ícones e manifest do PWA.
-    "/((?!_next/static|_next/image|favicon.ico|icons/|logo.svg|manifest.webmanifest|sw.js|offline|icon.png|apple-icon.png|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
+    "/((?!api/cron|_next/static|_next/image|favicon.ico|icons/|logo.svg|manifest.webmanifest|sw.js|offline|icon.png|apple-icon.png|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };

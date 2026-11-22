@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { EditarNome } from "./editar-nome";
 import { FotoPerfil } from "./foto-perfil";
 import { BotaoInstalar } from "@/components/botao-instalar";
+import { NotificacoesPerfil } from "@/components/notificacoes-perfil";
 
 export const metadata: Metadata = { title: "Perfil" };
 
@@ -128,6 +129,8 @@ export default async function PerfilPage() {
       </section>
 
       <BotaoInstalar />
+
+      <NotificacoesPerfil prefs={{ notif_lembrete: eu.notif_lembrete, notif_checkins: eu.notif_checkins, notif_comentarios: eu.notif_comentarios }} />
 
       {eu.papel === "admin" && (
         <Link
