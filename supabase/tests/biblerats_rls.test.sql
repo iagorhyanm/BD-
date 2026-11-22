@@ -1,7 +1,7 @@
 -- Testes de segurança e regras do BibleRats. Rodar com: npx supabase test db
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(43);
+select plan(45);
 
 -- Cadastro: o perfil nasce como "usuario", mesmo que alguém tente mandar papel=admin.
 insert into auth.users (id, email, raw_user_meta_data) values
@@ -62,6 +62,16 @@ select lives_ok($$
 $$, 'usuário cria desafio');
 select is(public.papel_no_grupo('00000000-0000-0000-0000-0000000000f1')::text, 'dono', 'quem cria vira dono');
 
+select throws_ok($$ insert into public.checkins (data, versiculo) values (public.hoje_belem(), 'Mt 5:3') $$,
+  'P0001', 'CAMPOS_OBRIGATORIOS', 'check-in exige o que aprendeu, foto e tempo');
+select throws_ok($$ insert into public.checkins (data, minutos, anotacao, foto_path) values (public.hoje_belem(), 10, 'Aprendi', '00000000-0000-0000-0000-0000000000b1/f.jpg') $$,
+  'P0001', 'FOTO_INVALIDA', 'foto do check-in só da própria pasta');
+reset role;
+-- Daqui em diante os check-ins de teste já vêm com os campos obrigatórios.
+alter table public.checkins alter column minutos set default 10,
+  alter column anotacao set default 'Aprendi algo',
+  alter column foto_path set default (auth.uid()::text || '/teste.jpg');
+set local role authenticated;
 select lives_ok($$ insert into public.checkins (data, versiculo) values (public.hoje_belem(), 'Mt 5:3') $$,
   'marca a leitura de hoje');
 select is((select no_prazo from public.checkins where user_id = auth.uid() and data = public.hoje_belem()), true,
@@ -74,15 +84,15 @@ select throws_ok($$ insert into public.checkins (data) values (public.hoje_belem
   'P0001', 'DATA_ANTIGA', 'não marca dia com mais de 3 dias de atraso');
 select throws_ok($$ insert into public.checkins (data) values (public.hoje_belem() - 3) $$,
   '23503', null, 'só marca dias que existem no plano');
-select throws_ok($$ insert into public.checkins (user_id, data) values ('00000000-0000-0000-0000-0000000000b1', public.hoje_belem() - 1) $$,
+select throws_ok($$ insert into public.checkins (user_id, data, foto_path) values ('00000000-0000-0000-0000-0000000000b1', public.hoje_belem() - 1, '00000000-0000-0000-0000-0000000000b1/x.jpg') $$,
   '42501', null, 'não marca leitura em nome de outra pessoa');
 reset role;
 
 -- Ana leu no prazo também nos 2 dias anteriores (semeado direto, como se tivesse sido no dia).
 alter table public.checkins disable trigger checkins_validar;
-insert into public.checkins (user_id, data, no_prazo) values
-  ('00000000-0000-0000-0000-0000000000a1', public.hoje_belem() - 1, true),
-  ('00000000-0000-0000-0000-0000000000a1', public.hoje_belem() - 2, true);
+insert into public.checkins (user_id, data, no_prazo, foto_path) values
+  ('00000000-0000-0000-0000-0000000000a1', public.hoje_belem() - 1, true, '00000000-0000-0000-0000-0000000000a1/a.jpg'),
+  ('00000000-0000-0000-0000-0000000000a1', public.hoje_belem() - 2, true, '00000000-0000-0000-0000-0000000000a1/b.jpg');
 alter table public.checkins enable trigger checkins_validar;
 select is(public.sequencia_atual('00000000-0000-0000-0000-0000000000a1'), 3, 'sequência de 3 dias no prazo');
 
@@ -118,8 +128,8 @@ select is((select count(*)::int from public.checkins), 0, 'de fora não vê leit
 set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000a1","role":"authenticated"}';
 select results_eq(
   $$ select nome, pontos from public.placar_grupo('00000000-0000-0000-0000-0000000000f1') $$,
-  $$ values ('Ana Clara'::text, 3), ('Bia'::text, 2) $$,
-  'placar: 1 ponto por dia lido (atrasado também vale)');
+  $$ values ('Ana Clara'::text, 3.0::numeric), ('Bia'::text, 1.5::numeric) $$,
+  'placar: 1 ponto no dia, meio ponto com atraso');
 select is((public.estatisticas_usuario(auth.uid()) ->> 'capitulos')::int, 3, 'estatística: 3 capítulos lidos pelo plano');
 
 -- ======================= Admin =======================

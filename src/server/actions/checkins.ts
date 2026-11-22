@@ -8,14 +8,14 @@ import { EMOJIS_REACAO } from "@/lib/biblia";
 
 const checkinSchema = z.object({
   data: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Escolha o dia da leitura."),
-  minutos: z
-    .string()
-    .optional()
-    .transform((v) => (v ? Number(v) : null))
-    .refine((v) => v === null || (Number.isInteger(v) && v >= 1 && v <= 600), "Minutos entre 1 e 600."),
+  minutos: z.coerce
+    .number({ message: "Informe quantos minutos você leu." })
+    .int("Minutos sem vírgula.")
+    .min(1, "Informe quantos minutos você leu.")
+    .max(600, "Minutos entre 1 e 600."),
   versiculo: z.string().trim().max(500, "Versículo muito longo.").optional(),
-  anotacao: z.string().trim().max(3000, "Reflexão muito longa.").optional(),
-  foto_path: z.string().optional(),
+  anotacao: z.string().trim().min(3, "Conte o que você aprendeu.").max(3000, "Texto muito longo."),
+  foto_path: z.string().min(1, "Adicione uma foto da sua leitura."),
 });
 
 function mensagemBanco(msg?: string) {
@@ -26,6 +26,7 @@ function mensagemBanco(msg?: string) {
   if (msg.includes("checkins_data_plano_fkey") || msg.includes("foreign key")) return "Esse dia não tem leitura no plano.";
   if (msg.includes("DATA_FIXA")) return "Não dá para mudar o dia de uma leitura já marcada.";
   if (msg.includes("FOTO_INVALIDA")) return "Envie a foto de novo.";
+  if (msg.includes("CAMPOS_OBRIGATORIOS")) return "Preencha o que aprendeu, o tempo de leitura e a foto.";
   return "Não foi possível salvar.";
 }
 
@@ -41,11 +42,12 @@ export async function salvarCheckin(id: string | null, formData: FormData): Prom
   const p = checkinSchema.safeParse(Object.fromEntries(formData));
   if (!p.success) return falha(p.error.issues[0].message);
   const d = p.data;
-  const foto = d.foto_path && d.foto_path.startsWith(`${eu.id}/`) ? d.foto_path : null;
+  if (!d.foto_path.startsWith(`${eu.id}/`)) return falha("Envie a foto de novo.");
+  const foto = d.foto_path;
   const linha = {
     minutos: d.minutos,
     versiculo: d.versiculo || null,
-    anotacao: d.anotacao || null,
+    anotacao: d.anotacao,
     foto_path: foto,
   };
   const supabase = await createClient();
