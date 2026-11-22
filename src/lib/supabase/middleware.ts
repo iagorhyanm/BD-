@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import type { Database } from "./database.types";
 
 /** Rotas que não exigem login. */
-const ROTAS_PUBLICAS = ["/login", "/inscricao", "/offline"];
+const ROTAS_PUBLICAS = ["/login", "/cadastro", "/convite", "/offline"];
 
 function ehPublica(pathname: string) {
   return ROTAS_PUBLICAS.some((r) => pathname === r || pathname.startsWith(`${r}/`));
@@ -32,9 +32,6 @@ export async function atualizarSessao(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  // Páginas públicas de inscrição não precisam consultar a sessão (mais rápido no 4G).
-  if (pathname.startsWith("/inscricao")) return response;
-
   // Valida o JWT localmente (chaves assimétricas do Supabase), sem ida ao
   // servidor de autenticação a cada página. Renova a sessão quando expira.
   const { data } = await supabase.auth.getClaims();
@@ -47,9 +44,10 @@ export async function atualizarSessao(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (user && pathname === "/login") {
+  if (user && (pathname === "/login" || pathname === "/cadastro")) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    const voltar = request.nextUrl.searchParams.get("voltar");
+    url.pathname = voltar && voltar.startsWith("/") && !voltar.startsWith("//") ? voltar : "/";
     url.search = "";
     return NextResponse.redirect(url);
   }

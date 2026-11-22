@@ -1,0 +1,137 @@
+"use client";
+
+import { useMemo, useState, useTransition } from "react";
+import { Check, Copy, KeyRound, MoreVertical, Search, ShieldCheck, ShieldMinus, UserCheck, UserX } from "lucide-react";
+import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { AvatarNome } from "@/components/avatar-nome";
+import { formatarData } from "@/lib/datas";
+import { alterarAtivo, alterarPapel, redefinirSenha, type Credenciais } from "@/server/actions/usuarios";
+import { cn } from "@/lib/utils";
+
+type U = { id: string; nome: string; email: string; papel: "admin" | "usuario"; ativo: boolean; precisaTrocar: boolean; criadoEm: string; leituras: number };
+const norm = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: string }) {
+  const [busca, setBusca] = useState("");
+  const [cred, setCred] = useState<Credenciais | null>(null);
+  const [copiado, setCopiado] = useState(false);
+  const [pendente, iniciar] = useTransition();
+  const lista = useMemo(() => usuarios.filter((u) => norm(`${u.nome} ${u.email}`).includes(norm(busca.trim()))), [usuarios, busca]);
+
+  const exec = (fn: () => Promise<{ ok: boolean; erro?: string }>, msg: string) =>
+    iniciar(async () => {
+      const r = await fn();
+      if (!r.ok) toast.error(r.erro ?? "Erro");
+      else toast.success(msg);
+    });
+
+  return (
+    <div className="space-y-4">
+      <div className="relative">
+        <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
+        <Input type="search" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar nome ou e-mail" aria-label="Buscar" className="pl-9" />
+      </div>
+      <ul className="space-y-2">
+        {lista.map((u) => (
+          <li key={u.id} className={cn("flex items-center gap-3 rounded-2xl border bg-card p-3", !u.ativo && "opacity-60")}>
+            <AvatarNome nome={u.nome} id={u.id} tamanho="sm" />
+            <div className="min-w-0 flex-1">
+              <p className="truncate font-semibold">
+                {u.nome}
+                {u.id === meuId && <span className="font-normal text-muted-foreground"> (você)</span>}
+              </p>
+              <p className="truncate text-sm text-muted-foreground">{u.email}</p>
+              <div className="mt-1 flex flex-wrap gap-1.5 text-xs">
+                {u.papel === "admin" && <Badge>Admin</Badge>}
+                {!u.ativo && <Badge variant="destructive">Desativado</Badge>}
+                {u.precisaTrocar && <Badge variant="outline">Senha provisória</Badge>}
+                <span className="text-muted-foreground">
+                  {u.leituras} {u.leituras === 1 ? "leitura" : "leituras"} · desde {formatarData(u.criadoEm, "dd/MM/yy")}
+                </span>
+              </div>
+            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label={`Ações para ${u.nome}`} disabled={pendente}>
+                  <MoreVertical />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-60">
+                <DropdownMenuItem
+                  className="min-h-11"
+                  onSelect={() =>
+                    iniciar(async () => {
+                      const r = await redefinirSenha(u.id);
+                      if (!r.ok) return void toast.error(r.erro);
+                      setCred(r.dados);
+                    })
+                  }
+                >
+                  <KeyRound /> Redefinir senha
+                </DropdownMenuItem>
+                {u.id !== meuId && (
+                  <>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      className="min-h-11"
+                      onSelect={() => exec(() => alterarPapel(u.id, u.papel === "admin" ? "usuario" : "admin"), "Papel atualizado.")}
+                    >
+                      {u.papel === "admin" ? <ShieldMinus /> : <ShieldCheck />} {u.papel === "admin" ? "Tirar de administrador" : "Tornar administrador"}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      className="min-h-11"
+                      variant={u.ativo ? "destructive" : "default"}
+                      onSelect={() => {
+                        if (!u.ativo || window.confirm(`Desativar a conta de ${u.nome}? A pessoa perde o acesso na hora.`))
+                          exec(() => alterarAtivo(u.id, !u.ativo), u.ativo ? "Conta desativada." : "Conta reativada.");
+                      }}
+                    >
+                      {u.ativo ? <UserX /> : <UserCheck />} {u.ativo ? "Desativar conta" : "Reativar conta"}
+                    </DropdownMenuItem>
+                  </>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </li>
+        ))}
+      </ul>
+
+      <Dialog open={!!cred} onOpenChange={(v) => !v && setCred(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Senha redefinida</DialogTitle>
+            <DialogDescription>Envie para a pessoa. Ela vai criar uma senha nova no próximo acesso.</DialogDescription>
+          </DialogHeader>
+          {cred && (
+            <dl className="space-y-3 rounded-xl bg-muted p-4">
+              <div>
+                <dt className="text-sm text-muted-foreground">E-mail</dt>
+                <dd className="font-mono font-semibold break-all">{cred.login}</dd>
+              </div>
+              <div>
+                <dt className="text-sm text-muted-foreground">Senha provisória</dt>
+                <dd className="font-mono text-lg font-semibold tracking-wider">{cred.senha}</dd>
+              </div>
+            </dl>
+          )}
+          <Button
+            variant="outline"
+            onClick={async () => {
+              if (!cred) return;
+              await navigator.clipboard.writeText(`BibleRats — ${window.location.origin}/login\nE-mail: ${cred.login}\nSenha provisória: ${cred.senha}`);
+              setCopiado(true);
+              setTimeout(() => setCopiado(false), 2000);
+            }}
+          >
+            {copiado ? <Check /> : <Copy />} Copiar mensagem
+          </Button>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}

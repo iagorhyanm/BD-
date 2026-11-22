@@ -1,17 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { requireStaff, ROTULO_PAPEL } from "@/lib/auth";
-import { listarEdicoes, obterEdicaoAtual } from "@/lib/edicao";
+import { requireUsuario, ROTULO_PAPEL } from "@/lib/auth";
 import { MenuLateral } from "@/components/layout/menu-lateral";
 import { BarraInferior } from "@/components/layout/barra-inferior";
-import { SeletorEdicao } from "@/components/layout/seletor-edicao";
 import { MenuUsuario } from "@/components/layout/menu-usuario";
 import { tema } from "@/theme.config";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
-  // Tudo em paralelo: perfil, lista de edições e edição atual.
-  const [perfil, edicoes, atual] = await Promise.all([requireStaff(), listarEdicoes(), obterEdicaoAtual()]);
-  const ehEdg = perfil.papel === "edg";
+  const perfil = await requireUsuario();
+  const ehAdmin = perfil.papel === "admin";
 
   return (
     <div className="flex min-h-dvh">
@@ -21,27 +18,26 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       >
         Pular para o conteúdo
       </a>
-      <MenuLateral ehEdg={ehEdg} />
+      <MenuLateral ehAdmin={ehAdmin} />
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 border-b bg-background/90 pt-[env(safe-area-inset-top)] backdrop-blur">
-          <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 lg:px-8">
-            <Link href="/" className="lg:hidden" aria-label="Início">
-              <Image src={tema.logo} alt="" width={36} height={36} className="size-9" />
+        <header className="sticky top-0 z-30 border-b bg-background/90 pt-[env(safe-area-inset-top)] backdrop-blur lg:hidden">
+          <div className="mx-auto flex h-14 max-w-3xl items-center gap-3 px-4">
+            <Link href="/" className="flex items-center gap-2" aria-label="Início">
+              <Image src={tema.logo} alt="" width={32} height={32} className="size-8 rounded-lg" />
+              <span className="text-lg font-bold tracking-tight">{tema.nome}</span>
             </Link>
-            <div className="min-w-0 flex-1">
-              <SeletorEdicao
-                edicoes={edicoes.map((e) => ({ id: e.id, nome: e.nome, ativa: e.ativa }))}
-                atualId={atual?.id ?? null}
-              />
-            </div>
+            <div className="flex-1" />
             <MenuUsuario nome={perfil.nome} papel={ROTULO_PAPEL[perfil.papel]} />
           </div>
         </header>
-        <main id="conteudo" className="mx-auto w-full max-w-6xl flex-1 px-4 pt-5 pb-28 lg:px-8 lg:pb-10">
+        <div className="hidden justify-end px-8 pt-4 lg:flex">
+          <MenuUsuario nome={perfil.nome} papel={ROTULO_PAPEL[perfil.papel]} />
+        </div>
+        <main id="conteudo" className="mx-auto w-full max-w-3xl flex-1 px-4 pt-5 pb-28 lg:px-8 lg:pb-10">
           {children}
         </main>
       </div>
-      <BarraInferior ehEdg={ehEdg} />
+      <BarraInferior ehAdmin={ehAdmin} />
     </div>
   );
 }

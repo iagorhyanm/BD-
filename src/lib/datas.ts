@@ -39,3 +39,20 @@ export function calcularIdade(nascimentoISO: string, referencia = hojeEmBelem())
 export function capitalizar(texto: string): string {
   return texto.charAt(0).toUpperCase() + texto.slice(1);
 }
+
+/** "hoje", "ontem" ou "seg, 17/11" para uma data "yyyy-MM-dd". */
+export function rotuloDia(dataISO: string, hoje = hojeEmBelem()): string {
+  if (dataISO === hoje) return "hoje";
+  const d = new Date(`${dataISO}T12:00:00Z`);
+  const h = new Date(`${hoje}T12:00:00Z`);
+  const dias = Math.round((h.getTime() - d.getTime()) / 86400000);
+  if (dias === 1) return "ontem";
+  return formatInTimeZone(d, "UTC", dias > 0 && dias < 7 ? "EEE, dd/MM" : "dd/MM/yyyy", { locale: ptBR });
+}
+
+/** Soma dias a uma data "yyyy-MM-dd". */
+export function somarDias(dataISO: string, dias: number): string {
+  const d = new Date(`${dataISO}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + dias);
+  return d.toISOString().slice(0, 10);
+}

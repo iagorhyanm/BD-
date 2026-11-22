@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { History } from "lucide-react";
-import { requireEdg } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { formatarDataHora } from "@/lib/datas";
 import { CabecalhoPagina } from "@/components/cabecalho-pagina";
@@ -12,15 +12,8 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = { title: "Log de atividades" };
 
 const ENTIDADES: Record<string, string> = {
-  inscricoes: "Inscrição",
-  membros: "Membro",
-  edicoes: "Edição",
-  formularios: "Formulário",
+  grupos: "Desafio",
   profiles: "Usuário",
-  eventos: "Evento",
-  equipamentos: "Equipamento",
-  musicas: "Música",
-  avisos: "Aviso",
 };
 
 const ROTULO_CAMPO: Record<string, string> = {
@@ -37,9 +30,6 @@ const ROTULO_CAMPO: Record<string, string> = {
   fim: "término",
   local: "local",
   limite: "limite",
-  vagas_masculino: "vagas H",
-  vagas_feminino: "vagas M",
-  limite_faltas: "limite de faltas",
 };
 
 const POR_PAGINA = 50;
@@ -53,7 +43,7 @@ function valor(v: unknown) {
 }
 
 export default async function LogsPage({ searchParams }: { searchParams: Promise<{ entidade?: string; pagina?: string }> }) {
-  await requireEdg();
+  await requireAdmin();
   const { entidade, pagina } = await searchParams;
   const p = Math.max(1, Number(pagina) || 1);
   const supabase = await createClient();

@@ -5,16 +5,9 @@ import { createClient } from "@/lib/supabase/server";
 import type { Database } from "@/lib/supabase/database.types";
 
 export type Perfil = Database["public"]["Tables"]["profiles"]["Row"];
-export type Papel = Database["public"]["Enums"]["papel_usuario"];
+export type Papel = Database["public"]["Enums"]["papel_app"];
 
-/** Papéis que hoje têm acesso ao sistema. "membro" fica de fora por enquanto. */
-export const PAPEIS_COM_ACESSO: Papel[] = ["edg", "coordenador"];
-
-export const ROTULO_PAPEL: Record<Papel, string> = {
-  edg: "EDG",
-  coordenador: "Coordenador(a)",
-  membro: "Membro",
-};
+export const ROTULO_PAPEL: Record<Papel, string> = { admin: "Administrador(a)", usuario: "Leitor(a)" };
 
 /** Usuário + perfil da requisição atual (memorizado durante a renderização). */
 export const obterSessao = cache(async () => {
@@ -28,27 +21,20 @@ export const obterSessao = cache(async () => {
   return { user: { id }, perfil };
 });
 
-/**
- * Exige um usuário com acesso (EDG ou coordenador, ativo e com senha já trocada).
- * Use em páginas e server actions da área interna.
- */
-export async function requireStaff(opcoes: { permitirTrocaPendente?: boolean } = {}): Promise<Perfil> {
+/** Exige um usuário ativo (e com a senha provisória já trocada). */
+export async function requireUsuario(opcoes: { permitirTrocaPendente?: boolean } = {}): Promise<Perfil> {
   const sessao = await obterSessao();
   if (!sessao) redirect("/login");
   const { perfil } = sessao;
-  if (!perfil || !perfil.ativo || !PAPEIS_COM_ACESSO.includes(perfil.papel)) {
-    redirect("/sem-acesso");
-  }
-  if (perfil.precisa_trocar_senha && !opcoes.permitirTrocaPendente) {
-    redirect("/trocar-senha");
-  }
+  if (!perfil || !perfil.ativo) redirect("/sem-acesso");
+  if (perfil.precisa_trocar_senha && !opcoes.permitirTrocaPendente) redirect("/trocar-senha");
   return perfil;
 }
 
-/** Exige o papel EDG. */
-export async function requireEdg(): Promise<Perfil> {
-  const perfil = await requireStaff();
-  if (perfil.papel !== "edg") redirect("/");
+/** Exige o papel de administrador do sistema. */
+export async function requireAdmin(): Promise<Perfil> {
+  const perfil = await requireUsuario();
+  if (perfil.papel !== "admin") redirect("/");
   return perfil;
 }
 

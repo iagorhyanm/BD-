@@ -1,37 +1,20 @@
-import {
-  Bell,
-  CalendarDays,
-  ClipboardCheck,
-  ClipboardList,
-  Guitar,
-  House,
-  ListMusic,
-  Settings,
-  UserCheck,
-  Users,
-  type LucideIcon,
-} from "lucide-react";
+import { BookOpenCheck, House, Settings, Trophy, UserRound, type LucideIcon } from "lucide-react";
 
 export type ItemNav = {
   href: string;
   rotulo: string;
   icone: LucideIcon;
-  /** Aparece na barra inferior do celular (máx. 4 + "Mais"). */
-  barraInferior?: boolean;
-  somenteEdg?: boolean;
+  /** Botão de destaque no centro da barra inferior. */
+  principal?: boolean;
+  somenteAdmin?: boolean;
 };
 
 export const NAVEGACAO: ItemNav[] = [
-  { href: "/", rotulo: "Início", icone: House, barraInferior: true },
-  { href: "/inscricoes", rotulo: "Inscrições", icone: ClipboardList },
-  { href: "/selecao", rotulo: "Seleção", icone: UserCheck, barraInferior: true },
-  { href: "/membros", rotulo: "Membros", icone: Users, barraInferior: true },
-  { href: "/agenda", rotulo: "Agenda e escala", icone: CalendarDays, barraInferior: true },
-  { href: "/presenca", rotulo: "Presença", icone: ClipboardCheck },
-  { href: "/repertorio", rotulo: "Repertório", icone: ListMusic },
-  { href: "/equipamentos", rotulo: "Equipamentos", icone: Guitar },
-  { href: "/avisos", rotulo: "Avisos", icone: Bell },
-  { href: "/admin", rotulo: "Administração", icone: Settings, somenteEdg: true },
+  { href: "/", rotulo: "Início", icone: House },
+  { href: "/grupos", rotulo: "Desafios", icone: Trophy },
+  { href: "/checkin/novo", rotulo: "Leitura", icone: BookOpenCheck, principal: true },
+  { href: "/perfil", rotulo: "Perfil", icone: UserRound },
+  { href: "/admin", rotulo: "Admin", icone: Settings, somenteAdmin: true },
 ];
 
 export function itemAtivo(pathname: string, href: string) {
