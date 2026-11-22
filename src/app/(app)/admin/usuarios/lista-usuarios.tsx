@@ -17,7 +17,7 @@ import { semReset } from "@/lib/form";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-type U = { id: string; nome: string; email: string; papel: "admin" | "usuario"; ativo: boolean; precisaTrocar: boolean; criadoEm: string; leituras: number };
+type U = { id: string; nome: string; foto: string | null; email: string; papel: "admin" | "usuario"; ativo: boolean; precisaTrocar: boolean; criadoEm: string; leituras: number };
 const norm = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
 export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: string }) {
@@ -46,7 +46,7 @@ export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: strin
       <ul className="space-y-2">
         {lista.map((u) => (
           <li key={u.id} className={cn("flex items-center gap-3 rounded-2xl border bg-card p-3", !u.ativo && "opacity-60")}>
-            <AvatarNome nome={u.nome} id={u.id} tamanho="sm" />
+            <AvatarNome nome={u.nome} id={u.id} foto={u.foto} tamanho="sm" />
             <div className="min-w-0 flex-1">
               <p className="truncate font-semibold">
                 {u.nome}

@@ -10,7 +10,7 @@ export function CartaoCheckin({ item, euId, detalhe = false }: { item: ItemFeed;
   return (
     <article className="space-y-3 rounded-2xl border bg-card p-4">
       <header className="flex items-center gap-3">
-        <AvatarNome nome={item.nome} id={item.userId} />
+        <AvatarNome nome={item.nome} id={item.userId} foto={item.fotoPerfil} />
         <div className="min-w-0 flex-1">
           <p className="truncate font-semibold">
             {meu ? "Você" : item.nome}

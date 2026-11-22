@@ -11,20 +11,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { sair } from "@/server/actions/auth";
+import { urlFoto } from "@/lib/avatar";
 
 function iniciais(nome: string) {
   const partes = nome.trim().split(/\s+/);
   return ((partes[0]?.[0] ?? "") + (partes.length > 1 ? partes[partes.length - 1][0] : "")).toUpperCase();
 }
 
-export function MenuUsuario({ nome, papel }: { nome: string; papel: string }) {
+export function MenuUsuario({ nome, papel, foto }: { nome: string; papel: string; foto?: string | null }) {
+  const url = urlFoto(foto);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
         aria-label="Minha conta"
-        className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
+        className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary text-sm font-bold text-primary-foreground"
       >
-        {iniciais(nome)}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {url ? <img src={url} alt="" className="size-full object-cover" /> : iniciais(nome)}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>

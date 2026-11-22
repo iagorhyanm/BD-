@@ -25,6 +25,7 @@ export default async function UsuariosPage() {
         usuarios={(perfis ?? []).map((p) => ({
           id: p.id,
           nome: p.nome,
+          foto: p.foto_path,
           email: p.email ?? p.usuario ?? "",
           papel: p.papel,
           ativo: p.ativo,

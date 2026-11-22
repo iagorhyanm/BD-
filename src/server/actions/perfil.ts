@@ -15,3 +15,18 @@ export async function salvarNome(formData: FormData): Promise<Resultado> {
   revalidatePath("/", "layout");
   return { ok: true };
 }
+
+/** Salva (ou remove, com null) a foto de perfil já enviada ao bucket "avatares". */
+export async function salvarFoto(path: string | null): Promise<Resultado> {
+  const eu = await requireUsuario();
+  if (path !== null && !new RegExp(`^${eu.id}/[0-9a-f-]{36}\\.jpg$`).test(path)) return falha("Envie a foto de novo.");
+  const supabase = await createClient();
+  const { error } = await supabase.from("profiles").update({ foto_path: path }).eq("id", eu.id);
+  if (error) return falha("Não foi possível salvar a foto.");
+  // apaga as fotos antigas
+  const { data: arquivos } = await supabase.storage.from("avatares").list(eu.id);
+  const antigos = (arquivos ?? []).map((a) => `${eu.id}/${a.name}`).filter((p) => p !== path);
+  if (antigos.length) await supabase.storage.from("avatares").remove(antigos);
+  revalidatePath("/", "layout");
+  return { ok: true };
+}
