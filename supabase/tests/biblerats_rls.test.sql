@@ -1,7 +1,7 @@
 -- Testes de segurança e regras do BibleRats. Rodar com: npx supabase test db
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(45);
+select plan(50);
 
 -- Cadastro: o perfil nasce como "usuario", mesmo que alguém tente mandar papel=admin.
 insert into auth.users (id, email, raw_user_meta_data) values
@@ -35,6 +35,7 @@ select throws_ok($$ select * from public.checkins $$, '42501', null, 'anon não 
 select throws_ok($$ select * from public.plano_dias $$, '42501', null, 'anon não lê o plano');
 select is((select count(*)::int from public.app_config), 1, 'anon lê as configurações (nome do app no login)');
 select throws_ok($$ select public.entrar_no_grupo('XXXX') $$, '42501', null, 'anon não entra em grupo');
+select throws_ok($$ select * from public.push_inscricoes $$, '42501', null, 'anon não lê inscrições de notificação');
 reset role;
 
 -- ======================= Ana =======================
@@ -119,10 +120,18 @@ select lives_ok($$ insert into public.reacoes (checkin_id, emoji)
   select id, '🔥' from public.checkins where user_id = '00000000-0000-0000-0000-0000000000a1' and data = public.hoje_belem()
 $$, 'reage no check-in da colega');
 
+-- ======================= Notificações =======================
+select lives_ok($$ insert into public.push_inscricoes (user_id, endpoint, p256dh, auth) values (auth.uid(), 'https://push.example/bia', 'BKxxxxxxxxxx', 'aaaaaaaa') $$,
+  'cadastra notificação no próprio aparelho');
+select throws_ok($$ insert into public.push_inscricoes (user_id, endpoint, p256dh, auth) values ('00000000-0000-0000-0000-0000000000a1', 'https://push.example/x', 'BKxxxxxxxxxx', 'aaaaaaaa') $$,
+  '42501', null, 'não cadastra notificação para outra pessoa');
+select lives_ok($$ update public.profiles set notif_checkins = false where id = auth.uid() $$, 'muda as próprias preferências');
+
 -- ======================= Caio (de fora) =======================
 set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000c1","role":"authenticated"}';
 select is((select count(*)::int from public.profiles), 1, 'de fora só vê o próprio perfil');
 select is((select count(*)::int from public.checkins), 0, 'de fora não vê leituras');
+select is((select count(*)::int from public.push_inscricoes), 0, 'não vê as notificações dos outros');
 
 -- ======================= Placar e estatísticas =======================
 set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000a1","role":"authenticated"}';

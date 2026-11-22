@@ -191,17 +191,37 @@ isOneToOne: false
                   ]
                 },"profiles": {
                   Row: {
-                    "ativo": boolean,"atualizado_em": string,"criado_em": string,"email": string | null,"foto_path": string | null,"id": string,"nome": string,"papel": Database["public"]['Enums']["papel_app"],"precisa_trocar_senha": boolean,"telefone": string | null,"usuario": string | null
+                    "ativo": boolean,"atualizado_em": string,"criado_em": string,"email": string | null,"foto_path": string | null,"id": string,"nome": string,"notif_checkins": boolean,"notif_comentarios": boolean,"notif_lembrete": boolean,"papel": Database["public"]['Enums']["papel_app"],"precisa_trocar_senha": boolean,"telefone": string | null,"usuario": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id": string,"nome": string,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
+                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id": string,"nome": string,"notif_checkins"?: boolean,"notif_comentarios"?: boolean,"notif_lembrete"?: boolean,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
                   }
                   Update: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id"?: string,"nome"?: string,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
+                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id"?: string,"nome"?: string,"notif_checkins"?: boolean,"notif_comentarios"?: boolean,"notif_lembrete"?: boolean,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
                   }
                   Relationships: [
                     
+                  ]
+                },"push_inscricoes": {
+                  Row: {
+                    "aparelho": string | null,"auth": string,"criado_em": string,"endpoint": string,"id": string,"p256dh": string,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "aparelho"?: string | null,"auth": string,"criado_em"?: string,"endpoint": string,"id"?: string,"p256dh": string,"user_id": string
+                  }
+                  Update: {
+                    "aparelho"?: string | null,"auth"?: string,"criado_em"?: string,"endpoint"?: string,"id"?: string,"p256dh"?: string,"user_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "push_inscricoes_user_id_fkey"
+      columns: ["user_id"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    }
                   ]
                 },"reacoes": {
                   Row: {

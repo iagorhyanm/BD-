@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
+import { notificarCheckin, notificarComentario } from "@/lib/push";
 import { z } from "zod";
 import { falha, requireUsuario, type Resultado } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
@@ -63,6 +65,7 @@ export async function salvarCheckin(id: string | null, formData: FormData): Prom
   const { data, error } = await supabase.from("checkins").insert({ ...linha, data: d.data, user_id: eu.id }).select("id").single();
   if (error) return falha(mensagemBanco(error.message));
   revalidar(data.id);
+  after(() => notificarCheckin(data.id).catch((e) => console.error("push check-in", e)));
   return { ok: true, dados: { id: data.id } };
 }
 
@@ -108,6 +111,7 @@ export async function comentar(checkinId: string, formData: FormData): Promise<R
   const supabase = await createClient();
   const { error } = await supabase.from("comentarios").insert({ checkin_id: checkinId, user_id: eu.id, texto });
   if (error) return falha("Não foi possível comentar.");
+  after(() => notificarComentario(checkinId, eu.id, texto).catch((e) => console.error("push comentário", e)));
   revalidatePath(`/checkin/${checkinId}`);
   revalidatePath("/");
   return { ok: true };
