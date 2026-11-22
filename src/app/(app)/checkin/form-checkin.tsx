@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useRef, useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Camera, Trash2, X } from "lucide-react";
+import { BookOpen, Camera, Check, Trash2, X } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,8 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AlertaErro } from "@/components/alerta-erro";
 import { Confirmar } from "@/components/confirmar";
-import { LIVROS, livro as acharLivro } from "@/lib/biblia";
-import { hojeEmBelem, rotuloDia, somarDias } from "@/lib/datas";
+import { hojeEmBelem, rotuloDia } from "@/lib/datas";
 import { reduzirImagem } from "@/lib/imagem";
 import { semReset } from "@/lib/form";
 import { createClient } from "@/lib/supabase/client";
@@ -21,9 +20,7 @@ import { cn } from "@/lib/utils";
 export type CheckinForm = {
   id: string;
   data: string;
-  livro: string;
-  capitulo_inicio: number;
-  capitulo_fim: number;
+  leitura: string;
   minutos: number | null;
   versiculo: string | null;
   anotacao: string | null;
@@ -31,16 +28,15 @@ export type CheckinForm = {
   fotoUrl: string | null;
 };
 
-const selectCls = "h-12 w-full rounded-lg border border-input bg-background px-3 text-base";
+export type DiaMarcavel = { data: string; leitura: string; titulo: string | null; checkinId: string | null };
 
-export function FormCheckin({ userId, checkin, ultimoLivro }: { userId: string; checkin?: CheckinForm; ultimoLivro?: { livro: string; capitulo: number } }) {
+export function FormCheckin({ userId, checkin, dias = [], diaInicial }: { userId: string; checkin?: CheckinForm; dias?: DiaMarcavel[]; diaInicial?: string }) {
   const router = useRouter();
   const hoje = hojeEmBelem();
-  const [data, setData] = useState(checkin?.data ?? hoje);
-  const [livroId, setLivroId] = useState(checkin?.livro ?? ultimoLivro?.livro ?? "");
-  const sugestao = ultimoLivro ? Math.min(ultimoLivro.capitulo + 1, acharLivro(ultimoLivro.livro)?.capitulos ?? 1) : 1;
-  const [capIni, setCapIni] = useState(checkin?.capitulo_inicio ?? (ultimoLivro ? sugestao : 1));
-  const [capFim, setCapFim] = useState(checkin?.capitulo_fim ?? (ultimoLivro ? sugestao : 1));
+  const abertos = dias.filter((d) => !d.checkinId);
+  const [data, setData] = useState(
+    checkin?.data ?? (abertos.find((d) => d.data === diaInicial) ?? abertos[0])?.data ?? "",
+  );
   const [fotoPath, setFotoPath] = useState<string | null>(checkin?.foto_path ?? null);
   const [fotoPrevia, setFotoPrevia] = useState<string | null>(checkin?.fotoUrl ?? null);
   const [enviandoFoto, setEnviandoFoto] = useState(false);
@@ -48,9 +44,6 @@ export function FormCheckin({ userId, checkin, ultimoLivro }: { userId: string; 
   const [pendente, iniciar] = useTransition();
   const inputFoto = useRef<HTMLInputElement>(null);
 
-  const l = acharLivro(livroId);
-  const capitulos = useMemo(() => Array.from({ length: l?.capitulos ?? 0 }, (_, i) => i + 1), [l]);
-  const dias = [0, 1, 2, 3].map((n) => somarDias(hoje, -n));
 
   async function escolherFoto(f?: File) {
     if (!f) return;
@@ -73,94 +66,65 @@ export function FormCheckin({ userId, checkin, ultimoLivro }: { userId: string; 
   function enviar(fd: FormData) {
     setErro(null);
     fd.set("data", data);
-    fd.set("livro", livroId);
-    fd.set("capitulo_inicio", String(capIni));
-    fd.set("capitulo_fim", String(capFim));
     fd.set("foto_path", fotoPath ?? "");
     iniciar(async () => {
       const r = await salvarCheckin(checkin?.id ?? null, fd);
       if (!r.ok) return setErro(r.erro);
-      toast.success(checkin ? "Leitura atualizada!" : "Leitura registrada! 🔥");
+      toast.success(checkin ? "Leitura atualizada!" : data === hoje ? "Leitura marcada! 🔥" : "Leitura marcada! Ponto garantido 📖");
       router.push(checkin ? `/checkin/${r.dados.id}` : "/");
     });
   }
 
   return (
     <form onSubmit={semReset(enviar)} className="space-y-5">
-      <fieldset className="space-y-2">
-        <legend className="text-sm font-medium">Quando você leu?</legend>
-        <div className="grid grid-cols-4 gap-2">
-          {dias.map((d) => (
-            <button
-              key={d}
-              type="button"
-              aria-pressed={data === d}
-              onClick={() => setData(d)}
-              className={cn(
-                "min-h-11 rounded-xl border px-1 text-sm font-medium capitalize",
-                data === d ? "border-primary bg-primary text-primary-foreground" : "bg-card",
-              )}
-            >
-              {rotuloDia(d, hoje).replace(/, .*/, "")}
-            </button>
-          ))}
-        </div>
-      </fieldset>
+      {checkin ? (
+        <section className="flex items-start gap-3 rounded-2xl border bg-card p-4">
+          <BookOpen className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
+          <div>
+            <p className="text-sm text-muted-foreground">Leitura de {rotuloDia(checkin.data, hoje)}</p>
+            <p className="text-lg font-bold">{checkin.leitura}</p>
+          </div>
+        </section>
+      ) : (
+        <fieldset className="space-y-2">
+          <legend className="text-sm font-medium">Qual leitura você fez?</legend>
+          <div className="space-y-2">
+            {dias.map((d) => {
+              const feito = !!d.checkinId;
+              const ativo = data === d.data;
+              return (
+                <button
+                  key={d.data}
+                  type="button"
+                  disabled={feito}
+                  aria-pressed={ativo}
+                  onClick={() => setData(d.data)}
+                  className={cn(
+                    "flex min-h-14 w-full items-center gap-3 rounded-xl border px-4 py-2 text-left",
+                    ativo ? "border-primary bg-primary text-primary-foreground" : "bg-card",
+                    feito && "opacity-60",
+                  )}
+                >
+                  <span className="min-w-0 flex-1">
+                    <span className={cn("block text-xs capitalize", ativo ? "opacity-90" : "text-muted-foreground")}>
+                      {rotuloDia(d.data, hoje)}
+                      {d.data !== hoje && !feito && " · vale ponto, não conta na 🔥"}
+                    </span>
+                    <span className="block font-semibold">{d.leitura}</span>
+                  </span>
+                  {feito && (
+                    <span className="flex items-center gap-1 text-xs font-medium">
+                      <Check className="size-4" aria-hidden /> feita
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
+      )}
 
       <section className="space-y-4 rounded-2xl border bg-card p-4">
-        <div className="space-y-2">
-          <Label htmlFor="ck-livro">Livro</Label>
-          <select
-            id="ck-livro"
-            value={livroId}
-            required
-            onChange={(e) => {
-              setLivroId(e.target.value);
-              setCapIni(1);
-              setCapFim(1);
-            }}
-            className={selectCls}
-          >
-            <option value="" disabled>
-              Escolha o livro…
-            </option>
-            <optgroup label="Antigo Testamento">
-              {LIVROS.filter((x) => x.testamento === "AT").map((x) => (
-                <option key={x.id} value={x.id}>{x.nome}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Novo Testamento">
-              {LIVROS.filter((x) => x.testamento === "NT").map((x) => (
-                <option key={x.id} value={x.id}>{x.nome}</option>
-              ))}
-            </optgroup>
-          </select>
-        </div>
-        {l && l.capitulos > 1 && (
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-2">
-              <Label htmlFor="ck-ini">Do capítulo</Label>
-              <select
-                id="ck-ini"
-                value={capIni}
-                onChange={(e) => {
-                  const v = Number(e.target.value);
-                  setCapIni(v);
-                  if (capFim < v) setCapFim(v);
-                }}
-                className={selectCls}
-              >
-                {capitulos.map((c) => <option key={c} value={c}>{c}</option>)}
-              </select>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="ck-fim">Até o capítulo</Label>
-              <select id="ck-fim" value={capFim} onChange={(e) => setCapFim(Number(e.target.value))} className={selectCls}>
-                {capitulos.filter((c) => c >= capIni).map((c) => <option key={c} value={c}>{c}</option>)}
-              </select>
-            </div>
-          </div>
-        )}
         <div className="space-y-2">
           <Label htmlFor="ck-min">Tempo de leitura (minutos, opcional)</Label>
           <Input id="ck-min" name="minutos" type="number" inputMode="numeric" min={1} max={600} defaultValue={checkin?.minutos ?? ""} className="w-32" />
@@ -206,8 +170,8 @@ export function FormCheckin({ userId, checkin, ultimoLivro }: { userId: string; 
       </section>
 
       <AlertaErro mensagem={erro} />
-      <Button type="submit" size="lg" className="h-14 w-full text-base" disabled={pendente || enviandoFoto || !livroId}>
-        {pendente ? "Salvando…" : checkin ? "Salvar alterações" : "Registrar leitura 🔥"}
+      <Button type="submit" size="lg" className="h-14 w-full text-base" disabled={pendente || enviandoFoto || !data}>
+        {pendente ? "Salvando…" : checkin ? "Salvar alterações" : "Marcar como lida 🔥"}
       </Button>
 
       {checkin && (
@@ -218,7 +182,7 @@ export function FormCheckin({ userId, checkin, ultimoLivro }: { userId: string; 
             </Button>
           }
           titulo="Excluir esta leitura?"
-          descricao="Ela sai do feed e do placar dos seus desafios."
+          descricao="Ela sai do feed e do placar dos seus desafios. Depois de 3 dias não dá mais para marcar de novo."
           rotuloConfirmar="Excluir"
           destrutivo
           aoConfirmar={async () => {

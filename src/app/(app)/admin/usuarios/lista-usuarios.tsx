@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useTransition } from "react";
-import { Check, Copy, KeyRound, MoreVertical, Search, ShieldCheck, ShieldMinus, UserCheck, UserX } from "lucide-react";
+import { Check, Copy, KeyRound, MoreVertical, Pencil, Search, ShieldCheck, ShieldMinus, UserCheck, UserX } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { AvatarNome } from "@/components/avatar-nome";
 import { formatarData } from "@/lib/datas";
-import { alterarAtivo, alterarPapel, redefinirSenha, type Credenciais } from "@/server/actions/usuarios";
+import { alterarAtivo, alterarPapel, editarUsuario, redefinirSenha, type Credenciais } from "@/server/actions/usuarios";
+import { Label } from "@/components/ui/label";
+import { AlertaErro } from "@/components/alerta-erro";
+import { semReset } from "@/lib/form";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 type U = { id: string; nome: string; email: string; papel: "admin" | "usuario"; ativo: boolean; precisaTrocar: boolean; criadoEm: string; leituras: number };
@@ -20,6 +24,9 @@ export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: strin
   const [busca, setBusca] = useState("");
   const [cred, setCred] = useState<Credenciais | null>(null);
   const [copiado, setCopiado] = useState(false);
+  const [editando, setEditando] = useState<U | null>(null);
+  const [erroEdicao, setErroEdicao] = useState<string | null>(null);
+  const router = useRouter();
   const [pendente, iniciar] = useTransition();
   const lista = useMemo(() => usuarios.filter((u) => norm(`${u.nome} ${u.email}`).includes(norm(busca.trim()))), [usuarios, busca]);
 
@@ -64,6 +71,15 @@ export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: strin
               <DropdownMenuContent align="end" className="w-60">
                 <DropdownMenuItem
                   className="min-h-11"
+                  onSelect={() => {
+                    setErroEdicao(null);
+                    setEditando(u);
+                  }}
+                >
+                  <Pencil /> Editar nome e e-mail
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="min-h-11"
                   onSelect={() =>
                     iniciar(async () => {
                       const r = await redefinirSenha(u.id);
@@ -101,6 +117,43 @@ export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: strin
         ))}
       </ul>
 
+      <Dialog open={!!editando} onOpenChange={(v) => !v && setEditando(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Editar conta</DialogTitle>
+            <DialogDescription>A pessoa passa a entrar com o novo e-mail. A senha continua a mesma.</DialogDescription>
+          </DialogHeader>
+          {editando && (
+            <form
+              className="space-y-4"
+              onSubmit={semReset((fd) => {
+                setErroEdicao(null);
+                iniciar(async () => {
+                  const r = await editarUsuario(editando.id, String(fd.get("nome") ?? ""), String(fd.get("email") ?? ""));
+                  if (!r.ok) return setErroEdicao(r.erro);
+                  toast.success("Conta atualizada.");
+                  setEditando(null);
+                  router.refresh();
+                });
+              })}
+            >
+              <div className="space-y-2">
+                <Label htmlFor="ed-nome">Nome</Label>
+                <Input id="ed-nome" name="nome" required minLength={2} maxLength={80} defaultValue={editando.nome} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="ed-email">E-mail</Label>
+                <Input id="ed-email" name="email" type="email" required defaultValue={editando.email} autoCapitalize="none" />
+              </div>
+              <AlertaErro mensagem={erroEdicao} />
+              <Button type="submit" className="w-full" disabled={pendente}>
+                {pendente ? "Salvando…" : "Salvar"}
+              </Button>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
+
       <Dialog open={!!cred} onOpenChange={(v) => !v && setCred(null)}>
         <DialogContent>
           <DialogHeader>
@@ -123,7 +176,7 @@ export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: strin
             variant="outline"
             onClick={async () => {
               if (!cred) return;
-              await navigator.clipboard.writeText(`BibleRats — ${window.location.origin}/login\nE-mail: ${cred.login}\nSenha provisória: ${cred.senha}`);
+              await navigator.clipboard.writeText(`${document.title.split(" · ").pop() || "BibleRats"} — ${window.location.origin}/login\nE-mail: ${cred.login}\nSenha provisória: ${cred.senha}`);
               setCopiado(true);
               setTimeout(() => setCopiado(false), 2000);
             }}

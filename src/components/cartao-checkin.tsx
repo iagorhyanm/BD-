@@ -2,7 +2,6 @@ import Link from "next/link";
 import { BookOpen, Clock, MessageCircle } from "lucide-react";
 import { AvatarNome } from "@/components/avatar-nome";
 import { Reacoes } from "@/components/reacoes";
-import { formatarLeitura } from "@/lib/biblia";
 import { rotuloDia } from "@/lib/datas";
 import type { ItemFeed } from "@/lib/feed";
 
@@ -16,14 +15,20 @@ export function CartaoCheckin({ item, euId, detalhe = false }: { item: ItemFeed;
           <p className="truncate font-semibold">
             {meu ? "Você" : item.nome}
           </p>
-          <p className="text-sm text-muted-foreground">{rotuloDia(item.data)}</p>
+          <p className="text-sm text-muted-foreground">
+            Leitura de {rotuloDia(item.data)}
+            {!item.noPrazo && <span className="ml-1.5 rounded-full bg-muted px-2 py-0.5 text-xs">marcada depois</span>}
+          </p>
         </div>
       </header>
 
       <Link href={`/checkin/${item.id}`} className="block space-y-3">
-        <p className="flex items-center gap-2 text-lg font-bold text-primary">
-          <BookOpen className="size-5 shrink-0" aria-hidden />
-          {formatarLeitura(item.livro, item.capituloInicio, item.capituloFim)}
+        <p className="flex items-start gap-2 text-lg font-bold text-primary">
+          <BookOpen className="mt-1 size-5 shrink-0" aria-hidden />
+          <span className="min-w-0">
+            {item.leitura}
+            {item.tituloDia && <span className="block text-xs font-medium text-muted-foreground">{item.tituloDia}</span>}
+          </span>
           {item.minutos && (
             <span className="ml-auto flex items-center gap-1 text-sm font-medium text-muted-foreground">
               <Clock className="size-4" aria-hidden /> {item.minutos} min

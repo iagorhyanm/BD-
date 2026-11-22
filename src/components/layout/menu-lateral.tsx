@@ -7,7 +7,7 @@ import { NAVEGACAO, itemAtivo } from "@/config/navegacao";
 import { cn } from "@/lib/utils";
 import { tema } from "@/theme.config";
 
-export function MenuLateral({ ehAdmin }: { ehAdmin: boolean }) {
+export function MenuLateral({ ehAdmin, nome, slogan }: { ehAdmin: boolean; nome: string; slogan: string }) {
   const pathname = usePathname();
   const itens = NAVEGACAO.filter((i) => !i.somenteAdmin || ehAdmin);
 
@@ -16,8 +16,8 @@ export function MenuLateral({ ehAdmin }: { ehAdmin: boolean }) {
       <Link href="/" className="flex items-center gap-3 px-5 py-5">
         <Image src={tema.logo} alt="" width={40} height={40} className="size-10 rounded-xl" />
         <div className="leading-tight">
-          <p className="text-lg font-bold">{tema.nome}</p>
-          <p className="text-xs text-sidebar-foreground/70">{tema.slogan}</p>
+          <p className="text-lg font-bold">{nome}</p>
+          <p className="text-xs text-sidebar-foreground/70">{slogan}</p>
         </div>
       </Link>
       <nav aria-label="Menu principal" className="flex-1 space-y-1 overflow-y-auto px-3 pb-6">

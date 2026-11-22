@@ -5,10 +5,12 @@ import { MenuLateral } from "@/components/layout/menu-lateral";
 import { BarraInferior } from "@/components/layout/barra-inferior";
 import { MenuUsuario } from "@/components/layout/menu-usuario";
 import { tema } from "@/theme.config";
+import { obterConfig } from "@/lib/config";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const perfil = await requireUsuario();
   const ehAdmin = perfil.papel === "admin";
+  const config = await obterConfig();
 
   return (
     <div className="flex min-h-dvh">
@@ -18,13 +20,13 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       >
         Pular para o conteúdo
       </a>
-      <MenuLateral ehAdmin={ehAdmin} />
+      <MenuLateral ehAdmin={ehAdmin} nome={config.nome} slogan={config.slogan} />
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="sticky top-0 z-30 border-b bg-background/90 pt-[env(safe-area-inset-top)] backdrop-blur lg:hidden">
           <div className="mx-auto flex h-14 max-w-3xl items-center gap-3 px-4">
             <Link href="/" className="flex items-center gap-2" aria-label="Início">
               <Image src={tema.logo} alt="" width={32} height={32} className="size-8 rounded-lg" />
-              <span className="text-lg font-bold tracking-tight">{tema.nome}</span>
+              <span className="text-lg font-bold tracking-tight">{config.nome}</span>
             </Link>
             <div className="flex-1" />
             <MenuUsuario nome={perfil.nome} papel={ROTULO_PAPEL[perfil.papel]} />

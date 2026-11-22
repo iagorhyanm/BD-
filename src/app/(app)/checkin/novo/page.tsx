@@ -1,28 +1,38 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { requireUsuario } from "@/lib/auth";
-import { createClient } from "@/lib/supabase/server";
+import { diasMarcaveis } from "@/lib/plano-dia";
 import { CabecalhoPagina } from "@/components/cabecalho-pagina";
+import { Button } from "@/components/ui/button";
 import { FormCheckin } from "../form-checkin";
 
-export const metadata: Metadata = { title: "Registrar leitura" };
+export const metadata: Metadata = { title: "Marcar leitura" };
 
-export default async function NovoCheckinPage() {
+export default async function NovoCheckinPage({ searchParams }: { searchParams: Promise<{ dia?: string }> }) {
   const eu = await requireUsuario();
-  const supabase = await createClient();
-  // Sugere continuar de onde parou.
-  const { data: ultimo } = await supabase
-    .from("checkins")
-    .select("livro, capitulo_fim")
-    .eq("user_id", eu.id)
-    .order("data", { ascending: false })
-    .order("criado_em", { ascending: false })
-    .limit(1)
-    .maybeSingle();
+  const { dia } = await searchParams;
+  const dias = await diasMarcaveis(eu.id);
+  const pendentes = dias.filter((d) => !d.checkinId);
 
   return (
     <>
-      <CabecalhoPagina titulo="Registrar leitura" descricao="Cada dia com leitura vale 1 ponto nos seus desafios." />
-      <FormCheckin userId={eu.id} ultimoLivro={ultimo ? { livro: ultimo.livro, capitulo: ultimo.capitulo_fim } : undefined} />
+      <CabecalhoPagina titulo="Marcar leitura" descricao="Leia o texto do plano e marque aqui. Cada dia lido vale 1 ponto." />
+      {dias.length === 0 ? (
+        <div className="space-y-3 rounded-2xl border bg-card p-6 text-center">
+          <p className="text-lg font-semibold">Ainda não há leitura no plano para hoje.</p>
+          <p className="text-muted-foreground">Assim que o plano for publicado, a leitura do dia aparece aqui.</p>
+          <Button asChild variant="outline"><Link href="/plano">Ver o plano</Link></Button>
+        </div>
+      ) : pendentes.length === 0 ? (
+        <div className="space-y-3 rounded-2xl border bg-card p-6 text-center">
+          <p className="text-3xl" aria-hidden>🎉</p>
+          <p className="text-lg font-semibold">Você está em dia!</p>
+          <p className="text-muted-foreground">Todas as leituras recentes já foram marcadas. Volte amanhã.</p>
+          <Button asChild variant="outline"><Link href="/">Ir para o Início</Link></Button>
+        </div>
+      ) : (
+        <FormCheckin userId={eu.id} dias={dias} diaInicial={dia} />
+      )}
     </>
   );
 }
