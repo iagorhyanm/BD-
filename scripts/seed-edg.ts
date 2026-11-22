@@ -1,10 +1,10 @@
 /**
- * Cria (ou atualiza) o primeiro usuário EDG.
+ * Cria (ou atualiza) o primeiro ADMINISTRADOR do BibleRats.
  *
- *   npm run seed:edg
+ *   npm run seed:admin   (ou o nome antigo: npm run seed:edg)
  *
  * Lê EDG_NOME, EDG_EMAIL, EDG_SENHA e EDG_TELEFONE do arquivo .env.local (ou .env).
- * Pode rodar mais de uma vez: se o usuário já existir, só garante que ele é EDG ativo.
+ * Pode rodar mais de uma vez: se o usuário já existir, só garante que ele é administrador ativo.
  */
 import { config } from "dotenv";
 import { createClient } from "@supabase/supabase-js";
@@ -48,7 +48,7 @@ async function main() {
   }
 
   if (userId) {
-    console.log(`ℹ️  Usuário ${email} já existe — garantindo que é EDG ativo e atualizando a senha.`);
+    console.log(`ℹ️  Usuário ${email} já existe — garantindo que é administrador ativo e atualizando a senha.`);
     const { error } = await supabase.auth.admin.updateUserById(userId, { password: senha, ban_duration: "none" });
     if (error) throw error;
   } else {
@@ -68,17 +68,17 @@ async function main() {
     nome,
     email,
     telefone,
-    papel: "edg",
+    papel: "admin",
     ativo: true,
     precisa_trocar_senha: false,
   });
   if (erroPerfil) throw erroPerfil;
 
-  console.log(`\n🎉 Pronto! ${nome} é EDG. Entre no sistema com:\n   E-mail: ${email}\n   Senha: (a que está em EDG_SENHA)\n`);
+  console.log(`\n🎉 Pronto! ${nome} é administrador(a) do BibleRats. Entre com:\n   E-mail: ${email}\n   Senha: (a que está em EDG_SENHA)\n`);
 }
 
 main().catch((e) => {
-  console.error("\n❌ Erro ao criar o EDG:", e?.message ?? e);
+  console.error("\n❌ Erro ao criar o administrador:", e?.message ?? e);
   console.error("   Confira se rodou as migrations e se as chaves do Supabase estão corretas.\n");
   process.exit(1);
 });

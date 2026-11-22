@@ -8,7 +8,7 @@ export default function SemAcessoPage() {
       <CardHeader>
         <CardTitle className="text-xl">Acesso não liberado</CardTitle>
         <CardDescription>
-          Seu usuário está desativado ou ainda não tem acesso ao sistema. Fale com o EDG da equipe.
+          Sua conta está desativada. Fale com um administrador do BibleRats.
         </CardDescription>
       </CardHeader>
       <CardContent>

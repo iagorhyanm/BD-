@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { KeyRound, LogOut } from "lucide-react";
+import { KeyRound, LogOut, UserRound } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,7 +22,7 @@ export function MenuUsuario({ nome, papel }: { nome: string; papel: string }) {
     <DropdownMenu>
       <DropdownMenuTrigger
         aria-label="Minha conta"
-        className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
+        className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground"
       >
         {iniciais(nome)}
       </DropdownMenuTrigger>
@@ -32,6 +32,11 @@ export function MenuUsuario({ nome, papel }: { nome: string; papel: string }) {
           <p className="text-xs font-normal text-muted-foreground">{papel}</p>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+        <DropdownMenuItem asChild className="min-h-11">
+          <Link href="/perfil">
+            <UserRound /> Meu perfil
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuItem asChild className="min-h-11">
           <Link href="/trocar-senha">
             <KeyRound /> Trocar senha

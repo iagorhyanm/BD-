@@ -1,5 +1,5 @@
 {
-  "name": "bandinha-ejc",
+  "name": "biblerats",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:db": "supabase test db",
     "seed:edg": "tsx scripts/seed-edg.ts",
-    "db:types": "supabase gen types typescript --local > src/lib/supabase/database.types.ts"
+    "db:types": "supabase gen types typescript --local > src/lib/supabase/database.types.ts",
+    "seed:admin": "tsx scripts/seed-edg.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

@@ -23,311 +23,117 @@ export type Database = {
           }
         },"public": {
           Tables: {
-            "avaliacoes": {
+            "checkins": {
                   Row: {
-                    "atualizado_em": string,"comentario": string | null,"coordenador_id": string,"criado_em": string,"id": string,"inscricao_id": string,"nota": number
+                    "anotacao": string | null,"atualizado_em": string,"capitulo_fim": number,"capitulo_inicio": number,"criado_em": string,"data": string,"foto_path": string | null,"id": string,"livro": string,"minutos": number | null,"user_id": string,"versiculo": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "atualizado_em"?: string,"comentario"?: string | null,"coordenador_id": string,"criado_em"?: string,"id"?: string,"inscricao_id": string,"nota": number
+                    "anotacao"?: string | null,"atualizado_em"?: string,"capitulo_fim": number,"capitulo_inicio": number,"criado_em"?: string,"data"?: string,"foto_path"?: string | null,"id"?: string,"livro": string,"minutos"?: number | null,"user_id"?: string,"versiculo"?: string | null
                   }
                   Update: {
-                    "atualizado_em"?: string,"comentario"?: string | null,"coordenador_id"?: string,"criado_em"?: string,"id"?: string,"inscricao_id"?: string,"nota"?: number
+                    "anotacao"?: string | null,"atualizado_em"?: string,"capitulo_fim"?: number,"capitulo_inicio"?: number,"criado_em"?: string,"data"?: string,"foto_path"?: string | null,"id"?: string,"livro"?: string,"minutos"?: number | null,"user_id"?: string,"versiculo"?: string | null
                   }
                   Relationships: [
                     {
-      foreignKeyName: "avaliacoes_coordenador_id_fkey"
-      columns: ["coordenador_id"]
+      foreignKeyName: "checkins_livro_fkey"
+      columns: ["livro"]
 isOneToOne: false
-      referencedRelation: "profiles"
+      referencedRelation: "livros_biblia"
       referencedColumns: ["id"]
     },{
-      foreignKeyName: "avaliacoes_inscricao_id_fkey"
-      columns: ["inscricao_id"]
-isOneToOne: false
-      referencedRelation: "inscricoes"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"aviso_envios": {
-                  Row: {
-                    "aviso_id": string,"destinatarios": number,"enviado_em": string,"enviado_por": string | null,"filtro": NonNullable<Json>,"filtro_descricao": string | null,"id": string
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "aviso_id": string,"destinatarios"?: number,"enviado_em"?: string,"enviado_por"?: string | null,"filtro"?: NonNullable<Json>,"filtro_descricao"?: string | null,"id"?: string
-                  }
-                  Update: {
-                    "aviso_id"?: string,"destinatarios"?: number,"enviado_em"?: string,"enviado_por"?: string | null,"filtro"?: NonNullable<Json>,"filtro_descricao"?: string | null,"id"?: string
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "aviso_envios_aviso_id_fkey"
-      columns: ["aviso_id"]
-isOneToOne: false
-      referencedRelation: "avisos"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "aviso_envios_enviado_por_fkey"
-      columns: ["enviado_por"]
+      foreignKeyName: "checkins_user_id_fkey"
+      columns: ["user_id"]
 isOneToOne: false
       referencedRelation: "profiles"
       referencedColumns: ["id"]
     }
                   ]
-                },"avisos": {
+                },"comentarios": {
                   Row: {
-                    "atualizado_em": string,"autor_id": string | null,"criado_em": string,"edicao_id": string,"fixado": boolean,"id": string,"texto": string,"titulo": string
+                    "checkin_id": string,"criado_em": string,"id": string,"texto": string,"user_id": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "atualizado_em"?: string,"autor_id"?: string | null,"criado_em"?: string,"edicao_id": string,"fixado"?: boolean,"id"?: string,"texto": string,"titulo": string
+                    "checkin_id": string,"criado_em"?: string,"id"?: string,"texto": string,"user_id"?: string
                   }
                   Update: {
-                    "atualizado_em"?: string,"autor_id"?: string | null,"criado_em"?: string,"edicao_id"?: string,"fixado"?: boolean,"id"?: string,"texto"?: string,"titulo"?: string
+                    "checkin_id"?: string,"criado_em"?: string,"id"?: string,"texto"?: string,"user_id"?: string
                   }
                   Relationships: [
                     {
-      foreignKeyName: "avisos_autor_id_fkey"
-      columns: ["autor_id"]
+      foreignKeyName: "comentarios_checkin_id_fkey"
+      columns: ["checkin_id"]
+isOneToOne: false
+      referencedRelation: "checkins"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "comentarios_user_id_fkey"
+      columns: ["user_id"]
 isOneToOne: false
       referencedRelation: "profiles"
       referencedColumns: ["id"]
-    },{
-      foreignKeyName: "avisos_edicao_id_fkey"
-      columns: ["edicao_id"]
-isOneToOne: false
-      referencedRelation: "edicoes"
-      referencedColumns: ["id"]
     }
                   ]
-                },"checklist_itens": {
+                },"grupo_membros": {
                   Row: {
-                    "conferido": boolean,"conferido_em": string | null,"conferido_por": string | null,"descricao": string,"equipamento_id": string | null,"evento_id": string,"id": string,"ordem": number,"quantidade": number
+                    "entrou_em": string,"grupo_id": string,"papel": Database["public"]['Enums']["papel_grupo"],"user_id": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "conferido"?: boolean,"conferido_em"?: string | null,"conferido_por"?: string | null,"descricao": string,"equipamento_id"?: string | null,"evento_id": string,"id"?: string,"ordem"?: number,"quantidade"?: number
+                    "entrou_em"?: string,"grupo_id": string,"papel"?: Database["public"]['Enums']["papel_grupo"],"user_id": string
                   }
                   Update: {
-                    "conferido"?: boolean,"conferido_em"?: string | null,"conferido_por"?: string | null,"descricao"?: string,"equipamento_id"?: string | null,"evento_id"?: string,"id"?: string,"ordem"?: number,"quantidade"?: number
+                    "entrou_em"?: string,"grupo_id"?: string,"papel"?: Database["public"]['Enums']["papel_grupo"],"user_id"?: string
                   }
                   Relationships: [
                     {
-      foreignKeyName: "checklist_itens_conferido_por_fkey"
-      columns: ["conferido_por"]
+      foreignKeyName: "grupo_membros_grupo_id_fkey"
+      columns: ["grupo_id"]
+isOneToOne: false
+      referencedRelation: "grupos"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "grupo_membros_user_id_fkey"
+      columns: ["user_id"]
 isOneToOne: false
       referencedRelation: "profiles"
       referencedColumns: ["id"]
-    },{
-      foreignKeyName: "checklist_itens_equipamento_id_fkey"
-      columns: ["equipamento_id"]
-isOneToOne: false
-      referencedRelation: "equipamentos"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "checklist_itens_evento_id_fkey"
-      columns: ["evento_id"]
-isOneToOne: false
-      referencedRelation: "eventos"
-      referencedColumns: ["id"]
     }
                   ]
-                },"edicoes": {
+                },"grupos": {
                   Row: {
-                    "ano": number | null,"ativa": boolean,"atualizado_em": string,"criado_em": string,"criado_por": string | null,"id": string,"limite_faltas": number,"nome": string,"texto_lgpd": string,"vagas_feminino": number,"vagas_masculino": number
+                    "atualizado_em": string,"codigo": string,"criado_em": string,"criado_por": string | null,"descricao": string | null,"fim": string | null,"id": string,"inicio": string,"nome": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "ano"?: number | null,"ativa"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"criado_por"?: string | null,"id"?: string,"limite_faltas"?: number,"nome": string,"texto_lgpd"?: string,"vagas_feminino"?: number,"vagas_masculino"?: number
+                    "atualizado_em"?: string,"codigo"?: string,"criado_em"?: string,"criado_por"?: string | null,"descricao"?: string | null,"fim"?: string | null,"id"?: string,"inicio"?: string,"nome": string
                   }
                   Update: {
-                    "ano"?: number | null,"ativa"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"criado_por"?: string | null,"id"?: string,"limite_faltas"?: number,"nome"?: string,"texto_lgpd"?: string,"vagas_feminino"?: number,"vagas_masculino"?: number
+                    "atualizado_em"?: string,"codigo"?: string,"criado_em"?: string,"criado_por"?: string | null,"descricao"?: string | null,"fim"?: string | null,"id"?: string,"inicio"?: string,"nome"?: string
                   }
                   Relationships: [
                     {
-      foreignKeyName: "edicoes_criado_por_fkey"
+      foreignKeyName: "grupos_criado_por_fkey"
       columns: ["criado_por"]
 isOneToOne: false
       referencedRelation: "profiles"
       referencedColumns: ["id"]
     }
                   ]
-                },"emprestimos": {
+                },"livros_biblia": {
                   Row: {
-                    "devolvido_em": string | null,"equipamento_id": string,"id": string,"observacao": string | null,"quem": string,"registrado_por": string | null,"retirado_em": string
+                    "abrev": string,"capitulos": number,"id": string,"nome": string,"ordem": number,"testamento": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "devolvido_em"?: string | null,"equipamento_id": string,"id"?: string,"observacao"?: string | null,"quem": string,"registrado_por"?: string | null,"retirado_em"?: string
+                    "abrev": string,"capitulos": number,"id": string,"nome": string,"ordem": number,"testamento": string
                   }
                   Update: {
-                    "devolvido_em"?: string | null,"equipamento_id"?: string,"id"?: string,"observacao"?: string | null,"quem"?: string,"registrado_por"?: string | null,"retirado_em"?: string
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "emprestimos_equipamento_id_fkey"
-      columns: ["equipamento_id"]
-isOneToOne: false
-      referencedRelation: "equipamentos"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "emprestimos_registrado_por_fkey"
-      columns: ["registrado_por"]
-isOneToOne: false
-      referencedRelation: "profiles"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"equipamentos": {
-                  Row: {
-                    "atualizado_em": string,"categoria": string | null,"criado_em": string,"dono_nome": string | null,"dono_tipo": Database["public"]['Enums']["dono_equipamento"],"edicao_id": string,"estado": Database["public"]['Enums']["estado_equipamento"],"foto_path": string | null,"id": string,"item": string,"observacoes": string | null,"quantidade": number,"responsavel": string | null
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "atualizado_em"?: string,"categoria"?: string | null,"criado_em"?: string,"dono_nome"?: string | null,"dono_tipo"?: Database["public"]['Enums']["dono_equipamento"],"edicao_id": string,"estado"?: Database["public"]['Enums']["estado_equipamento"],"foto_path"?: string | null,"id"?: string,"item": string,"observacoes"?: string | null,"quantidade"?: number,"responsavel"?: string | null
-                  }
-                  Update: {
-                    "atualizado_em"?: string,"categoria"?: string | null,"criado_em"?: string,"dono_nome"?: string | null,"dono_tipo"?: Database["public"]['Enums']["dono_equipamento"],"edicao_id"?: string,"estado"?: Database["public"]['Enums']["estado_equipamento"],"foto_path"?: string | null,"id"?: string,"item"?: string,"observacoes"?: string | null,"quantidade"?: number,"responsavel"?: string | null
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "equipamentos_edicao_id_fkey"
-      columns: ["edicao_id"]
-isOneToOne: false
-      referencedRelation: "edicoes"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"escalas": {
-                  Row: {
-                    "criado_em": string,"evento_id": string,"funcao_id": string,"id": string,"membro_id": string,"observacao": string | null
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "criado_em"?: string,"evento_id": string,"funcao_id": string,"id"?: string,"membro_id": string,"observacao"?: string | null
-                  }
-                  Update: {
-                    "criado_em"?: string,"evento_id"?: string,"funcao_id"?: string,"id"?: string,"membro_id"?: string,"observacao"?: string | null
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "escalas_evento_id_fkey"
-      columns: ["evento_id"]
-isOneToOne: false
-      referencedRelation: "eventos"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "escalas_funcao_id_fkey"
-      columns: ["funcao_id"]
-isOneToOne: false
-      referencedRelation: "funcoes"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "escalas_membro_id_fkey"
-      columns: ["membro_id"]
-isOneToOne: false
-      referencedRelation: "membros"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "escalas_membro_id_fkey"
-      columns: ["membro_id"]
-isOneToOne: false
-      referencedRelation: "resumo_presenca"
-      referencedColumns: ["membro_id"]
-    }
-                  ]
-                },"eventos": {
-                  Row: {
-                    "atualizado_em": string,"criado_em": string,"criado_por": string | null,"edicao_id": string,"fim": string | null,"id": string,"inicio": string,"local": string | null,"pauta": string | null,"tipo": Database["public"]['Enums']["tipo_evento"],"titulo": string
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "atualizado_em"?: string,"criado_em"?: string,"criado_por"?: string | null,"edicao_id": string,"fim"?: string | null,"id"?: string,"inicio": string,"local"?: string | null,"pauta"?: string | null,"tipo": Database["public"]['Enums']["tipo_evento"],"titulo": string
-                  }
-                  Update: {
-                    "atualizado_em"?: string,"criado_em"?: string,"criado_por"?: string | null,"edicao_id"?: string,"fim"?: string | null,"id"?: string,"inicio"?: string,"local"?: string | null,"pauta"?: string | null,"tipo"?: Database["public"]['Enums']["tipo_evento"],"titulo"?: string
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "eventos_criado_por_fkey"
-      columns: ["criado_por"]
-isOneToOne: false
-      referencedRelation: "profiles"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "eventos_edicao_id_fkey"
-      columns: ["edicao_id"]
-isOneToOne: false
-      referencedRelation: "edicoes"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"formularios": {
-                  Row: {
-                    "aberto": boolean,"abre_em": string | null,"atualizado_em": string,"capa_path": string | null,"criado_em": string,"criado_por": string | null,"descricao": string | null,"edicao_id": string,"fecha_em": string | null,"id": string,"limite": number | null,"msg_confirmacao": string,"slug": string,"texto_lgpd": string | null,"titulo": string
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "aberto"?: boolean,"abre_em"?: string | null,"atualizado_em"?: string,"capa_path"?: string | null,"criado_em"?: string,"criado_por"?: string | null,"descricao"?: string | null,"edicao_id": string,"fecha_em"?: string | null,"id"?: string,"limite"?: number | null,"msg_confirmacao"?: string,"slug": string,"texto_lgpd"?: string | null,"titulo": string
-                  }
-                  Update: {
-                    "aberto"?: boolean,"abre_em"?: string | null,"atualizado_em"?: string,"capa_path"?: string | null,"criado_em"?: string,"criado_por"?: string | null,"descricao"?: string | null,"edicao_id"?: string,"fecha_em"?: string | null,"id"?: string,"limite"?: number | null,"msg_confirmacao"?: string,"slug"?: string,"texto_lgpd"?: string | null,"titulo"?: string
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "formularios_criado_por_fkey"
-      columns: ["criado_por"]
-isOneToOne: false
-      referencedRelation: "profiles"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "formularios_edicao_id_fkey"
-      columns: ["edicao_id"]
-isOneToOne: false
-      referencedRelation: "edicoes"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"funcoes": {
-                  Row: {
-                    "ativo": boolean,"criado_em": string,"id": string,"nome": string,"ordem": number,"tipo": Database["public"]['Enums']["tipo_funcao"]
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "ativo"?: boolean,"criado_em"?: string,"id"?: string,"nome": string,"ordem"?: number,"tipo": Database["public"]['Enums']["tipo_funcao"]
-                  }
-                  Update: {
-                    "ativo"?: boolean,"criado_em"?: string,"id"?: string,"nome"?: string,"ordem"?: number,"tipo"?: Database["public"]['Enums']["tipo_funcao"]
+                    "abrev"?: string,"capitulos"?: number,"id"?: string,"nome"?: string,"ordem"?: number,"testamento"?: string
                   }
                   Relationships: [
                     
-                  ]
-                },"inscricoes": {
-                  Row: {
-                    "ano_anterior": number | null,"atualizado_em": string,"cidade": string,"consentimento": boolean,"consentimento_em": string,"criado_em": string,"edicao_id": string,"equipe_anterior": string | null,"formulario_id": string,"id": string,"idade": number,"ja_trabalhou": boolean,"nascimento": string,"nome": string,"resp_consentimento": boolean | null,"resp_nome": string | null,"resp_telefone": string | null,"respostas": NonNullable<Json>,"sexo": Database["public"]['Enums']["sexo"],"status": Database["public"]['Enums']["status_inscricao"],"telefone": string
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "ano_anterior"?: number | null,"atualizado_em"?: string,"cidade": string,"consentimento": boolean,"consentimento_em"?: string,"criado_em"?: string,"edicao_id": string,"equipe_anterior"?: string | null,"formulario_id": string,"id"?: string,"idade": number,"ja_trabalhou": boolean,"nascimento": string,"nome": string,"resp_consentimento"?: boolean | null,"resp_nome"?: string | null,"resp_telefone"?: string | null,"respostas"?: NonNullable<Json>,"sexo": Database["public"]['Enums']["sexo"],"status"?: Database["public"]['Enums']["status_inscricao"],"telefone": string
-                  }
-                  Update: {
-                    "ano_anterior"?: number | null,"atualizado_em"?: string,"cidade"?: string,"consentimento"?: boolean,"consentimento_em"?: string,"criado_em"?: string,"edicao_id"?: string,"equipe_anterior"?: string | null,"formulario_id"?: string,"id"?: string,"idade"?: number,"ja_trabalhou"?: boolean,"nascimento"?: string,"nome"?: string,"resp_consentimento"?: boolean | null,"resp_nome"?: string | null,"resp_telefone"?: string | null,"respostas"?: NonNullable<Json>,"sexo"?: Database["public"]['Enums']["sexo"],"status"?: Database["public"]['Enums']["status_inscricao"],"telefone"?: string
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "inscricoes_edicao_id_fkey"
-      columns: ["edicao_id"]
-isOneToOne: false
-      referencedRelation: "edicoes"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "inscricoes_formulario_id_fkey"
-      columns: ["formulario_id"]
-isOneToOne: false
-      referencedRelation: "formularios"
-      referencedColumns: ["id"]
-    }
                   ]
                 },"logs": {
                   Row: {
@@ -349,323 +155,101 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
-                },"membro_funcoes": {
-                  Row: {
-                    "funcao_id": string,"membro_id": string
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "funcao_id": string,"membro_id": string
-                  }
-                  Update: {
-                    "funcao_id"?: string,"membro_id"?: string
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "membro_funcoes_funcao_id_fkey"
-      columns: ["funcao_id"]
-isOneToOne: false
-      referencedRelation: "funcoes"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "membro_funcoes_membro_id_fkey"
-      columns: ["membro_id"]
-isOneToOne: false
-      referencedRelation: "membros"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "membro_funcoes_membro_id_fkey"
-      columns: ["membro_id"]
-isOneToOne: false
-      referencedRelation: "resumo_presenca"
-      referencedColumns: ["membro_id"]
-    }
-                  ]
-                },"membros": {
-                  Row: {
-                    "ativo": boolean,"atualizado_em": string,"cidade": string | null,"criado_em": string,"edicao_id": string,"id": string,"idade": number | null,"inscricao_id": string | null,"nascimento": string | null,"nivel": Database["public"]['Enums']["nivel_membro"] | null,"nome": string,"observacoes": string | null,"sexo": Database["public"]['Enums']["sexo"],"telefone": string | null
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"cidade"?: string | null,"criado_em"?: string,"edicao_id": string,"id"?: string,"idade"?: number | null,"inscricao_id"?: string | null,"nascimento"?: string | null,"nivel"?: Database["public"]['Enums']["nivel_membro"] | null,"nome": string,"observacoes"?: string | null,"sexo": Database["public"]['Enums']["sexo"],"telefone"?: string | null
-                  }
-                  Update: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"cidade"?: string | null,"criado_em"?: string,"edicao_id"?: string,"id"?: string,"idade"?: number | null,"inscricao_id"?: string | null,"nascimento"?: string | null,"nivel"?: Database["public"]['Enums']["nivel_membro"] | null,"nome"?: string,"observacoes"?: string | null,"sexo"?: Database["public"]['Enums']["sexo"],"telefone"?: string | null
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "membros_edicao_id_fkey"
-      columns: ["edicao_id"]
-isOneToOne: false
-      referencedRelation: "edicoes"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "membros_inscricao_id_fkey"
-      columns: ["inscricao_id"]
-isOneToOne: true
-      referencedRelation: "inscricoes"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"musica_interpretes": {
-                  Row: {
-                    "membro_id": string,"musica_id": string,"papel": string | null
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "membro_id": string,"musica_id": string,"papel"?: string | null
-                  }
-                  Update: {
-                    "membro_id"?: string,"musica_id"?: string,"papel"?: string | null
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "musica_interpretes_membro_id_fkey"
-      columns: ["membro_id"]
-isOneToOne: false
-      referencedRelation: "membros"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "musica_interpretes_membro_id_fkey"
-      columns: ["membro_id"]
-isOneToOne: false
-      referencedRelation: "resumo_presenca"
-      referencedColumns: ["membro_id"]
-    },{
-      foreignKeyName: "musica_interpretes_musica_id_fkey"
-      columns: ["musica_id"]
-isOneToOne: false
-      referencedRelation: "musicas"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"musicas": {
-                  Row: {
-                    "artista": string | null,"atualizado_em": string,"bpm": number | null,"cifra_url": string | null,"criado_em": string,"criado_por": string | null,"id": string,"media_url": string | null,"momentos": (string)[],"observacoes": string | null,"titulo": string,"tom": string | null
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "artista"?: string | null,"atualizado_em"?: string,"bpm"?: number | null,"cifra_url"?: string | null,"criado_em"?: string,"criado_por"?: string | null,"id"?: string,"media_url"?: string | null,"momentos"?: (string)[],"observacoes"?: string | null,"titulo": string,"tom"?: string | null
-                  }
-                  Update: {
-                    "artista"?: string | null,"atualizado_em"?: string,"bpm"?: number | null,"cifra_url"?: string | null,"criado_em"?: string,"criado_por"?: string | null,"id"?: string,"media_url"?: string | null,"momentos"?: (string)[],"observacoes"?: string | null,"titulo"?: string,"tom"?: string | null
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "musicas_criado_por_fkey"
-      columns: ["criado_por"]
-isOneToOne: false
-      referencedRelation: "profiles"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"perguntas": {
-                  Row: {
-                    "ajuda": string | null,"criado_em": string,"formulario_id": string,"id": string,"obrigatoria": boolean,"opcoes": NonNullable<Json>,"ordem": number,"rotulo": string,"tipo": Database["public"]['Enums']["tipo_pergunta"]
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "ajuda"?: string | null,"criado_em"?: string,"formulario_id": string,"id"?: string,"obrigatoria"?: boolean,"opcoes"?: NonNullable<Json>,"ordem"?: number,"rotulo": string,"tipo": Database["public"]['Enums']["tipo_pergunta"]
-                  }
-                  Update: {
-                    "ajuda"?: string | null,"criado_em"?: string,"formulario_id"?: string,"id"?: string,"obrigatoria"?: boolean,"opcoes"?: NonNullable<Json>,"ordem"?: number,"rotulo"?: string,"tipo"?: Database["public"]['Enums']["tipo_pergunta"]
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "perguntas_formulario_id_fkey"
-      columns: ["formulario_id"]
-isOneToOne: false
-      referencedRelation: "formularios"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"presencas": {
-                  Row: {
-                    "atualizado_em": string,"evento_id": string,"id": string,"membro_id": string,"motivo": string | null,"registrado_por": string | null,"status": Database["public"]['Enums']["status_presenca"]
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "atualizado_em"?: string,"evento_id": string,"id"?: string,"membro_id": string,"motivo"?: string | null,"registrado_por"?: string | null,"status": Database["public"]['Enums']["status_presenca"]
-                  }
-                  Update: {
-                    "atualizado_em"?: string,"evento_id"?: string,"id"?: string,"membro_id"?: string,"motivo"?: string | null,"registrado_por"?: string | null,"status"?: Database["public"]['Enums']["status_presenca"]
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "presencas_evento_id_fkey"
-      columns: ["evento_id"]
-isOneToOne: false
-      referencedRelation: "eventos"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "presencas_membro_id_fkey"
-      columns: ["membro_id"]
-isOneToOne: false
-      referencedRelation: "membros"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "presencas_membro_id_fkey"
-      columns: ["membro_id"]
-isOneToOne: false
-      referencedRelation: "resumo_presenca"
-      referencedColumns: ["membro_id"]
-    },{
-      foreignKeyName: "presencas_registrado_por_fkey"
-      columns: ["registrado_por"]
-isOneToOne: false
-      referencedRelation: "profiles"
-      referencedColumns: ["id"]
-    }
-                  ]
                 },"profiles": {
                   Row: {
-                    "ativo": boolean,"atualizado_em": string,"criado_em": string,"email": string | null,"id": string,"nome": string,"papel": Database["public"]['Enums']["papel_usuario"],"precisa_trocar_senha": boolean,"telefone": string | null,"usuario": string | null
+                    "ativo": boolean,"atualizado_em": string,"criado_em": string,"email": string | null,"id": string,"nome": string,"papel": Database["public"]['Enums']["papel_app"],"precisa_trocar_senha": boolean,"telefone": string | null,"usuario": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"id": string,"nome": string,"papel"?: Database["public"]['Enums']["papel_usuario"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
+                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"id": string,"nome": string,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
                   }
                   Update: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"id"?: string,"nome"?: string,"papel"?: Database["public"]['Enums']["papel_usuario"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
+                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"id"?: string,"nome"?: string,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
                   }
                   Relationships: [
                     
                   ]
-                },"rate_limits": {
+                },"reacoes": {
                   Row: {
-                    "chave": string,"contagem": number,"janela_inicio": string
+                    "checkin_id": string,"criado_em": string,"emoji": string,"user_id": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "chave": string,"contagem"?: number,"janela_inicio": string
+                    "checkin_id": string,"criado_em"?: string,"emoji": string,"user_id"?: string
                   }
                   Update: {
-                    "chave"?: string,"contagem"?: number,"janela_inicio"?: string
-                  }
-                  Relationships: [
-                    
-                  ]
-                },"setlist_itens": {
-                  Row: {
-                    "id": string,"musica_id": string,"observacao": string | null,"ordem": number,"setlist_id": string,"tom": string | null
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "id"?: string,"musica_id": string,"observacao"?: string | null,"ordem"?: number,"setlist_id": string,"tom"?: string | null
-                  }
-                  Update: {
-                    "id"?: string,"musica_id"?: string,"observacao"?: string | null,"ordem"?: number,"setlist_id"?: string,"tom"?: string | null
+                    "checkin_id"?: string,"criado_em"?: string,"emoji"?: string,"user_id"?: string
                   }
                   Relationships: [
                     {
-      foreignKeyName: "setlist_itens_musica_id_fkey"
-      columns: ["musica_id"]
+      foreignKeyName: "reacoes_checkin_id_fkey"
+      columns: ["checkin_id"]
 isOneToOne: false
-      referencedRelation: "musicas"
+      referencedRelation: "checkins"
       referencedColumns: ["id"]
     },{
-      foreignKeyName: "setlist_itens_setlist_id_fkey"
-      columns: ["setlist_id"]
+      foreignKeyName: "reacoes_user_id_fkey"
+      columns: ["user_id"]
 isOneToOne: false
-      referencedRelation: "setlists"
-      referencedColumns: ["id"]
-    }
-                  ]
-                },"setlists": {
-                  Row: {
-                    "atualizado_em": string,"criado_em": string,"edicao_id": string,"evento_id": string | null,"id": string,"observacoes": string | null,"titulo": string
-                  }
-                  ComputedFields: never
-                  Insert: {
-                    "atualizado_em"?: string,"criado_em"?: string,"edicao_id": string,"evento_id"?: string | null,"id"?: string,"observacoes"?: string | null,"titulo": string
-                  }
-                  Update: {
-                    "atualizado_em"?: string,"criado_em"?: string,"edicao_id"?: string,"evento_id"?: string | null,"id"?: string,"observacoes"?: string | null,"titulo"?: string
-                  }
-                  Relationships: [
-                    {
-      foreignKeyName: "setlists_edicao_id_fkey"
-      columns: ["edicao_id"]
-isOneToOne: false
-      referencedRelation: "edicoes"
-      referencedColumns: ["id"]
-    },{
-      foreignKeyName: "setlists_evento_id_fkey"
-      columns: ["evento_id"]
-isOneToOne: true
-      referencedRelation: "eventos"
+      referencedRelation: "profiles"
       referencedColumns: ["id"]
     }
                   ]
                 }
           }
           Views: {
-            "resumo_presenca": {
-                  Row: {
-                    "ativo": boolean,"atrasos": number | null,"edicao_id": string,"faltas": number | null,"justificadas": number | null,"membro_id": string,"nome": string,"percentual": number | null,"presentes": number | null,"registros": number | null,"sexo": Database["public"]['Enums']["sexo"]
-                  }
-                  ComputedFields: never
-                  Relationships: [
-                    {
-      foreignKeyName: "membros_edicao_id_fkey"
-      columns: ["edicao_id"]
-isOneToOne: false
-      referencedRelation: "edicoes"
-      referencedColumns: ["id"]
-    }
-                  ]
-                }
+            [_ in never]: never
           }
           Functions: {
-            "arquivos_orfaos_inscricao":
-{ Args: Record<PropertyKey, never>; Returns: {
-              "bytes": number,"criado_em": string,"nome": string
-            }[]
+            "compartilha_grupo":
+{ Args: { "p_outro": string }; Returns: boolean
                            },
-"ativar_edicao":
-{ Args: { "p_id": string }; Returns: undefined
+"e_membro":
+{ Args: { "p_grupo": string }; Returns: boolean
                            },
-"consumir_rate_limit":
-{ Args: { "p_chave": string,"p_janela_segundos": number,"p_limite": number }; Returns: boolean
+"entrar_no_grupo":
+{ Args: { "p_codigo": string }; Returns: string
                            },
-"duplicar_edicao":
-{ Args: { "p_ano": number,"p_nome": string,"p_origem": string }; Returns: string
+"estatisticas_usuario":
+{ Args: { "p_user": string }; Returns: Json
                            },
-"formulario_publico":
-{ Args: { "p_slug": string }; Returns: Json
+"gerar_codigo_convite":
+{ Args: Record<PropertyKey, never>; Returns: string
+                           },
+"grupo_por_codigo":
+{ Args: { "p_codigo": string }; Returns: Json
                            },
 "hoje_belem":
 { Args: Record<PropertyKey, never>; Returns: string
                            },
-"is_edg":
+"is_admin":
 { Args: Record<PropertyKey, never>; Returns: boolean
                            },
-"is_staff":
-{ Args: Record<PropertyKey, never>; Returns: boolean
+"papel_no_grupo":
+{ Args: { "p_grupo": string }; Returns: Database["public"]['Enums']["papel_grupo"]
                            },
-"normalizar_telefone":
-{ Args: { "p": string }; Returns: string
-                           },
-"papel_atual":
-{ Args: Record<PropertyKey, never>; Returns: Database["public"]['Enums']["papel_usuario"]
-                           },
-"puxar_para_equipe":
-{ Args: { "p_ids": (string)[] }; Returns: number
+"placar_grupo":
+{ Args: { "p_grupo": string }; Returns: {
+              "nome": string,"papel": Database["public"]['Enums']["papel_grupo"],"pontos": number,"sequencia": number,"ultimo": string,"user_id": string
+            }[]
                            },
 "registrar_log":
 { Args: { "p_acao": string,"p_dados"?: Json,"p_descricao"?: string,"p_entidade": string,"p_entidade_id"?: string }; Returns: undefined
                            },
-"situacao_formulario":
-{ Args: { "p_id": string }; Returns: string
+"sequencia_atual":
+{ Args: { "p_user": string }; Returns: number
                            },
 "uso_armazenamento":
 { Args: Record<PropertyKey, never>; Returns: {
               "arquivos": number,"bucket": string,"bytes": number
             }[]
+                           },
+"usuario_ativo":
+{ Args: Record<PropertyKey, never>; Returns: boolean
                            }
           }
           Enums: {
-            "dono_equipamento": "equipe"|"emprestado","estado_equipamento": "bom"|"defeito"|"manutencao","nivel_membro": "iniciante"|"intermediario"|"avancado","papel_usuario": "edg"|"coordenador"|"membro","sexo": "masculino"|"feminino","status_inscricao": "pendente"|"em_analise"|"selecionado"|"lista_espera"|"nao_selecionado","status_presenca": "presente"|"falta"|"justificada"|"atraso","tipo_evento": "ensaio"|"apresentacao","tipo_funcao": "voz"|"instrumento"|"outro","tipo_pergunta": "texto_curto"|"texto_longo"|"multipla"|"caixas"|"sim_nao"|"escala"|"lista"|"foto"|"video"
+            "papel_app": "admin"|"usuario","papel_grupo": "dono"|"admin"|"membro"
           }
           CompositeTypes: {
             [_ in never]: never
@@ -785,7 +369,7 @@ export const Constants = {
           }
         },"public": {
           Enums: {
-            "dono_equipamento": ["equipe", "emprestado"],"estado_equipamento": ["bom", "defeito", "manutencao"],"nivel_membro": ["iniciante", "intermediario", "avancado"],"papel_usuario": ["edg", "coordenador", "membro"],"sexo": ["masculino", "feminino"],"status_inscricao": ["pendente", "em_analise", "selecionado", "lista_espera", "nao_selecionado"],"status_presenca": ["presente", "falta", "justificada", "atraso"],"tipo_evento": ["ensaio", "apresentacao"],"tipo_funcao": ["voz", "instrumento", "outro"],"tipo_pergunta": ["texto_curto", "texto_longo", "multipla", "caixas", "sim_nao", "escala", "lista", "foto", "video"]
+            "papel_app": ["admin", "usuario"],"papel_grupo": ["dono", "admin", "membro"]
           }
         }
 } as const

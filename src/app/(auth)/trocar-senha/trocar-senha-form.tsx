@@ -18,7 +18,7 @@ export function TrocarSenhaForm({ nome, obrigatoria }: { nome: string; obrigator
         <CardTitle className="text-xl">{obrigatoria ? `Olá, ${nome}! 👋` : "Trocar senha"}</CardTitle>
         <CardDescription>
           {obrigatoria
-            ? "Antes de começar, crie a sua senha pessoal. A senha provisória deixa de valer."
+            ? "Antes de continuar, crie a sua senha pessoal. A senha provisória deixa de valer."
             : "Escolha uma nova senha para entrar no sistema."}
         </CardDescription>
       </CardHeader>

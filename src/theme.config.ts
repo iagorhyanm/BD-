@@ -1,6 +1,6 @@
 /**
  * ============================================================
- *  TEMA DA BANDINHA — edite só este arquivo para trocar
+ *  TEMA DO BIBLERATS — edite só este arquivo para trocar
  *  nome, logo e cores do sistema inteiro.
  * ============================================================
  *
@@ -9,36 +9,39 @@
  * Ícones do app instalado (PWA) ficam em /public/icons.
  */
 export const tema = {
-  nome: "Bandinha · EJC Marabá",
-  nomeCurto: "Bandinha",
-  descricao: "Gestão da equipe de música do EJC Marabá",
-  logo: "/logo.svg",
+  nome: "BibleRats",
+  nomeCurto: "BibleRats",
+  descricao: "Leia a Bíblia todo dia com seus amigos: desafios, sequência e placar.",
+  /** Frase curta exibida no login e no cadastro. */
+  slogan: "Leitura bíblica diária, em grupo.",
+  logo: "/logo.png",
 
   cores: {
-    /** Cor principal: botões, links, destaques. */
-    primaria: "#1f3a5f",
-    /** Texto sobre a cor principal. */
-    primariaTexto: "#ffffff",
-    /** Cor de destaque (detalhes, selos, indicadores). */
-    destaque: "#e0a43a",
-    destaqueTexto: "#1f2430",
-    /** Fundo das páginas. */
-    fundo: "#f7f5f0",
+    /** Cor principal (verde do logo): botões, links, destaques. */
+    primaria: "#0b5c3e",
+    /** Texto sobre a cor principal (creme do logo). */
+    primariaTexto: "#fbf6ea",
+    /** Cor de destaque (sequência 🔥, selos, indicadores). */
+    destaque: "#e9a83a",
+    destaqueTexto: "#21242c",
+    /** Fundo das páginas (creme claro). */
+    fundo: "#f8f4ea",
     /** Fundo dos cartões. */
     cartao: "#ffffff",
-    /** Texto principal. */
-    texto: "#1c2230",
+    /** Texto principal (grafite do logo). */
+    texto: "#21242c",
     /** Texto secundário (legendas). Contraste ≥ 4.5:1 sobre o fundo. */
-    textoSuave: "#5b6372",
+    textoSuave: "#585d68",
     /** Bordas. */
-    borda: "#e4e0d6",
+    borda: "#e5dfcf",
     /** Fundo de áreas neutras (abas, hover). */
-    neutro: "#efece4",
+    neutro: "#eee8d8",
     /** Erros e ações destrutivas. */
     perigo: "#c0392b",
     /** Cor do anel de foco (navegação por teclado). */
-    foco: "#e0a43a",
+    foco: "#e9a83a",
   },
+
 
   /** Arredondamento dos cantos. */
   raio: "0.75rem",

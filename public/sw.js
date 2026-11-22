@@ -1,11 +1,11 @@
 /*
- * Service worker da Bandinha — simples de propósito:
+ * Service worker do BibleRats — simples de propósito:
  *  - guarda em cache só arquivos estáticos (JS/CSS/fontes/ícones);
  *  - NUNCA guarda páginas com dados (privacidade/LGPD);
  *  - sem internet, mostra a página /offline.
  */
-const VERSAO = "bandinha-v1";
-const ESTATICOS = ["/offline", "/logo.svg", "/icons/icon-192.png", "/icons/icon-512.png"];
+const VERSAO = "biblerats-v1";
+const ESTATICOS = ["/offline", "/logo.png", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(VERSAO).then((c) => c.addAll(ESTATICOS)).then(() => self.skipWaiting()));
@@ -33,7 +33,7 @@ self.addEventListener("fetch", (e) => {
   }
 
   // Arquivos estáticos versionados do Next e ícones: cache primeiro.
-  if (url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/icons/") || url.pathname === "/logo.svg") {
+  if (url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/icons/") || url.pathname === "/logo.png") {
     e.respondWith(
       caches.match(req).then(
         (r) =>
