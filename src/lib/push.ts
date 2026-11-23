@@ -99,3 +99,14 @@ export async function notificarComentario(checkinId: string, autorId: string, te
     tag: `comentarios-${checkinId}`,
   });
 }
+
+/** Avisa quem foi colocado num desafio pelo administrador. */
+export async function notificarAdicionados(userIds: string[], grupo: { id: string; nome: string }, quem: string) {
+  if (!pushConfigurado() || !userIds.length) return;
+  await enviarPara(userIds, {
+    titulo: `Você entrou no desafio ${grupo.nome} 🏆`,
+    corpo: `${primeiroNome(quem)} te adicionou. Bora ler junto!`,
+    url: `/grupos/${grupo.id}`,
+    tag: `grupo-${grupo.id}`,
+  });
+}

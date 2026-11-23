@@ -130,7 +130,8 @@ O arquivo `vercel.json` já coloca o servidor em São Paulo (`gru1`), perto do b
 **Área do administrador** (Perfil → Área do administrador):
 - **Plano de leitura:** publicar o plano cronológico escolhendo a data do Dia 1, importar uma planilha (.xlsx/.csv com colunas Data e Leitura) ou texto colado, e editar, adicionar ou excluir dias.
 - **Textos e aviso:** nome do app, frase, boas-vindas e um aviso que aparece no Início de todo mundo.
-- **Usuários:** editar nome e e-mail, redefinir senha, desativar contas e escolher administradores.
+- **Desafios:** colocar pessoas já cadastradas direto num desafio, sem link nem código (marque várias de uma vez), e tirar quem não deve estar. Quem é adicionado recebe um aviso.
+- **Usuários:** editar nome e e-mail, adicionar a um desafio, redefinir senha, desativar contas e escolher administradores. O selo "Sem desafio" mostra quem ainda não está em nenhum.
 
 **Notificações** (Perfil → Notificações, ou o convite que aparece no Início):
 - **Lembrete da leitura:** por volta das 18h (Belém), para quem ainda não marcou a leitura do dia.

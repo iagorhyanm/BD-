@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, useTransition } from "react";
-import { Check, Copy, KeyRound, MoreVertical, Pencil, Search, ShieldCheck, ShieldMinus, UserCheck, UserX } from "lucide-react";
+import { Check, Copy, KeyRound, MoreVertical, Pencil, Trophy, Search, ShieldCheck, ShieldMinus, UserCheck, UserX } from "lucide-react";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,20 +11,23 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { AvatarNome } from "@/components/avatar-nome";
 import { formatarData } from "@/lib/datas";
 import { alterarAtivo, alterarPapel, editarUsuario, redefinirSenha, type Credenciais } from "@/server/actions/usuarios";
+import { adicionarAoDesafio } from "@/server/actions/admin-desafios";
 import { Label } from "@/components/ui/label";
 import { AlertaErro } from "@/components/alerta-erro";
 import { semReset } from "@/lib/form";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-type U = { id: string; nome: string; foto: string | null; email: string; papel: "admin" | "usuario"; ativo: boolean; precisaTrocar: boolean; criadoEm: string; leituras: number };
+type U = { id: string; nome: string; foto: string | null; email: string; papel: "admin" | "usuario"; ativo: boolean; precisaTrocar: boolean; criadoEm: string; leituras: number; grupos: string[] };
 const norm = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
-export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: string }) {
+export function ListaUsuarios({ usuarios, meuId, grupos }: { usuarios: U[]; meuId: string; grupos: { id: string; nome: string }[] }) {
   const [busca, setBusca] = useState("");
   const [cred, setCred] = useState<Credenciais | null>(null);
   const [copiado, setCopiado] = useState(false);
   const [editando, setEditando] = useState<U | null>(null);
+  const [paraDesafio, setParaDesafio] = useState<U | null>(null);
+  const [grupoEscolhido, setGrupoEscolhido] = useState("");
   const [erroEdicao, setErroEdicao] = useState<string | null>(null);
   const router = useRouter();
   const [pendente, iniciar] = useTransition();
@@ -57,8 +60,10 @@ export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: strin
                 {u.papel === "admin" && <Badge>Admin</Badge>}
                 {!u.ativo && <Badge variant="destructive">Desativado</Badge>}
                 {u.precisaTrocar && <Badge variant="outline">Senha provisória</Badge>}
+                {u.ativo && u.grupos.length === 0 && <Badge variant="secondary">Sem desafio</Badge>}
                 <span className="text-muted-foreground">
-                  {u.leituras} {u.leituras === 1 ? "leitura" : "leituras"} · desde {formatarData(u.criadoEm, "dd/MM/yy")}
+                  {u.leituras} {u.leituras === 1 ? "leitura" : "leituras"}
+                  {u.grupos.length > 0 && ` · ${u.grupos.length} ${u.grupos.length === 1 ? "desafio" : "desafios"}`} · desde {formatarData(u.criadoEm, "dd/MM/yy")}
                 </span>
               </div>
             </div>
@@ -78,6 +83,17 @@ export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: strin
                 >
                   <Pencil /> Editar nome e e-mail
                 </DropdownMenuItem>
+                {u.ativo && (
+                  <DropdownMenuItem
+                    className="min-h-11"
+                    onSelect={() => {
+                      setGrupoEscolhido("");
+                      setParaDesafio(u);
+                    }}
+                  >
+                    <Trophy /> Adicionar a um desafio
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem
                   className="min-h-11"
                   onSelect={() =>
@@ -116,6 +132,57 @@ export function ListaUsuarios({ usuarios, meuId }: { usuarios: U[]; meuId: strin
           </li>
         ))}
       </ul>
+
+      <Dialog open={!!paraDesafio} onOpenChange={(v) => !v && setParaDesafio(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Adicionar a um desafio</DialogTitle>
+            <DialogDescription>{paraDesafio?.nome} entra na hora, sem precisar de link ou código.</DialogDescription>
+          </DialogHeader>
+          {paraDesafio && (() => {
+            const disponiveis = grupos.filter((g) => !paraDesafio.grupos.includes(g.id));
+            if (!grupos.length) return <p className="text-sm text-muted-foreground">Nenhum desafio criado ainda.</p>;
+            if (!disponiveis.length) return <p className="text-sm text-muted-foreground">{paraDesafio.nome} já está em todos os desafios. 🎉</p>;
+            return (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="ad-grupo">Desafio</Label>
+                  <select
+                    id="ad-grupo"
+                    value={grupoEscolhido}
+                    onChange={(e) => setGrupoEscolhido(e.target.value)}
+                    className="h-12 w-full rounded-lg border border-input bg-background px-3 text-base"
+                  >
+                    <option value="" disabled>
+                      Escolha o desafio…
+                    </option>
+                    {disponiveis.map((g) => (
+                      <option key={g.id} value={g.id}>
+                        {g.nome}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <Button
+                  className="w-full"
+                  disabled={pendente || !grupoEscolhido}
+                  onClick={() =>
+                    iniciar(async () => {
+                      const r = await adicionarAoDesafio(grupoEscolhido, [paraDesafio.id]);
+                      if (!r.ok) return void toast.error(r.erro);
+                      toast.success(`${paraDesafio.nome} foi adicionado(a) ao desafio!`);
+                      setParaDesafio(null);
+                      router.refresh();
+                    })
+                  }
+                >
+                  <Trophy /> {pendente ? "Adicionando…" : "Adicionar"}
+                </Button>
+              </div>
+            );
+          })()}
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={!!editando} onOpenChange={(v) => !v && setEditando(null)}>
         <DialogContent>
