@@ -48,7 +48,12 @@ export function CartaoCheckin({ item, euId, detalhe = false }: { item: ItemFeed;
       </Link>
 
       <footer className="flex flex-wrap items-center justify-between gap-2 border-t pt-3">
-        <Reacoes checkinId={item.id} iniciais={item.reacoes} />
+        <Reacoes checkinId={item.id} iniciais={item.reacoes} atualizarPagina={detalhe} />
+        {!detalhe && item.userId === euId && item.reacoes.length > 0 && (
+          <Link href={`/checkin/${item.id}#reacoes`} className="flex min-h-9 items-center rounded-full px-2 text-sm font-medium text-primary hover:bg-muted">
+            Ver quem reagiu
+          </Link>
+        )}
         {!detalhe && (
           <Link
             href={`/checkin/${item.id}#comentarios`}

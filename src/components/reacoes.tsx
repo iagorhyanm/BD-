@@ -1,6 +1,7 @@
 "use client";
 
 import { useOptimistic, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { EMOJIS_REACAO } from "@/lib/biblia";
 import { alternarReacao } from "@/server/actions/checkins";
@@ -9,7 +10,8 @@ import { cn } from "@/lib/utils";
 type R = { emoji: string; total: number; minha: boolean };
 
 /** Barra de reações: toque para reagir/desfazer (atualiza na hora). */
-export function Reacoes({ checkinId, iniciais }: { checkinId: string; iniciais: R[] }) {
+export function Reacoes({ checkinId, iniciais, atualizarPagina = false }: { checkinId: string; iniciais: R[]; atualizarPagina?: boolean }) {
+  const router = useRouter();
   const [, iniciar] = useTransition();
   const [reacoes, alternar] = useOptimistic(iniciais, (atual: R[], emoji: string) => {
     const r = atual.find((x) => x.emoji === emoji);
@@ -34,6 +36,8 @@ export function Reacoes({ checkinId, iniciais }: { checkinId: string; iniciais: 
                 alternar(emoji);
                 const res = await alternarReacao(checkinId, emoji);
                 if (!res.ok) toast.error(res.erro);
+                // Na página da leitura, atualiza a lista "Quem reagiu".
+                else if (atualizarPagina) router.refresh();
               })
             }
             className={cn(
