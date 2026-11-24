@@ -78,7 +78,12 @@ export function InstalarApp({ nomeApp }: { nomeApp: string }) {
     const recente = Date.now() - adiado < ESPERA_DIAS * 86400000;
     let t: ReturnType<typeof setTimeout> | undefined;
     if (!recente && (p !== "outro" || window.__promptInstalar)) {
-      t = setTimeout(() => setAberto(true), 2500);
+      t = setTimeout(() => {
+        // Se o pop-up obrigatório de notificações está aberto, espera ele ser resolvido.
+        if (document.documentElement.dataset.notifPendente) {
+          window.addEventListener("biblerats:notif-resolvida", () => setTimeout(() => setAberto(true), 800), { once: true });
+        } else setAberto(true);
+      }, 2500);
     }
     return () => {
       if (t) clearTimeout(t);

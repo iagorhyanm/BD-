@@ -6,7 +6,7 @@ import { carregarFeed } from "@/lib/feed";
 import { deBelem, formatarData, hojeEmBelem, rotuloDia } from "@/lib/datas";
 import { diasMarcaveis } from "@/lib/plano-dia";
 import { obterConfig } from "@/lib/config";
-import { ConviteNotificacoes } from "@/components/convite-notificacoes";
+import { ExigirNotificacoes } from "@/components/exigir-notificacoes";
 import { Button } from "@/components/ui/button";
 import { EstadoVazio } from "@/components/estado-vazio";
 import { CartaoCheckin } from "@/components/cartao-checkin";
@@ -93,7 +93,7 @@ export default async function InicioPage() {
         </Link>
       </section>
 
-      <ConviteNotificacoes />
+      <ExigirNotificacoes />
 
       {atrasados.length > 0 && (
         <section aria-labelledby="t-atraso" className="space-y-2 rounded-2xl border bg-card p-4">
