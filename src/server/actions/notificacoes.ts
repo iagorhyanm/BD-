@@ -53,7 +53,7 @@ export async function removerInscricao(endpoint: string): Promise<Resultado> {
   return { ok: true };
 }
 
-const CAMPOS = ["notif_lembrete", "notif_checkins", "notif_comentarios"] as const;
+const CAMPOS = ["notif_lembrete", "notif_checkins", "notif_comentarios", "notif_avisos"] as const;
 
 export async function salvarPreferencia(campo: (typeof CAMPOS)[number], valor: boolean): Promise<Resultado> {
   const eu = await requireUsuario();

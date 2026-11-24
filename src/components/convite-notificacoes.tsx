@@ -29,7 +29,7 @@ export function ConviteNotificacoes() {
       <BellRing className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
       <div className="flex-1 space-y-2 pr-6">
         <p className="text-sm font-semibold">Quer um lembrete se esquecer de ler?</p>
-        <p className="text-sm text-muted-foreground">Ative as notificações: avisamos às 18h e quando seus amigos lerem ou comentarem.</p>
+        <p className="text-sm text-muted-foreground">Ative as notificações: avisamos no fim do dia se você esquecer, e quando seus amigos lerem ou comentarem.</p>
         <Button
           size="sm"
           disabled={pendente}

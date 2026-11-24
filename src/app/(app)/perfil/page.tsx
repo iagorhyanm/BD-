@@ -130,7 +130,7 @@ export default async function PerfilPage() {
 
       <BotaoInstalar />
 
-      <NotificacoesPerfil prefs={{ notif_lembrete: eu.notif_lembrete, notif_checkins: eu.notif_checkins, notif_comentarios: eu.notif_comentarios }} />
+      <NotificacoesPerfil prefs={{ notif_lembrete: eu.notif_lembrete, notif_checkins: eu.notif_checkins, notif_comentarios: eu.notif_comentarios, notif_avisos: eu.notif_avisos }} />
 
       {eu.papel === "admin" && (
         <Link

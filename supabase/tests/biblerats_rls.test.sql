@@ -1,7 +1,7 @@
 -- Testes de segurança e regras do BibleRats. Rodar com: npx supabase test db
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(50);
+select plan(55);
 
 -- Cadastro: o perfil nasce como "usuario", mesmo que alguém tente mandar papel=admin.
 insert into auth.users (id, email, raw_user_meta_data) values
@@ -36,6 +36,7 @@ select throws_ok($$ select * from public.plano_dias $$, '42501', null, 'anon nã
 select is((select count(*)::int from public.app_config), 1, 'anon lê as configurações (nome do app no login)');
 select throws_ok($$ select public.entrar_no_grupo('XXXX') $$, '42501', null, 'anon não entra em grupo');
 select throws_ok($$ select * from public.push_inscricoes $$, '42501', null, 'anon não lê inscrições de notificação');
+select throws_ok($$ select * from public.notificacoes_programadas $$, '42501', null, 'anon não lê notificações programadas');
 reset role;
 
 -- ======================= Ana =======================
@@ -132,6 +133,9 @@ set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000c1","r
 select is((select count(*)::int from public.profiles), 1, 'de fora só vê o próprio perfil');
 select is((select count(*)::int from public.checkins), 0, 'de fora não vê leituras');
 select is((select count(*)::int from public.push_inscricoes), 0, 'não vê as notificações dos outros');
+select throws_ok($$ insert into public.notificacoes_programadas (titulo, mensagem, recorrencia, hora) values ('x', 'y', 'diaria', '06:00') $$,
+  '42501', null, 'usuário comum não programa notificação');
+select is((select count(*)::int from public.notificacoes_programadas), 0, 'usuário comum não vê notificações programadas');
 
 -- ======================= Placar e estatísticas =======================
 set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000a1","role":"authenticated"}';
@@ -147,6 +151,10 @@ select lives_ok($$ insert into public.plano_dias (data, leitura, referencias) va
   'admin cadastra dia do plano');
 select lives_ok($$ update public.app_config set aviso_texto = 'Encontro sábado!', aviso_ativo = true $$, 'admin muda configurações');
 select is((select aviso_texto from public.app_config), 'Encontro sábado!', 'aviso salvo');
+select lives_ok($$ insert into public.notificacoes_programadas (titulo, mensagem, recorrencia, hora) values ('Bom dia, {nome}!', 'Bora ler?', 'diaria', '06:00') $$,
+  'admin programa notificação');
+select throws_ok($$ insert into public.notificacoes_programadas (titulo, mensagem, recorrencia, hora) values ('x', 'y', 'semanal', '06:00') $$,
+  '23514', null, 'semanal exige pelo menos um dia');
 
 reset role;
 select throws_ok($$ update public.profiles set ativo = false where id = '00000000-0000-0000-0000-0000000000d1' $$,
