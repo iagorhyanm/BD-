@@ -130,13 +130,15 @@ O arquivo `vercel.json` já coloca o servidor em São Paulo (`gru1`), perto do b
 **Área do administrador** (Perfil → Área do administrador):
 - **Plano de leitura:** publicar o plano cronológico escolhendo a data do Dia 1, importar uma planilha (.xlsx/.csv com colunas Data e Leitura) ou texto colado, e editar, adicionar ou excluir dias.
 - **Textos e aviso:** nome do app, frase, boas-vindas e um aviso que aparece no Início de todo mundo.
+- **Notificações:** programar mensagens (uma vez, todos os dias ou em dias da semana), para todo mundo, um desafio ou pessoas escolhidas, com `{nome}`, `{leitura}` e `{sequencia}` trocados pelos dados de cada um; mudar o horário do lembrete automático e ver o histórico de envios.
 - **Desafios:** colocar pessoas já cadastradas direto num desafio, sem link nem código (marque várias de uma vez), e tirar quem não deve estar. Quem é adicionado recebe um aviso.
 - **Usuários:** editar nome e e-mail, adicionar a um desafio, redefinir senha, desativar contas e escolher administradores. O selo "Sem desafio" mostra quem ainda não está em nenhum.
 
 **Notificações** (Perfil → Notificações, ou o convite que aparece no Início):
-- **Lembrete da leitura:** por volta das 18h (Belém), para quem ainda não marcou a leitura do dia.
+- **Lembrete da leitura:** no horário escolhido pelo admin (padrão 18h, Belém), para quem ainda não marcou a leitura do dia.
 - **Leituras dos amigos:** quando alguém dos seus desafios marca a leitura.
 - **Comentários:** quando alguém comenta na sua leitura.
+- **Avisos da equipe:** as notificações programadas pelos administradores.
 - Cada tipo pode ser ligado ou desligado. No iPhone, só funciona com o app instalado na tela de início (iOS 16.4 ou mais novo).
 
 **Privacidade:**
@@ -178,7 +180,7 @@ npm run dev                   # http://localhost:3000
 | `npm run db:types` | Regenera `src/lib/supabase/database.types.ts` |
 | `npm run seed:admin` | Cria ou atualiza o primeiro administrador |
 
-**Notificações push:** gere as chaves com `npx web-push generate-vapid-keys` e cadastre na Vercel as variáveis `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` e `CRON_SECRET` (veja `.env.example`). O lembrete diário roda pelo Vercel Cron (`vercel.json`, 21h UTC = 18h em Belém) chamando `/api/cron/lembrete`; os avisos de check-in e comentário saem logo depois da ação (`src/lib/push.ts`).
+**Notificações push:** gere as chaves com `npx web-push generate-vapid-keys` e cadastre na Vercel as variáveis `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`, `VAPID_SUBJECT` e `CRON_SECRET` (veja `.env.example`). O agendador do Supabase (pg_cron + pg_net) chama `/api/cron/notificacoes` a cada 5 minutos, e essa rota envia as notificações programadas e o lembrete diário (`src/lib/notificacoes-envio.ts`). Para ligar, guarde o `CRON_SECRET` no cofre (`select vault.create_secret('<CRON_SECRET>', 'cron_secret');`) e rode `supabase/agendador.sql` no SQL Editor. Os avisos de check-in e comentário saem logo depois da ação (`src/lib/push.ts`).
 
 **Modelo de dados** (`supabase/migrations/20261122000001_biblerats.sql`):
 

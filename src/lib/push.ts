@@ -27,25 +27,43 @@ const limitar = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1).t
 
 /** Envia para todos os aparelhos dessas pessoas. Devolve quantas entregas deram certo. */
 export async function enviarPara(userIds: string[], aviso: Aviso, ttlSegundos = 6 * 3600): Promise<number> {
-  if (!userIds.length || !pushConfigurado()) return 0;
+  return enviarVarios(userIds.map((userId) => ({ userId, aviso })), ttlSegundos);
+}
+
+/** Cada pessoa recebe o seu próprio texto (ex.: com o nome dela). */
+export async function enviarVarios(itens: { userId: string; aviso: Aviso }[], ttlSegundos = 6 * 3600): Promise<number> {
+  if (!itens.length || !pushConfigurado()) return 0;
   const admin = createAdminClient();
-  const { data: inscricoes } = await admin.from("push_inscricoes").select("id, endpoint, p256dh, auth").in("user_id", userIds);
-  if (!inscricoes?.length) return 0;
-  const payload = JSON.stringify({ ...aviso, titulo: limitar(aviso.titulo, 80), corpo: limitar(aviso.corpo, 180) });
+  const porPessoa = new Map(itens.map((i) => [i.userId, i.aviso]));
+  const ids = [...porPessoa.keys()];
+  const inscricoes: { id: string; user_id: string; endpoint: string; p256dh: string; auth: string }[] = [];
+  for (let i = 0; i < ids.length; i += 200) {
+    const { data } = await admin.from("push_inscricoes").select("id, user_id, endpoint, p256dh, auth").in("user_id", ids.slice(i, i + 200));
+    inscricoes.push(...(data ?? []));
+  }
+  if (!inscricoes.length) return 0;
   const mortas: string[] = [];
-  const r = await Promise.allSettled(
-    inscricoes.map((i) =>
-      webpush
-        .sendNotification({ endpoint: i.endpoint, keys: { p256dh: i.p256dh, auth: i.auth } }, payload, { TTL: ttlSegundos, urgency: "normal" })
-        .catch((e: { statusCode?: number }) => {
-          // Aparelho desinstalou o app ou revogou a permissão: remove a inscrição.
-          if (e.statusCode === 404 || e.statusCode === 410) mortas.push(i.id);
-          throw e;
-        }),
-    ),
-  );
+  let entregues = 0;
+  // Em lotes, para não abrir conexões demais de uma vez.
+  for (let i = 0; i < inscricoes.length; i += 50) {
+    const lote = inscricoes.slice(i, i + 50);
+    const r = await Promise.allSettled(
+      lote.map((ins) => {
+        const aviso = porPessoa.get(ins.user_id)!;
+        const payload = JSON.stringify({ ...aviso, titulo: limitar(aviso.titulo, 80), corpo: limitar(aviso.corpo, 180) });
+        return webpush
+          .sendNotification({ endpoint: ins.endpoint, keys: { p256dh: ins.p256dh, auth: ins.auth } }, payload, { TTL: ttlSegundos, urgency: "normal" })
+          .catch((e: { statusCode?: number }) => {
+            // Aparelho desinstalou o app ou revogou a permissão: remove a inscrição.
+            if (e.statusCode === 404 || e.statusCode === 410) mortas.push(ins.id);
+            throw e;
+          });
+      }),
+    );
+    entregues += r.filter((x) => x.status === "fulfilled").length;
+  }
   if (mortas.length) await admin.from("push_inscricoes").delete().in("id", mortas);
-  return r.filter((x) => x.status === "fulfilled").length;
+  return entregues;
 }
 
 const primeiroNome = (nome: string) => nome.trim().split(/\s+/)[0];

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CalendarDays, ChevronRight, Trophy, HardDrive, History, Megaphone, Users } from "lucide-react";
+import { BellRing, CalendarDays, ChevronRight, Trophy, HardDrive, History, Megaphone, Users } from "lucide-react";
 import { requireAdmin } from "@/lib/auth";
 import { CabecalhoPagina } from "@/components/cabecalho-pagina";
 
@@ -9,6 +9,7 @@ export const metadata: Metadata = { title: "Administração" };
 const SECOES = [
   { href: "/admin/plano", titulo: "Plano de leitura", descricao: "Publicar o plano, importar planilha e editar a leitura de cada dia.", icone: CalendarDays },
   { href: "/admin/config", titulo: "Textos e aviso", descricao: "Nome do app, frase, boas-vindas e aviso para todos.", icone: Megaphone },
+  { href: "/admin/notificacoes", titulo: "Notificações", descricao: "Programar mensagens (uma vez, diárias ou semanais) e o horário do lembrete.", icone: BellRing },
   { href: "/admin/desafios", titulo: "Desafios", descricao: "Colocar pessoas cadastradas direto num desafio, sem link nem código.", icone: Trophy },
   { href: "/admin/usuarios", titulo: "Usuários", descricao: "Editar nome e e-mail, redefinir senha, desativar contas e escolher administradores.", icone: Users },
   { href: "/admin/logs", titulo: "Log de atividades", descricao: "Quem fez o quê e quando.", icone: History },

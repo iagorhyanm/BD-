@@ -25,14 +25,14 @@ export type Database = {
           Tables: {
             "app_config": {
                   Row: {
-                    "atualizado_em": string,"atualizado_por": string | null,"aviso_ativo": boolean,"aviso_texto": string | null,"boas_vindas": string,"id": number,"nome": string,"slogan": string
+                    "atualizado_em": string,"atualizado_por": string | null,"aviso_ativo": boolean,"aviso_texto": string | null,"boas_vindas": string,"id": number,"lembrete_ativo": boolean,"lembrete_hora": string,"lembrete_ultimo": string | null,"nome": string,"slogan": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "atualizado_em"?: string,"atualizado_por"?: string | null,"aviso_ativo"?: boolean,"aviso_texto"?: string | null,"boas_vindas"?: string,"id"?: number,"nome"?: string,"slogan"?: string
+                    "atualizado_em"?: string,"atualizado_por"?: string | null,"aviso_ativo"?: boolean,"aviso_texto"?: string | null,"boas_vindas"?: string,"id"?: number,"lembrete_ativo"?: boolean,"lembrete_hora"?: string,"lembrete_ultimo"?: string | null,"nome"?: string,"slogan"?: string
                   }
                   Update: {
-                    "atualizado_em"?: string,"atualizado_por"?: string | null,"aviso_ativo"?: boolean,"aviso_texto"?: string | null,"boas_vindas"?: string,"id"?: number,"nome"?: string,"slogan"?: string
+                    "atualizado_em"?: string,"atualizado_por"?: string | null,"aviso_ativo"?: boolean,"aviso_texto"?: string | null,"boas_vindas"?: string,"id"?: number,"lembrete_ativo"?: boolean,"lembrete_hora"?: string,"lembrete_ultimo"?: string | null,"nome"?: string,"slogan"?: string
                   }
                   Relationships: [
                     {
@@ -175,6 +175,52 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
+                },"notificacoes_envios": {
+                  Row: {
+                    "destinatarios": number,"entregues": number,"enviado_em": string,"id": string,"notificacao_id": string | null,"tipo": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "destinatarios"?: number,"entregues"?: number,"enviado_em"?: string,"id"?: string,"notificacao_id"?: string | null,"tipo"?: string
+                  }
+                  Update: {
+                    "destinatarios"?: number,"entregues"?: number,"enviado_em"?: string,"id"?: string,"notificacao_id"?: string | null,"tipo"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "notificacoes_envios_notificacao_id_fkey"
+      columns: ["notificacao_id"]
+isOneToOne: false
+      referencedRelation: "notificacoes_programadas"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"notificacoes_programadas": {
+                  Row: {
+                    "ativa": boolean,"atualizado_em": string,"criado_em": string,"criado_por": string | null,"data": string | null,"destino": string,"dias_semana": (number)[],"grupo_id": string | null,"hora": string,"id": string,"mensagem": string,"pessoas": (string)[],"proximo_envio": string | null,"publico": string,"recorrencia": string,"so_quem_nao_leu": boolean,"titulo": string,"ultimo_envio": string | null,"ultimo_total": number | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "ativa"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"criado_por"?: string | null,"data"?: string | null,"destino"?: string,"dias_semana"?: (number)[],"grupo_id"?: string | null,"hora": string,"id"?: string,"mensagem": string,"pessoas"?: (string)[],"proximo_envio"?: string | null,"publico"?: string,"recorrencia": string,"so_quem_nao_leu"?: boolean,"titulo": string,"ultimo_envio"?: string | null,"ultimo_total"?: number | null
+                  }
+                  Update: {
+                    "ativa"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"criado_por"?: string | null,"data"?: string | null,"destino"?: string,"dias_semana"?: (number)[],"grupo_id"?: string | null,"hora"?: string,"id"?: string,"mensagem"?: string,"pessoas"?: (string)[],"proximo_envio"?: string | null,"publico"?: string,"recorrencia"?: string,"so_quem_nao_leu"?: boolean,"titulo"?: string,"ultimo_envio"?: string | null,"ultimo_total"?: number | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "notificacoes_programadas_criado_por_fkey"
+      columns: ["criado_por"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "notificacoes_programadas_grupo_id_fkey"
+      columns: ["grupo_id"]
+isOneToOne: false
+      referencedRelation: "grupos"
+      referencedColumns: ["id"]
+    }
+                  ]
                 },"plano_dias": {
                   Row: {
                     "atualizado_em": string,"data": string,"leitura": string,"referencias": NonNullable<Json>,"texto": string | null,"titulo": string | null
@@ -191,14 +237,14 @@ isOneToOne: false
                   ]
                 },"profiles": {
                   Row: {
-                    "ativo": boolean,"atualizado_em": string,"criado_em": string,"email": string | null,"foto_path": string | null,"id": string,"nome": string,"notif_checkins": boolean,"notif_comentarios": boolean,"notif_lembrete": boolean,"papel": Database["public"]['Enums']["papel_app"],"precisa_trocar_senha": boolean,"telefone": string | null,"usuario": string | null
+                    "ativo": boolean,"atualizado_em": string,"criado_em": string,"email": string | null,"foto_path": string | null,"id": string,"nome": string,"notif_avisos": boolean,"notif_checkins": boolean,"notif_comentarios": boolean,"notif_lembrete": boolean,"papel": Database["public"]['Enums']["papel_app"],"precisa_trocar_senha": boolean,"telefone": string | null,"usuario": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id": string,"nome": string,"notif_checkins"?: boolean,"notif_comentarios"?: boolean,"notif_lembrete"?: boolean,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
+                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id": string,"nome": string,"notif_avisos"?: boolean,"notif_checkins"?: boolean,"notif_comentarios"?: boolean,"notif_lembrete"?: boolean,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
                   }
                   Update: {
-                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id"?: string,"nome"?: string,"notif_checkins"?: boolean,"notif_comentarios"?: boolean,"notif_lembrete"?: boolean,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
+                    "ativo"?: boolean,"atualizado_em"?: string,"criado_em"?: string,"email"?: string | null,"foto_path"?: string | null,"id"?: string,"nome"?: string,"notif_avisos"?: boolean,"notif_checkins"?: boolean,"notif_comentarios"?: boolean,"notif_lembrete"?: boolean,"papel"?: Database["public"]['Enums']["papel_app"],"precisa_trocar_senha"?: boolean,"telefone"?: string | null,"usuario"?: string | null
                   }
                   Relationships: [
                     

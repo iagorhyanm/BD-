@@ -8,12 +8,13 @@ import { Switch } from "@/components/ui/switch";
 import { ativarPush, desativarPush, estadoPush, type EstadoPush } from "@/lib/push-cliente";
 import { enviarTeste, removerInscricao, salvarInscricao, salvarPreferencia } from "@/server/actions/notificacoes";
 
-type Prefs = { notif_lembrete: boolean; notif_checkins: boolean; notif_comentarios: boolean };
+type Prefs = { notif_lembrete: boolean; notif_checkins: boolean; notif_comentarios: boolean; notif_avisos: boolean };
 
 const OPCOES: { campo: keyof Prefs; titulo: string; desc: string }[] = [
-  { campo: "notif_lembrete", titulo: "Lembrete da leitura", desc: "Por volta das 18h, se você ainda não marcou a leitura do dia." },
+  { campo: "notif_lembrete", titulo: "Lembrete da leitura", desc: "No fim do dia, se você ainda não marcou a leitura." },
   { campo: "notif_checkins", titulo: "Leituras dos amigos", desc: "Quando alguém dos seus desafios marcar a leitura." },
   { campo: "notif_comentarios", titulo: "Comentários", desc: "Quando alguém comentar na sua leitura." },
+  { campo: "notif_avisos", titulo: "Avisos da equipe", desc: "Mensagens programadas pelos administradores." },
 ];
 
 export function NotificacoesPerfil({ prefs }: { prefs: Prefs }) {
