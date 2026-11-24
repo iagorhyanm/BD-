@@ -9,6 +9,8 @@ import { CabecalhoPagina } from "@/components/cabecalho-pagina";
 import { CartaoCheckin } from "@/components/cartao-checkin";
 import { Button } from "@/components/ui/button";
 import { Comentarios } from "./comentarios";
+import { QuemReagiu } from "./quem-reagiu";
+import { formatarDataHora } from "@/lib/datas";
 
 export const metadata: Metadata = { title: "Leitura" };
 
@@ -16,9 +18,10 @@ export default async function CheckinPage({ params }: { params: Promise<{ id: st
   const eu = await requireUsuario();
   const { id } = await params;
   const supabase = await createClient();
-  const [[item], { data: comentarios }] = await Promise.all([
+  const [[item], { data: comentarios }, { data: reacoes }] = await Promise.all([
     carregarFeed(eu.id, { ids: [id], limite: 1 }),
     supabase.from("comentarios").select("id, texto, criado_em, user_id, profiles(nome, foto_path)").eq("checkin_id", id).order("criado_em"),
+    supabase.from("reacoes").select("emoji, user_id, criado_em, profiles(nome, foto_path)").eq("checkin_id", id).order("criado_em", { ascending: false }),
   ]);
   if (!item) notFound();
 
@@ -39,6 +42,17 @@ export default async function CheckinPage({ params }: { params: Promise<{ id: st
       />
       <div className="space-y-4">
         <CartaoCheckin item={item} euId={eu.id} detalhe />
+        <QuemReagiu
+          euId={eu.id}
+          reacoes={(reacoes ?? []).map((r) => ({
+            userId: r.user_id,
+            emoji: r.emoji,
+            // data no fuso de Belém, para "hoje"/"ontem"
+            criadoEm: formatarDataHora(r.criado_em, "yyyy-MM-dd'T'HH:mm:ss"),
+            nome: (r.profiles as { nome: string } | null)?.nome ?? "Alguém",
+            foto: (r.profiles as { foto_path: string | null } | null)?.foto_path ?? null,
+          }))}
+        />
         <Comentarios
           checkinId={id}
           euId={eu.id}
