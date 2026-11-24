@@ -134,7 +134,7 @@ O arquivo `vercel.json` já coloca o servidor em São Paulo (`gru1`), perto do b
 - **Desafios:** colocar pessoas já cadastradas direto num desafio, sem link nem código (marque várias de uma vez), e tirar quem não deve estar. Quem é adicionado recebe um aviso.
 - **Usuários:** editar nome e e-mail, adicionar a um desafio, redefinir senha, desativar contas e escolher administradores. O selo "Sem desafio" mostra quem ainda não está em nenhum.
 
-**Notificações** (Perfil → Notificações, ou o convite que aparece no Início):
+**Notificações** (Perfil → Notificações). Ao abrir o Início, quem ainda não ativou vê um pop-up que só fecha ativando. Quem bloqueou no navegador ou usa iPhone sem o app instalado vê como resolver e pode deixar para o dia seguinte:
 - **Lembrete da leitura:** no horário escolhido pelo admin (padrão 18h, Belém), para quem ainda não marcou a leitura do dia.
 - **Leituras dos amigos:** quando alguém dos seus desafios marca a leitura.
 - **Comentários:** quando alguém comenta na sua leitura.
