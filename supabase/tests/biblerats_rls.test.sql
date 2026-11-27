@@ -1,7 +1,7 @@
 -- Testes de segurança e regras do BibleRats. Rodar com: npx supabase test db
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(55);
+select plan(60);
 
 -- Cadastro: o perfil nasce como "usuario", mesmo que alguém tente mandar papel=admin.
 insert into auth.users (id, email, raw_user_meta_data) values
@@ -112,11 +112,14 @@ select isnt(public.entrar_no_grupo('teste123'), null, 'entra pelo código');
 select is((select count(*)::int from public.checkins where user_id = '00000000-0000-0000-0000-0000000000a1'), 3,
   'agora vê os check-ins da colega');
 
+select lives_ok($$ insert into public.checkins (data) values (public.hoje_belem() - 1) $$, 'esqueceu ontem: marca hoje');
+select is((select no_prazo from public.checkins where user_id = auth.uid() and data = public.hoje_belem() - 1), true,
+  'ontem marcado hoje conta como no prazo');
 select lives_ok($$ insert into public.checkins (data) values (public.hoje_belem() - 2) $$, 'marca leitura atrasada (2 dias)');
 select is((select no_prazo from public.checkins where user_id = auth.uid() and data = public.hoje_belem() - 2), false,
   'leitura atrasada não conta como no prazo');
 insert into public.checkins (data) values (public.hoje_belem());
-select is(public.sequencia_atual(auth.uid()), 1, 'atraso não entra na sequência');
+select is(public.sequencia_atual(auth.uid()), 2, 'ontem (tolerância) + hoje = sequência 2; 2 dias de atraso não entra');
 select lives_ok($$ insert into public.reacoes (checkin_id, emoji)
   select id, '🔥' from public.checkins where user_id = '00000000-0000-0000-0000-0000000000a1' and data = public.hoje_belem()
 $$, 'reage no check-in da colega');
@@ -141,8 +144,8 @@ select is((select count(*)::int from public.notificacoes_programadas), 0, 'usuá
 set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000a1","role":"authenticated"}';
 select results_eq(
   $$ select nome, pontos from public.placar_grupo('00000000-0000-0000-0000-0000000000f1') $$,
-  $$ values ('Ana Clara'::text, 3.0::numeric), ('Bia'::text, 1.5::numeric) $$,
-  'placar: 1 ponto no dia, meio ponto com atraso');
+  $$ values ('Ana Clara'::text, 3.0::numeric), ('Bia'::text, 2.5::numeric) $$,
+  'placar: 1 ponto no dia ou no dia seguinte, meio ponto com mais atraso');
 select is((public.estatisticas_usuario(auth.uid()) ->> 'capitulos')::int, 3, 'estatística: 3 capítulos lidos pelo plano');
 
 -- ======================= Admin =======================
@@ -156,6 +159,18 @@ select lives_ok($$ insert into public.notificacoes_programadas (titulo, mensagem
 select throws_ok($$ insert into public.notificacoes_programadas (titulo, mensagem, recorrencia, hora) values ('x', 'y', 'semanal', '06:00') $$,
   '23514', null, 'semanal exige pelo menos um dia');
 
+reset role;
+alter table public.checkins disable trigger checkins_validar;
+insert into public.checkins (user_id, data, no_prazo, foto_path) values
+  ('00000000-0000-0000-0000-0000000000d1', public.hoje_belem() - 2, true, '00000000-0000-0000-0000-0000000000d1/a.jpg');
+alter table public.checkins enable trigger checkins_validar;
+select is(public.sequencia_atual('00000000-0000-0000-0000-0000000000d1'), 1, 'hoje e ontem pendentes não quebram a sequência');
+set local role authenticated;
+set local request.jwt.claims = '{"sub":"00000000-0000-0000-0000-0000000000d1","role":"authenticated"}';
+insert into public.checkins (data) values (public.hoje_belem());
+select is(public.sequencia_atual(auth.uid()), 1, 'leu hoje mas não marcou ontem: sequência recomeça');
+insert into public.checkins (data) values (public.hoje_belem() - 1);
+select is(public.sequencia_atual(auth.uid()), 3, 'marcou ontem depois: sequência volta inteira');
 reset role;
 select throws_ok($$ update public.profiles set ativo = false where id = '00000000-0000-0000-0000-0000000000d1' $$,
   'P0001', 'É preciso manter pelo menos um administrador ativo.', 'sempre fica um admin ativo');

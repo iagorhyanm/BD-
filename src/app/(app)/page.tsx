@@ -3,7 +3,7 @@ import { BookOpenCheck, CalendarClock, CircleCheck, Flame, Megaphone, Trophy, Us
 import { requireUsuario } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { carregarFeed } from "@/lib/feed";
-import { deBelem, formatarData, hojeEmBelem, rotuloDia } from "@/lib/datas";
+import { deBelem, formatarData, hojeEmBelem, rotuloDia, somarDias } from "@/lib/datas";
 import { diasMarcaveis } from "@/lib/plano-dia";
 import { obterConfig } from "@/lib/config";
 import { ExigirNotificacoes } from "@/components/exigir-notificacoes";
@@ -100,13 +100,18 @@ export default async function InicioPage() {
           <h2 id="t-atraso" className="flex items-center gap-2 font-semibold">
             <CalendarClock className="size-5 text-amber-600" aria-hidden /> Dá tempo de recuperar
           </h2>
-          <p className="text-sm text-muted-foreground">Leituras atrasadas ainda valem meio ponto (até 3 dias), mas não contam na sequência.</p>
+          <p className="text-sm text-muted-foreground">
+            Esqueceu de marcar ontem? Marque agora: vale 1 ponto e mantém a sequência 🔥. Leituras de 2 a 3 dias atrás valem meio ponto.
+          </p>
           <ul className="divide-y">
             {atrasados.map((d) => (
               <li key={d.data}>
                 <Link href={`/checkin/novo?dia=${d.data}`} className="flex min-h-12 items-center justify-between gap-2 py-2 hover:text-primary">
                   <span className="font-medium">{d.leitura}</span>
-                  <span className="shrink-0 text-sm text-muted-foreground capitalize">{rotuloDia(d.data, hoje)}</span>
+                  <span className="shrink-0 text-right text-sm text-muted-foreground capitalize">
+                    {rotuloDia(d.data, hoje)}
+                    <span className="block text-xs normal-case">{d.data === somarDias(hoje, -1) ? "1 ponto 🔥" : "½ ponto"}</span>
+                  </span>
                 </Link>
               </li>
             ))}
