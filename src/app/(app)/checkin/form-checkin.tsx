@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AlertaErro } from "@/components/alerta-erro";
 import { Confirmar } from "@/components/confirmar";
-import { capitalizar, hojeEmBelem, rotuloDia } from "@/lib/datas";
+import { capitalizar, hojeEmBelem, rotuloDia, somarDias } from "@/lib/datas";
 import { reduzirImagem } from "@/lib/imagem";
 import { semReset } from "@/lib/form";
 import { createClient } from "@/lib/supabase/client";
@@ -70,7 +70,15 @@ export function FormCheckin({ userId, checkin, dias = [], diaInicial }: { userId
     iniciar(async () => {
       const r = await salvarCheckin(checkin?.id ?? null, fd);
       if (!r.ok) return setErro(r.erro);
-      toast.success(checkin ? "Leitura atualizada!" : data === hoje ? "Leitura marcada! 🔥" : "Leitura marcada! Meio ponto garantido 📖");
+      toast.success(
+        checkin
+          ? "Leitura atualizada!"
+          : data === hoje
+            ? "Leitura marcada! 🔥"
+            : data === somarDias(hoje, -1)
+              ? "Leitura de ontem marcada! Ponto e sequência garantidos 🔥"
+              : "Leitura marcada! Meio ponto garantido 📖",
+      );
       router.push(checkin ? `/checkin/${r.dados.id}` : "/");
     });
   }
@@ -108,7 +116,8 @@ export function FormCheckin({ userId, checkin, dias = [], diaInicial }: { userId
                   <span className="min-w-0 flex-1">
                     <span className={cn("block text-xs", ativo ? "opacity-90" : "text-muted-foreground")}>
                       {capitalizar(rotuloDia(d.data, hoje))}
-                      {d.data !== hoje && !feito && " · vale ½ ponto, não conta na 🔥"}
+                      {!feito && d.data === somarDias(hoje, -1) && " · esqueceu? Ainda vale 1 ponto e mantém a 🔥"}
+                      {!feito && d.data < somarDias(hoje, -1) && " · vale ½ ponto, não conta na 🔥"}
                     </span>
                     <span className="block font-semibold">{d.leitura}</span>
                   </span>

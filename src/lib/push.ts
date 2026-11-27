@@ -1,6 +1,7 @@
 import "server-only";
 import webpush from "web-push";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { hojeEmBelem } from "@/lib/datas";
 
 export type Aviso = {
   titulo: string;
@@ -74,7 +75,7 @@ export async function notificarCheckin(checkinId: string) {
   const admin = createAdminClient();
   const { data: c } = await admin
     .from("checkins")
-    .select("id, user_id, no_prazo, anotacao, profiles!checkins_user_id_fkey(nome), plano_dias(leitura)")
+    .select("id, user_id, data, no_prazo, anotacao, profiles!checkins_user_id_fkey(nome), plano_dias(leitura)")
     .eq("id", checkinId)
     .maybeSingle();
   if (!c) return;
@@ -91,7 +92,12 @@ export async function notificarCheckin(checkinId: string) {
   const nome = primeiroNome((c.profiles as { nome: string } | null)?.nome ?? "Alguém");
   const leitura = (c.plano_dias as { leitura: string } | null)?.leitura ?? "";
   await enviarPara(ids, {
-    titulo: c.no_prazo ? `${nome} fez a leitura de hoje 🔥` : `${nome} recuperou uma leitura 📖`,
+    titulo:
+      c.data === hojeEmBelem()
+        ? `${nome} fez a leitura de hoje 🔥`
+        : c.no_prazo
+          ? `${nome} marcou a leitura de ontem 🔥`
+          : `${nome} recuperou uma leitura 📖`,
     corpo: [leitura, c.anotacao].filter(Boolean).join(" · "),
     url: `/checkin/${c.id}`,
     tag: `checkin-${c.id}`,
