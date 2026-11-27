@@ -14,8 +14,9 @@ update public.profiles set papel = 'admin', ativo = true where id = '00000000-00
 update public.profiles set ativo = false where papel = 'admin' and id <> '00000000-0000-0000-0000-0000000000d1';
 
 -- Plano de teste: de 5 dias atrás até amanhã (Mateus 1..7)
-delete from public.plano_dias where data between public.hoje_belem() - 5 and public.hoje_belem() + 1
-  and not exists (select 1 from public.checkins c where c.data = plano_dias.data);
+-- (Tudo roda numa transação desfeita no fim: limpar aqui não apaga nada de verdade.)
+delete from public.checkins where data between public.hoje_belem() - 5 and public.hoje_belem() + 1;
+delete from public.plano_dias where data between public.hoje_belem() - 5 and public.hoje_belem() + 1;
 insert into public.plano_dias (data, leitura, referencias)
 select public.hoje_belem() + n, 'Mateus ' || (n + 6), jsonb_build_array(jsonb_build_object('livro', 'mt', 'inicio', n + 6, 'fim', n + 6))
 from generate_series(-5, 1) n
